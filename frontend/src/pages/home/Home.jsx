@@ -1,8 +1,17 @@
 import React from 'react'
+import Landing from "../home/component/Landing";
+import Consultation from "./component/Consultation";
+import AboutCorousel from "./component/AboutCorousel";
+import Feature from "./component/Feature";
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+      <Landing />
+      <Consultation />
+      <Feature />
+      <AboutCorousel />
+    </>
   )
 }
 
