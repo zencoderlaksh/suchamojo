@@ -25,6 +25,16 @@ body,
 
 body {
   font-family: var(--font-body);
+  background: linear-gradient(
+    120deg,
+    #f7fafc 0%,
+    #eef6ff 26%,
+    #f8f6ff 52%,
+    #f4fff8 78%,
+    #fffaf3 100%
+  );
+  background-size: 220% 220%;
+  animation: bgShift 16s ease-in-out infinite;
 }
 
 h1,
@@ -32,4 +42,96 @@ h2,
 h3,
 .font-display {
   font-family: var(--font-display);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes surfacePop {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseSoft {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes bgShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.reveal-up {
+  opacity: 0;
+  animation: fadeUp 0.75s ease forwards;
+}
+
+.surface-pop {
+  animation: surfacePop 0.55s ease both;
+}
+
+.float-slow {
+  animation: floatSlow 4.8s ease-in-out infinite;
+}
+
+.pulse-soft {
+  animation: pulseSoft 5.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
