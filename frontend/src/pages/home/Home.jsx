@@ -6,6 +6,7 @@ import Feature from "./component/Feature";
 import Blog from "./component/Blog";
 import GetInTouch from "./component/GetInTouch";
 
+
 const Home = () => {
   return (
     <>
@@ -13,8 +14,10 @@ const Home = () => {
       <Consultation />
       <Feature />
       <AboutCorousel />
+
       <Blog />
       <GetInTouch />
+
     </>
   )
 }
