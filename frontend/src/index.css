@@ -1,5 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-pixel: "Silkscreen", sans-serif;
+}
 
 @font-face {
   font-family: "Frastha";
@@ -32,4 +37,12 @@ h2,
 h3,
 .font-display {
   font-family: var(--font-display);
+}
+
+/* Silkscreen pixel font — overrides the global h2 rule above */
+.font-pixel,
+h1.font-pixel,
+h2.font-pixel,
+h3.font-pixel {
+  font-family: "Silkscreen", sans-serif !important;
 }

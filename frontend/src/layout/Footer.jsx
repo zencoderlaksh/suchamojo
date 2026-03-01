@@ -11,8 +11,8 @@ const Footer = () => {
             <p className="mb-6 text-sm tracking-[0.18em] text-gray-400 sm:text-base">Suchamojo</p>
             <h2 className="mb-4 text-[1.4rem] leading-none text-white sm:text-[1.7rem]">Story-led Personal Branding</h2>
             <p className="text-xs leading-relaxed text-gray-400 sm:text-sm">
-              I help founders, creators, and high-agency < br/>professionals build personal brands rooted
-              in<br/> identity, clarity, and long-term trust.
+              I help founders, creators, and high-agency <br />professionals build personal brands rooted
+              in <br />identity, clarity, and long-term trust.
             </p>
           </div>
 

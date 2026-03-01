@@ -4,6 +4,8 @@ import Consultation from "./component/Consultation";
 import AboutCorousel from "./component/AboutCorousel";
 import Feature from "./component/Feature";
 import Clients from './component/Clients';
+import ServicesSection from './component/ServicesSection';
+import MilestonesSection from './component/MilestonesSection';
 
 const Home = () => {
   return (
@@ -13,6 +15,12 @@ const Home = () => {
       <Feature />
       <AboutCorousel />
       <Clients />
+      <section className="mx-auto mt-8 w-full max-w-[1240px] px-4 sm:mt-12 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-2">
+          <ServicesSection split />
+          <MilestonesSection split />
+        </div>
+      </section>
     </>
   )
 }
