@@ -8,27 +8,27 @@ const Header = () => {
   const closeMenu = () => setOpen(false);
 
   return (
-    <header className="w-full px-3 py-4 sm:px-4">
+    <header className="sticky top-0 z-50 w-full px-3 py-4 sm:px-4">
       <div className="mx-auto w-full max-w-6xl">
-        <div className="flex w-full flex-nowrap items-center justify-between gap-3 rounded-2xl bg-gray-300 px-4 py-3 sm:px-6">
+        <div className="surface-pop flex w-full flex-nowrap items-center justify-between gap-3 rounded-2xl border border-white/40 bg-gray-300/90 px-4 py-3 backdrop-blur-md sm:px-6">
           <Link to="/" className="shrink-0" onClick={closeMenu}>
             <img
               src={logo}
               alt="Logo"
-              className="h-10 w-10 rounded-full object-cover"
+              className="h-10 w-10 rounded-full object-cover transition duration-300 hover:scale-105"
             />
           </Link>
 
           <nav className="hidden flex-1 items-center justify-center gap-5 whitespace-nowrap text-sm font-semibold tracking-wide text-gray-700 lg:flex xl:gap-7 xl:text-base">
-            <Link to="/">HOME</Link>
-            <Link to="/about">ABOUT</Link>
-            <Link to="/projects">PROJECTS</Link>
-            <Link to="/journal">JOURNAL</Link>
+            <Link to="/" className="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-slate-800 after:transition-all hover:after:w-full">HOME</Link>
+            <Link to="/about" className="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-slate-800 after:transition-all hover:after:w-full">ABOUT</Link>
+            <Link to="/projects" className="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-slate-800 after:transition-all hover:after:w-full">PROJECTS</Link>
+            <Link to="/journal" className="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-slate-800 after:transition-all hover:after:w-full">JOURNAL</Link>
           </nav>
 
           <Link
             to="/contact"
-            className="hidden shrink-0 rounded-full bg-white px-4 py-2 text-sm font-semibold transition hover:scale-105 lg:block xl:px-5 xl:text-base"
+            className="hidden shrink-0 rounded-full bg-white px-4 py-2 text-sm font-semibold transition duration-300 hover:-translate-y-0.5 hover:scale-105 lg:block xl:px-5 xl:text-base"
           >
             CONTACT +
           </Link>
@@ -53,7 +53,7 @@ const Header = () => {
         </div>
 
         {open && (
-          <div className="mt-3 rounded-2xl bg-gray-300 p-4 lg:hidden">
+          <div className="surface-pop mt-3 rounded-2xl border border-white/40 bg-gray-300/95 p-4 backdrop-blur-md lg:hidden">
             <nav className="flex flex-col items-center gap-4 font-semibold text-gray-700">
               <Link to="/" onClick={closeMenu}>
                 HOME
