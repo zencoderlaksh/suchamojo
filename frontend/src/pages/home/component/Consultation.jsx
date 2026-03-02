@@ -1,11 +1,11 @@
-import { beyond, backgroundAlt, time, timeless } from "../../../assets/image/index";
+import { c1, c2, c3, c4 } from "../../../assets/image/index";
 
 const consultationCards = [
   {
     id: 1,
     eyebrow: "ART DIRECTION",
     title: "BEYOND TIME",
-    image: beyond,
+    image: c1,
     tint: "from-[#3d0709]/78 via-[#9e2418]/38 to-[#120909]/20",
     panel: "bg-[#2b1411]/58 ring-1 ring-[#ea7d5f]/35",
   },
@@ -13,7 +13,7 @@ const consultationCards = [
     id: 2,
     eyebrow: "BRAND IDENTITY",
     title: "BRAND REDEFINE",
-    image: backgroundAlt,
+    image: c2,
     tint: "from-[#062f2c]/78 via-[#138b77]/34 to-[#091514]/20",
     panel: "bg-[#112928]/58 ring-1 ring-[#63d8c4]/35",
   },
@@ -21,7 +21,7 @@ const consultationCards = [
     id: 3,
     eyebrow: "AD CAMPAIGN",
     title: "EVERY SECOND",
-    image: time,
+    image: c3,
     tint: "from-[#311207]/80 via-[#a44b18]/34 to-[#140b07]/22",
     panel: "bg-[#2a180f]/60 ring-1 ring-[#df9c57]/35",
   },
@@ -29,7 +29,7 @@ const consultationCards = [
     id: 4,
     eyebrow: "ART DIRECTION",
     title: "TIMELESS MASTERY",
-    image: timeless,
+    image: c4,
     tint: "from-[#080808]/82 via-[#1f1f1f]/40 to-[#070707]/28",
     panel: "bg-[#201a18]/58 ring-1 ring-[#b7a49a]/30",
   },
@@ -58,7 +58,7 @@ const Consultation = () => {
               <div className={`absolute inset-0 bg-linear-to-t ${card.tint}`} />
               <div className="absolute inset-0 bg-linear-to-tr from-white/0 via-white/0 to-white/0 transition duration-500 group-hover:from-white/0 group-hover:to-white/15" />
 
-              <div className={`absolute left-1/2 top-1/2 w-[56%] max-w-45 -translate-x-1/2 -translate-y-1/2 rounded-[1.4rem] px-3 py-4 text-center backdrop-blur-md ${card.panel}`}>
+              <div className={`absolute left-1/2 top-1/2 flex aspect-square w-[64%] max-w-52 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-[1.4rem] px-4 py-4 text-center backdrop-blur-md ${card.panel}`}>
                 <p className="mb-2 text-[0.5rem] tracking-[0.16em] text-white/80 sm:text-[0.56rem]">
                   {card.eyebrow}
                 </p>

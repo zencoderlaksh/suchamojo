@@ -1,5 +1,5 @@
 import React from "react";
-import { background } from "../../../assets/image/index";
+import { l1 } from "../../../assets/image/index";
 
 const Landing = () => {
   return (
@@ -8,7 +8,7 @@ const Landing = () => {
         <div className="relative min-h-[70vh] overflow-hidden rounded-3xl p-6 sm:min-h-[75vh] sm:p-10 lg:min-h-[80vh] lg:p-14">
 
           <img
-            src={background}
+            src={l1}
             alt="Landing background"
             className="absolute inset-0 w-full h-full object-cover grayscale"
           />
@@ -19,6 +19,9 @@ const Landing = () => {
               <h1 className="text-[clamp(1.3rem,5vw,3.2rem)] font-black uppercase leading-[0.95] text-center lg:text-left">
                 SUCHAMOJO
               </h1>
+              <p className="mt-6 text-[clamp(0.58rem,1.2vw,0.8rem)] font-bold uppercase tracking-[0.2em] text-center lg:text-left">
+                DESIGN STUDIO . LONDON
+              </p>
             </div>
 
             <div className="hidden lg:block" />

@@ -1,10 +1,10 @@
 import React from "react";
 import Form from "../../../components/Form";
-import { backgroundAlt } from "../../../assets/image";
+import { g1 } from "../../../assets/image";
 
 const GetInTouch = () => {
   return (
-    <section className="px-4 py-16 sm:px-6 lg:px-8">
+    <section className="bg-black px-4 pt-16 pb-6 sm:px-6 sm:pt-18 sm:pb-8 lg:px-8">
       <style>
         {`
           @keyframes touchFadeUp {
@@ -24,7 +24,7 @@ const GetInTouch = () => {
 
       <div
         className="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] border border-white/15 bg-cover bg-center p-6 transition duration-500 hover:shadow-[0_25px_60px_rgba(0,0,0,0.35)] sm:p-10 lg:p-14"
-        style={{ backgroundImage: `url(${backgroundAlt})` }}
+        style={{ backgroundImage: `url(${g1})` }}
       >
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/45 to-black/65" />
@@ -54,7 +54,7 @@ const GetInTouch = () => {
           </div>
 
           <div className="touch-reveal" style={{ animationDelay: "0.24s" }}>
-            <div className="mx-auto max-w-xl">
+            <div className="mx-auto max-w-sm">
               <Form />
             </div>
           </div>
