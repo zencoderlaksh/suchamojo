@@ -2,6 +2,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
+import GetInTouch from "../pages/home/component/GetInTouch";
 
 const Layout = () => {
   return (
@@ -9,9 +10,7 @@ const Layout = () => {
       <main className="grow pb-28">
         <Outlet />
       </main>
-      <Footer />
-      {/* Header is fixed-bottom, rendered last so it overlays everything */}
-      <Header />
+
     </div>
   );
 };

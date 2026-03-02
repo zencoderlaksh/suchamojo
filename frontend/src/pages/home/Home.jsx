@@ -7,7 +7,6 @@ import Clients from './component/Clients';
 import ServicesSection from './component/ServicesSection';
 import MilestonesSection from './component/MilestonesSection';
 import Blog from "./component/Blog";
-import GetInTouch from "./component/GetInTouch";
 
 const Home = () => {
   return (
@@ -24,7 +23,7 @@ const Home = () => {
         </div>
       </section>
       <Blog />
-      <GetInTouch />
+
     </>
   )
 }

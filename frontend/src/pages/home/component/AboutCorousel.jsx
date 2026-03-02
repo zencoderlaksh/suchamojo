@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { beyond, time, timeless } from "../../../assets/image/index";
+import { abc1, ab2, ab3 } from "../../../assets/image/index";
 
-const slides = [beyond, time, timeless];
+const slides = [abc1, ab2, ab3];
 
 const AboutCorousel = () => {
   const [activeSlide, setActiveSlide] = useState(0);
@@ -38,10 +38,10 @@ const AboutCorousel = () => {
               to="/about"
               className="inline-flex w-full max-w-130 items-center justify-between rounded-4xl border border-white/40 bg-black/35 px-6 py-6 text-white backdrop-blur-md transition duration-300 hover:bg-black/50 sm:px-8 sm:py-7"
             >
-              <span className="text-xs font-semibold tracking-[0.18em] text-white/80">
+              <span className="font-display text-xs font-semibold tracking-[0.18em] text-white/80">
                 ABOUT US .25
               </span>
-              <span className="text-4xl font-black leading-none sm:text-6xl">ABOUT</span>
+              <span className="font-display text-4xl font-black leading-none sm:text-6xl">ABOUT</span>
             </Link>
 
             <div className="max-w-xl rounded-2xl bg-black/35 p-5 text-white backdrop-blur-sm sm:p-6">

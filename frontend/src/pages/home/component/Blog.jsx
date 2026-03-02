@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { grapes, pomergranate, icedTea } from "../../../assets/image";
+import { j1, j2, j3 } from "../../../assets/image";
 
 const blogPosts = [
   {
@@ -8,21 +8,21 @@ const blogPosts = [
     title: "How AI Is Transforming Design in 2026",
     category: "AI DESIGN",
     readTime: "6 min read",
-    image: grapes,
+    image: j1,
   },
   {
     id: "brand-palette",
     title: "How to Choose the Right Palette for Your Brand",
     category: "VISUAL DESIGN",
     readTime: "4 min read",
-    image: pomergranate,
+    image: j2,
   },
   {
     id: "web-trends",
     title: "10 Web Design Trends That Will Dominate This Year",
     category: "TRENDS",
     readTime: "7 min read",
-    image: icedTea,
+    image: j3,
   },
 ];
 
@@ -64,7 +64,7 @@ const Blog = () => {
           </p>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-3">
           {blogPosts.map((post, index) => (
             <Link
               key={post.id}
@@ -72,7 +72,7 @@ const Blog = () => {
               className="blog-reveal group block overflow-hidden rounded-4xl border border-white/10 bg-[#191b20] transition duration-500 hover:-translate-y-2 hover:border-white/30 hover:shadow-[0_22px_50px_rgba(0,0,0,0.45)]"
               style={{ animationDelay: `${index * 0.14 + 0.12}s` }}
             >
-              <div className="relative h-92 overflow-hidden sm:h-104">
+              <div className="relative h-72 overflow-hidden sm:h-80">
                 <img
                   src={post.image}
                   alt={post.title}
@@ -85,7 +85,7 @@ const Blog = () => {
                 </span>
               </div>
 
-              <div className="space-y-3 p-5 sm:p-6">
+              <div className="space-y-2.5 p-4 sm:p-5">
                 <p className="text-[0.68rem] font-semibold tracking-[0.18em] text-gray-400">
                   {post.category}
                 </p>
