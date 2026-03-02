@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { motion as Motion, useInView } from 'motion/react'
+import { motion as Motion, useInView } from '../../../lib/motion'
 import { useRef } from 'react'
 import s1 from '../../../assets/image/s-1.jpg'
 import s2 from '../../../assets/image/s-2.jpg'
