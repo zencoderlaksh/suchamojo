@@ -14,14 +14,14 @@ const Home = () => {
       <Landing />
       <Consultation />
       <Feature />
+       <Clients />
+        <section className="mx-auto mt-8 w-full max-w-310 px-4 sm:mt-12 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-2">
+            <ServicesSection split />
+            <MilestonesSection split />
+          </div>
+        </section>
       <AboutCorousel />
-      <Clients />
-      <section className="mx-auto mt-8 w-full max-w-[1240px] px-4 sm:mt-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-2">
-          <ServicesSection split />
-          <MilestonesSection split />
-        </div>
-      </section>
       <Blog />
 
     </>

@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react'
-import CountUp from 'react-countup'
-import { motion as Motion, useInView, useScroll, useTransform } from 'motion/react'
+import React, { useEffect, useRef, useState } from 'react'
+import { motion as Motion, useInView, useScroll, useTransform } from '../../../lib/motion'
 
 const PARTICLES = [
   { left: '10%', top: '20%', delay: 0.2, duration: 5.4 },
@@ -10,6 +9,61 @@ const PARTICLES = [
   { left: '73%', top: '65%', delay: 0.8, duration: 5.9 },
   { left: '88%', top: '32%', delay: 1.8, duration: 6.5 },
 ]
+
+const CountUp = ({
+  start = 0,
+  end = 0,
+  duration = 1.5,
+  delay = 0,
+  useEasing = true,
+  onStart,
+  onEnd,
+}) => {
+  const [value, setValue] = useState(start)
+  const onStartRef = useRef(onStart)
+  const onEndRef = useRef(onEnd)
+
+  useEffect(() => {
+    onStartRef.current = onStart
+    onEndRef.current = onEnd
+  }, [onStart, onEnd])
+
+  useEffect(() => {
+    let rafId
+    let timeoutId
+
+    const easeOutCubic = (t) => 1 - (1 - t) ** 3
+    const ease = useEasing ? easeOutCubic : (t) => t
+
+    timeoutId = setTimeout(() => {
+      onStartRef.current?.()
+      const startedAt = performance.now()
+
+      const tick = (now) => {
+        const elapsed = (now - startedAt) / 1000
+        const progress = Math.min(elapsed / duration, 1)
+        const current = start + (end - start) * ease(progress)
+        setValue(current)
+
+        if (progress < 1) {
+          rafId = requestAnimationFrame(tick)
+        } else {
+          setValue(end)
+          onEndRef.current?.()
+        }
+      }
+
+      rafId = requestAnimationFrame(tick)
+    }, Math.max(0, delay) * 1000)
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId)
+      if (rafId) cancelAnimationFrame(rafId)
+    }
+  }, [start, end, duration, delay, useEasing])
+
+  return <>{Math.round(value)}</>
+}
 
 const MilestoneItem = ({ value, label, delay = 0, inView }) => {
   const [isCounting, setIsCounting] = useState(false)

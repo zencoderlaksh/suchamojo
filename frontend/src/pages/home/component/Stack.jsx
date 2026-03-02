@@ -1,4 +1,4 @@
-import { motion as Motion, useMotionValue, useTransform } from 'motion/react'
+import { motion as Motion, useMotionValue, useTransform } from '../../../lib/motion'
 import { useEffect, useState } from 'react'
 
 function CardRotate({ children, onSendToBack, sensitivity, disableDrag = false }) {
