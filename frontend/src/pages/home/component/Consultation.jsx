@@ -37,23 +37,26 @@ const consultationCards = [
 
 const Consultation = () => {
   return (
-    <section className="px-4 py-6 sm:px-6 lg:px-8">
+    <section id="consultation" className="relative px-4 py-8 sm:px-6 lg:px-8">
+      <div className="pulse-soft pointer-events-none absolute right-8 top-8 h-44 w-44 rounded-full bg-orange-300/15 blur-3xl" />
       <div className="mx-auto w-full max-w-4xl rounded-md p-1.5 sm:p-2">
-        <h2 className="mb-8 text-center text-2xl font-extrabold tracking-wide text-slate-900 sm:mb-10 sm:text-3xl">
+        <h2 className="reveal-up mb-8 text-center text-2xl font-extrabold tracking-wide text-slate-900 sm:mb-10 sm:text-3xl">
           Schedule Free Consultation
         </h2>
         <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-          {consultationCards.map((card) => (
+          {consultationCards.map((card, index) => (
             <article
               key={card.id}
-              className="group relative mx-auto w-full max-w-96 overflow-hidden rounded-[1.7rem] aspect-4/5"
+              className="reveal-up group relative mx-auto w-full max-w-96 overflow-hidden rounded-[1.7rem] aspect-4/5 transition duration-500 hover:-translate-y-1.5 hover:shadow-[0_22px_38px_rgba(0,0,0,0.22)]"
+              style={{ animationDelay: `${index * 110 + 100}ms` }}
             >
               <img
                 src={card.image}
                 alt={card.title}
-                className="h-full w-full object-cover saturate-110 contrast-110 transition duration-300 group-hover:scale-105"
+                className="h-full w-full object-cover saturate-110 contrast-110 transition duration-500 group-hover:scale-110"
               />
               <div className={`absolute inset-0 bg-linear-to-t ${card.tint}`} />
+              <div className="absolute inset-0 bg-linear-to-tr from-white/0 via-white/0 to-white/0 transition duration-500 group-hover:from-white/0 group-hover:to-white/15" />
 
               <div className={`absolute left-1/2 top-1/2 w-[56%] max-w-45 -translate-x-1/2 -translate-y-1/2 rounded-[1.4rem] px-3 py-4 text-center backdrop-blur-md ${card.panel}`}>
                 <p className="mb-2 text-[0.5rem] tracking-[0.16em] text-white/80 sm:text-[0.56rem]">

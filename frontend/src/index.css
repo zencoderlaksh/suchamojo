@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-pixel: "Silkscreen", sans-serif;
+  --font-pixel: "Press Start 2P", monospace;
 }
 
 @font-face {
@@ -28,6 +28,10 @@ body,
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-body);
 }
@@ -44,5 +48,101 @@ h3,
 h1.font-pixel,
 h2.font-pixel,
 h3.font-pixel {
-  font-family: "Silkscreen", sans-serif !important;
+  font-family: "Press Start 2P", monospace !important;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes surfacePop {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes floatSlow {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulseSoft {
+
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes bgShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.reveal-up {
+  opacity: 0;
+  animation: fadeUp 0.75s ease forwards;
+}
+
+.surface-pop {
+  animation: surfacePop 0.55s ease both;
+}
+
+.float-slow {
+  animation: floatSlow 4.8s ease-in-out infinite;
+}
+
+.pulse-soft {
+  animation: pulseSoft 5.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
