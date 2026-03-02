@@ -1,5 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
+
+@theme {
+  --font-pixel: "Press Start 2P", monospace;
+}
 
 @font-face {
   font-family: "Frastha";
@@ -23,18 +28,12 @@ body,
   overflow-x: hidden;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-body);
-  background: linear-gradient(
-    120deg,
-    #f7fafc 0%,
-    #eef6ff 26%,
-    #f8f6ff 52%,
-    #f4fff8 78%,
-    #fffaf3 100%
-  );
-  background-size: 220% 220%;
-  animation: bgShift 16s ease-in-out infinite;
 }
 
 h1,
@@ -44,8 +43,12 @@ h3,
   font-family: var(--font-display);
 }
 
-html {
-  scroll-behavior: smooth;
+/* Silkscreen pixel font — overrides the global h2 rule above */
+.font-pixel,
+h1.font-pixel,
+h2.font-pixel,
+h3.font-pixel {
+  font-family: "Press Start 2P", monospace !important;
 }
 
 @keyframes fadeUp {
@@ -53,6 +56,7 @@ html {
     opacity: 0;
     transform: translateY(22px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -64,6 +68,7 @@ html {
     opacity: 0;
     transform: translateY(16px) scale(0.985);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -71,21 +76,25 @@ html {
 }
 
 @keyframes floatSlow {
+
   0%,
   100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-6px);
   }
 }
 
 @keyframes pulseSoft {
+
   0%,
   100% {
     opacity: 0.45;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.8;
     transform: scale(1.12);
@@ -96,9 +105,11 @@ html {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
