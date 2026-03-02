@@ -24,11 +24,10 @@ const AboutCorousel = () => {
               key={image}
               src={image}
               alt="About visual"
-              className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${
-                index === activeSlide
-                  ? "scale-100 opacity-100"
-                  : "scale-105 opacity-0"
-              }`}
+              className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ${index === activeSlide
+                ? "scale-100 opacity-100"
+                : "scale-105 opacity-0"
+                }`}
             />
           ))}
 
