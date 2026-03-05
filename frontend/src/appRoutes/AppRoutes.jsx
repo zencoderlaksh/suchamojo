@@ -7,6 +7,8 @@ import Journal from "../pages/journal/Journal";
 import Services from "../pages/services/Services";
 import Work from "../pages/work/Work";
 import Contact from "../pages/contact/Contact";
+import Login from "../pages/login/Login";
+import Signup from "../pages/signup/Signup";
 
 const AppRoutes = () => {
   return (
@@ -21,6 +23,9 @@ const AppRoutes = () => {
           <Route path="work" element={<Work />} />
           <Route path="contact" element={<Contact />} />
         </Route>
+        {/* Auth Routes - Outside Layout */}
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   );
