@@ -6,7 +6,7 @@ import GetInTouch from "../pages/home/component/GetInTouch";
 
 const Layout = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex min-h-screen flex-col font-sans">
       <Header />
       <main className="grow pb-28">
         <Outlet />

@@ -35,11 +35,11 @@ const featureCards = [
 
 const Feature = () => {
   return (
-    <section className="relative overflow-hidden px-4 py-16 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden px-4 py-16 font-body sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center">
           <p className="text-sm font-semibold tracking-[0.22em] text-slate-600">FEATURE</p>
-          <h2 className="mt-3 text-4xl font-black text-slate-900 sm:text-5xl">How We Work With You</h2>
+          <h2 className="mt-3 font-heading text-4xl font-black text-slate-900 sm:text-5xl">How We Work With You</h2>
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -58,7 +58,7 @@ const Feature = () => {
                   <span className="ml-2 text-xs font-semibold tracking-widest text-slate-600">{card.tag}</span>
                 </div>
 
-                <h3 className="text-[1.7rem] font-extrabold leading-tight text-slate-900">{card.title}</h3>
+                <h3 className="font-heading text-[1.7rem] font-extrabold leading-tight text-slate-900">{card.title}</h3>
                 <p className="mt-4 text-lg font-semibold text-slate-800">{card.highlight}</p>
                 <p className="mt-3 text-base leading-relaxed text-slate-600">{card.description}</p>
 

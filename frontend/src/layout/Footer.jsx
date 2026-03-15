@@ -4,30 +4,30 @@ import { FaInstagram, FaLinkedinIn, FaYoutube, FaXTwitter } from "react-icons/fa
 
 const Footer = () => {
   return (
-    <footer className="reveal-up mt-0 rounded-t-[2.5rem] bg-black px-5 pt-8 pb-2 text-gray-300 sm:px-8 lg:px-10">
+    <footer className="reveal-up mt-0 rounded-t-[2.5rem] bg-black px-5 pt-8 pb-2 font-body text-gray-300 sm:px-8 lg:px-10">
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-9 md:grid-cols-[1.2fr_0.7fr_0.8fr]">
           <div className="max-w-md">
-            <p className="mb-6 text-sm tracking-[0.18em] text-gray-400 sm:text-base">Suchamojo</p>
-            <h2 className="mb-4 text-[1.4rem] leading-none text-white sm:text-[1.7rem]">Story-led Personal Branding</h2>
-            <p className="text-xs leading-relaxed text-gray-400 sm:text-sm">
+            <p className="mb-6 font-body text-sm tracking-[0.18em] text-gray-400 sm:text-base">Suchamojo</p>
+            <h2 className="mb-4 font-heading text-[1.4rem] leading-none text-white sm:text-[1.7rem]">Story-led Personal Branding</h2>
+            <p className="font-body text-xs leading-relaxed text-gray-400 sm:text-sm">
               I help founders, creators, and high-agency professionals<br/> build personal brands rooted
               in identity,<br/> clarity, and long-term trust.
             </p>
           </div>
 
           <div>
-            <ul className="font-display font-normal space-y-3 text-[1rem] leading-[1.2] text-white sm:space-y-3.5 sm:text-[1.15rem]">
-              <li><Link to="/" className="font-display font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Home</Link></li>
-              <li><Link to="/about" className="font-display font-normal transition duration-300 hover:pl-1 hover:text-gray-300">About</Link></li>
-              <li><Link to="/services" className="font-display font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Services</Link></li>
-              <li><Link to="/work" className="font-display font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Work</Link></li>
-              <li><Link to="/contact" className="font-display font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Contact</Link></li>
+            <ul className="space-y-3 text-[1rem] leading-[1.2] text-white sm:space-y-3.5 sm:text-[1.15rem]">
+              <li><Link to="/" className="font-body font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Home</Link></li>
+              <li><Link to="/about" className="font-body font-normal transition duration-300 hover:pl-1 hover:text-gray-300">About</Link></li>
+              <li><Link to="/services" className="font-body font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Services</Link></li>
+              <li><Link to="/work" className="font-body font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Work</Link></li>
+              <li><Link to="/contact" className="font-body font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Contact</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="mb-4 font-light! text-[1.35rem] leading-none text-white sm:text-[1.6rem]">Social Media</h4>
+            <h4 className="mb-4 font-heading text-[1.35rem] leading-none text-white sm:text-[1.6rem]">Social Media</h4>
             <div className="flex gap-3 text-base text-gray-300">
               <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
                 <FaXTwitter className="float-slow cursor-pointer rounded-full border border-gray-500 p-1.5 text-2xl transition duration-300 hover:scale-110 hover:border-gray-300 hover:text-white" />
@@ -42,7 +42,7 @@ const Footer = () => {
                 <FaYoutube className="float-slow cursor-pointer rounded-full border border-gray-500 p-1.5 text-2xl transition duration-300 hover:scale-110 hover:border-gray-300 hover:text-white" />
               </a>
             </div>
-            <div className="mt-6 space-y-1 text-xs font-light text-gray-400 sm:text-sm">
+            <div className="mt-6 space-y-1 font-body text-xs font-light text-gray-400 sm:text-sm">
               <p>Presence over performance.</p>
               <p>Identity over algorithms.</p>
             </div>
@@ -50,11 +50,11 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 pt-4 text-center">
-          <h1 className="text-5xl leading-none tracking-tight text-gray-300 sm:text-6xl md:text-7xl">
+          <h1 className="font-heading text-5xl leading-none tracking-tight text-gray-300 sm:text-6xl md:text-7xl">
             Suchamojo
           </h1>
-          <p className="mt-4 text-xs text-gray-500">Copyright Suchamojo. All rights reserved.</p>
-          <p className="mt-1 text-xs text-gray-500">Built with intent.</p>
+          <p className="mt-4 font-body text-xs text-gray-500">Copyright Suchamojo. All rights reserved.</p>
+          <p className="mt-1 font-body text-xs text-gray-500">Built with intent.</p>
         </div>
       </div>
     </footer>

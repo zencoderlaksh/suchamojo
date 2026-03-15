@@ -28,7 +28,7 @@ const blogPosts = [
 
 const Blog = () => {
   return (
-    <section className="relative px-4 py-16 sm:px-6 lg:px-8">
+    <section className="relative px-4 py-16 font-body sm:px-6 lg:px-8">
       <style>
         {`
           @keyframes blogFadeUp {
@@ -54,10 +54,10 @@ const Blog = () => {
 
       <div className="mx-auto max-w-7xl rounded-4xl border border-white/10 bg-[#101114] p-6 shadow-[0_20px_70px_rgba(0,0,0,0.45)] sm:p-10">
         <div className="blog-reveal mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <h2 className="bg-linear-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-4xl font-black uppercase tracking-[0.2em] text-transparent sm:text-5xl">
+          <h2 className="bg-linear-to-r from-white via-gray-200 to-gray-400 bg-clip-text font-heading text-4xl font-black uppercase tracking-[0.2em] text-transparent sm:text-5xl">
             Journal
           </h2>
-          <p className="max-w-xl text-sm leading-relaxed text-gray-400 sm:text-base">
+          <p className="max-w-xl font-body text-sm leading-relaxed text-gray-400 sm:text-base">
             Practical ideas on personal branding, visual storytelling, and
             design strategy to help you build a clear and trusted digital
             presence.
@@ -86,15 +86,15 @@ const Blog = () => {
               </div>
 
               <div className="space-y-2.5 p-4 sm:p-5">
-                <p className="text-[0.68rem] font-semibold tracking-[0.18em] text-gray-400">
+                <p className="font-body text-[0.68rem] font-semibold tracking-[0.18em] text-gray-400">
                   {post.category}
                 </p>
-                <h3 className="text-lg font-semibold leading-tight text-white sm:text-[1.25rem]">
+                <h3 className="font-heading text-lg font-semibold leading-tight text-white sm:text-[1.25rem]">
                   {post.title}
                 </h3>
                 <div className="flex items-center justify-between">
-                  <p className="text-xs tracking-wide text-gray-400">{post.readTime}</p>
-                  <span className="text-xs font-semibold tracking-[0.12em] text-cyan-300 transition group-hover:text-cyan-200">
+                  <p className="font-body text-xs tracking-wide text-gray-400">{post.readTime}</p>
+                  <span className="font-body text-xs font-semibold tracking-[0.12em] text-cyan-300 transition group-hover:text-cyan-200">
                     READ NOW
                   </span>
                 </div>

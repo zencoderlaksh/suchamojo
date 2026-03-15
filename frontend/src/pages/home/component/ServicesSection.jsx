@@ -63,7 +63,7 @@ const ServicesSection = ({ split = false }) => {
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={split ? 'w-full h-full' : 'mx-auto mt-12 w-full max-w-[1240px] px-4 sm:px-6 lg:px-8'}
+      className={`${split ? 'w-full h-full' : 'mx-auto mt-12 w-full max-w-[1240px] px-4 sm:px-6 lg:px-8'} font-body`}
     >
       <div className={`relative overflow-hidden rounded-[32px] border border-white/10 bg-[#0b0b0f] px-5 py-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.07),0_30px_70px_rgba(0,0,0,0.6)] sm:rounded-[40px] sm:px-8 sm:py-12 ${split ? 'h-full flex flex-col' : ''}`}>
         {/* Ambient glow */}
@@ -77,7 +77,7 @@ const ServicesSection = ({ split = false }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55, ease: 'easeOut' }}
-            className="font-pixel font-normal uppercase tracking-[0.2em] text-white [text-shadow:0_0_18px_rgba(255,255,255,0.14)] text-2xl sm:text-3xl lg:text-[2rem] xl:text-[2.25rem]"
+            className="font-heading font-normal uppercase tracking-[0.2em] text-white [text-shadow:0_0_18px_rgba(255,255,255,0.14)] text-2xl sm:text-3xl lg:text-[2rem] xl:text-[2.25rem]"
           >
             SERVICES
           </Motion.h2>
@@ -136,7 +136,7 @@ const ServicesSection = ({ split = false }) => {
               initial={{ opacity: 0, scale: 0.92 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.4, delay: 0.3, ease: 'easeOut' }}
-              className="inline-flex items-center rounded-full bg-gray-200/90 px-4 py-1.5 text-xs font-semibold tracking-wide text-gray-800"
+              className="inline-flex items-center rounded-full bg-gray-200/90 px-4 py-1.5 font-body text-xs font-semibold tracking-wide text-gray-800"
             >
               {currentStepLabel}
             </Motion.span>
@@ -145,7 +145,7 @@ const ServicesSection = ({ split = false }) => {
               initial={{ opacity: 0, y: 8 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.45, delay: 0.38, ease: 'easeOut' }}
-              className="max-w-[440px] text-sm leading-relaxed text-gray-400 sm:text-base"
+              className="max-w-[440px] font-body text-sm leading-relaxed text-gray-400 sm:text-base"
             >
               We map your positioning, narrative, and content system into a sharp brand strategy that
               feels coherent, premium, and built for long-term visibility.

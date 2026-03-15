@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "../lib/motion";
-import aboutImg from "../assets/image/about.png";
+import aboutImg from "../assets/image/suchamojo_logo.png";
 
 const NAV_LINKS = [
-  { label: "HOME", to: "/" },
-  { label: "ABOUT", to: "/about" },
-  { label: "PROJECTS", to: "/projects" },
-  { label: "JOURNAL", to: "/journal" },
+  { label: "Home", to: "/" },
+  { label: "Services", to: "/about" },
+  { label: "Industries", to: "/projects" },
+  { label: "About", to: "/journal" },
+  { label: "Blog", to: "/blog" },
 ];
 
 const Header = () => {
@@ -46,7 +47,7 @@ const Header = () => {
               <Link
                 key={label}
                 to={to}
-                className="group relative px-4 py-2 font-pixel text-[9px] tracking-[0.15em] uppercase text-gray-800 transition duration-300 hover:-translate-y-0.5 hover:text-black"
+                className="group relative px-4 py-2 font-body text-[9px] tracking-[0.15em] uppercase text-gray-800 transition duration-300 hover:-translate-y-0.5 hover:text-black"
               >
                 {label}
                 <span className="absolute -bottom-0 left-3 right-3 h-[2px] w-0 bg-gray-900 transition-all duration-300 group-hover:w-[calc(100%-1.5rem)]" />
@@ -57,9 +58,9 @@ const Header = () => {
           {/* Contact button */}
           <Link
             to="/contact"
-            className="hidden shrink-0 rounded-2xl bg-white/80 px-6 py-3 font-pixel text-[9px] tracking-[0.15em] uppercase text-gray-900 shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:scale-105 hover:bg-white hover:shadow-md lg:block"
+            className="hidden shrink-0 rounded-2xl bg-white/80 px-6 py-3 font-body text-[9px] tracking-[0.15em] uppercase text-gray-900 shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:scale-105 hover:bg-white hover:shadow-md lg:block"
           >
-            CONTACT +
+            Book a Free Call
           </Link>
 
           {/* Hamburger */}
@@ -118,7 +119,7 @@ const Header = () => {
                   key={label}
                   to={to}
                   onClick={closeMenu}
-                  className="font-pixel text-[9px] tracking-[0.15em] uppercase text-gray-800 transition duration-300 hover:text-black"
+                  className="font-body text-[9px] tracking-[0.15em] uppercase text-gray-800 transition duration-300 hover:text-black"
                 >
                   {label}
                 </Link>
@@ -126,9 +127,9 @@ const Header = () => {
               <Link
                 to="/contact"
                 onClick={closeMenu}
-                className="rounded-2xl bg-white/80 px-6 py-2.5 font-pixel text-[9px] tracking-[0.15em] uppercase text-gray-900 shadow-sm transition duration-300 hover:scale-105"
+                className="rounded-2xl bg-white/80 px-6 py-2.5 font-body text-[9px] tracking-[0.15em] uppercase text-gray-900 shadow-sm transition duration-300 hover:scale-105"
               >
-                CONTACT +
+                Book a Free Call
               </Link>
             </nav>
           </motion.div>
