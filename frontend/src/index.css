@@ -1,10 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-pixel: "Press Start 2P", monospace;
+  --font-pixel: "Plus Jakarta Sans", sans-serif;
 }
 
 @font-face {
@@ -16,8 +13,8 @@
 }
 
 :root {
-  --font-body: "Montserrat", sans-serif;
-  --font-heading: "Silkscreen", "Montserrat", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-heading: "Plus Jakarta Sans", sans-serif;
   --font-display: var(--font-heading);
 }
 
@@ -54,7 +51,12 @@ h6,
 h1.font-pixel,
 h2.font-pixel,
 h3.font-pixel {
-  font-family: "Press Start 2P", monospace !important;
+  font-family: var(--font-heading) !important;
+}
+
+a.font-pixel,
+button.font-pixel {
+  font-family: var(--font-body) !important;
 }
 
 @keyframes fadeUp {

@@ -37,10 +37,10 @@ const consultationCards = [
 
 const Consultation = () => {
   return (
-    <section id="consultation" className="relative px-4 py-8 sm:px-6 lg:px-8">
+    <section id="consultation" className="relative px-4 py-8 font-body sm:px-6 lg:px-8">
       <div className="pulse-soft pointer-events-none absolute right-8 top-8 h-44 w-44 rounded-full bg-orange-300/15 blur-3xl" />
       <div className="mx-auto w-full max-w-4xl rounded-md p-1.5 sm:p-2">
-        <h2 className="reveal-up mb-8 text-center text-2xl font-extrabold tracking-wide text-slate-900 sm:mb-10 sm:text-3xl">
+        <h2 className="reveal-up mb-8 text-center font-heading text-2xl font-extrabold tracking-wide text-slate-900 sm:mb-10 sm:text-3xl">
           Schedule Free Consultation
         </h2>
         <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
@@ -59,10 +59,10 @@ const Consultation = () => {
               <div className="absolute inset-0 bg-linear-to-tr from-white/0 via-white/0 to-white/0 transition duration-500 group-hover:from-white/0 group-hover:to-white/15" />
 
               <div className={`absolute left-1/2 top-1/2 flex aspect-square w-[64%] max-w-52 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-[1.4rem] px-4 py-4 text-center backdrop-blur-md ${card.panel}`}>
-                <p className="mb-2 text-[0.5rem] tracking-[0.16em] text-white/80 sm:text-[0.56rem]">
+                <p className="mb-2 font-body text-[0.5rem] tracking-[0.16em] text-white/80 sm:text-[0.56rem]">
                   {card.eyebrow}
                 </p>
-                <h3 className="text-[1.05rem] font-semibold uppercase leading-[1.05] tracking-[0.02em] text-white sm:text-[1.25rem]">
+                <h3 className="font-heading text-[1.05rem] font-semibold uppercase leading-[1.05] tracking-[0.02em] text-white sm:text-[1.25rem]">
                   {card.title}
                 </h3>
               </div>

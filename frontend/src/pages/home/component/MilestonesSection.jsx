@@ -91,7 +91,7 @@ const MilestoneItem = ({ value, label, delay = 0, inView }) => {
           <span className="pointer-events-none absolute -inset-4 -z-10 rounded-2xl bg-gradient-to-r from-cyan-200/25 via-white/35 to-fuchsia-200/25 blur-2xl" />
 
           {/* Count-up */}
-          <span className="bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text font-pixel font-normal tracking-tight text-transparent text-5xl sm:text-6xl lg:text-7xl">
+          <span className="bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text font-heading font-normal tracking-tight text-transparent text-5xl sm:text-6xl lg:text-7xl">
             <CountUp
               start={0}
               end={inView ? value : 0}
@@ -104,7 +104,7 @@ const MilestoneItem = ({ value, label, delay = 0, inView }) => {
           </span>
 
           {/* Plus */}
-          <span className="ml-1 align-top font-pixel font-normal text-white/50 text-3xl sm:text-4xl lg:text-5xl">
+          <span className="ml-1 align-top font-heading font-normal text-white/50 text-3xl sm:text-4xl lg:text-5xl">
             +
           </span>
 
@@ -119,7 +119,7 @@ const MilestoneItem = ({ value, label, delay = 0, inView }) => {
       </div>
 
       {/* Label */}
-      <p className={`mt-3 text-sm leading-relaxed transition-colors duration-300 sm:text-base ${isCounting ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300'
+      <p className={`mt-3 font-body text-sm leading-relaxed transition-colors duration-300 sm:text-base ${isCounting ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300'
         }`}>
         {label}
       </p>
@@ -145,7 +145,7 @@ const MilestonesSection = ({ split = false }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={split ? 'w-full h-full' : 'mx-auto mt-12 w-full max-w-[1240px] px-4 sm:px-6 lg:px-8'}
+      className={`${split ? 'w-full h-full' : 'mx-auto mt-12 w-full max-w-[1240px] px-4 sm:px-6 lg:px-8'} font-body`}
     >
       <Motion.div style={{ y: split ? 0 : parallaxY }} className={split ? 'h-full' : 'relative'}>
         <Motion.div
@@ -193,7 +193,7 @@ const MilestonesSection = ({ split = false }) => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className="relative font-pixel font-normal uppercase tracking-[0.18em] text-white [text-shadow:0_0_18px_rgba(255,255,255,0.12)] text-2xl sm:text-3xl lg:text-[1.9rem] xl:text-[2.15rem]"
+                className="relative font-heading font-normal uppercase tracking-[0.18em] text-white [text-shadow:0_0_18px_rgba(255,255,255,0.12)] text-2xl sm:text-3xl lg:text-[1.9rem] xl:text-[2.15rem]"
               >
                 MILESTONES
                 <Motion.span

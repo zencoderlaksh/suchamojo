@@ -16,10 +16,10 @@ const Landing = () => {
           <div className="relative z-10 flex flex-col gap-8 lg:grid lg:grid-cols-3">
 
             <div className="lg:pt-16">
-              <h1 className="text-[clamp(1.3rem,5vw,3.2rem)] font-black uppercase leading-[0.95] text-center lg:text-left">
-                SUCHAMOJO
+              <h1 className="font-heading text-[clamp(1.3rem,5vw,3.2rem)] font-black uppercase leading-[0.95] text-center lg:text-left font-light">
+                Your Story Is Your Strongest Strategy.
               </h1>
-              <p className="mt-6 text-[clamp(0.58rem,1.2vw,0.8rem)] font-bold uppercase tracking-[0.2em] text-center lg:text-left">
+              <p className="mt-6 font-body text-[clamp(0.58rem,1.2vw,0.8rem)] font-bold uppercase tracking-[0.2em] text-center lg:text-left">
                 DESIGN STUDIO . LONDON
               </p>
             </div>
@@ -27,11 +27,11 @@ const Landing = () => {
             <div className="hidden lg:block" />
 
             <div className="text-center lg:text-right lg:pt-20">
-              <p className="text-[clamp(0.85rem,2vw,1.2rem)] font-semibold">
-                Story-led personal branding, built with clarity and intent.
+              <p className="font-body text-[clamp(0.85rem,2vw,1.2rem)] font-semibold">
+                We help founders, financial professionals, and industry leaders build personal brands that earn trust,
               </p>
-              <p className="mt-4 text-[clamp(0.8rem,1.6vw,1rem)]">
-                For founders and creators who want to be remembered, not just seen.
+              <p className="mt-4 font-body text-[clamp(0.8rem,1.6vw,1rem)]">
+                attract opportunity, and drive real growth.
               </p>
             </div>
 

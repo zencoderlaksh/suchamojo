@@ -4,7 +4,7 @@ import { g1 } from "../../../assets/image";
 
 const GetInTouch = () => {
   return (
-    <section className="bg-black px-4 pt-16 pb-6 sm:px-6 sm:pt-18 sm:pb-8 lg:px-8">
+    <section className="bg-black px-4 pt-16 pb-6 font-body sm:px-6 sm:pt-18 sm:pb-8 lg:px-8">
       <style>
         {`
           @keyframes touchFadeUp {
@@ -40,13 +40,13 @@ const GetInTouch = () => {
 
         <div className="relative grid items-center gap-8 lg:grid-cols-[1fr_1.05fr] lg:gap-12">
           <div className="touch-reveal max-w-xl" style={{ animationDelay: "0.1s" }}>
-            <p className="mb-3 text-xs font-semibold tracking-[0.2em] text-gray-300">LET&apos;S TALK</p>
-            <h2 className="mb-5 text-5xl font-black uppercase leading-[0.95] tracking-[0.06em] text-white sm:text-6xl">
+            <p className="mb-3 font-body text-xs font-semibold tracking-[0.2em] text-gray-300">LET&apos;S TALK</p>
+            <h2 className="mb-5 font-heading text-5xl font-black uppercase leading-[0.95] tracking-[0.06em] text-white sm:text-6xl">
               Get In
               <br />
               Touch
             </h2>
-            <p className="text-sm leading-relaxed text-gray-200 sm:text-base">
+            <p className="font-body text-sm leading-relaxed text-gray-200 sm:text-base">
               Have a project in mind? Whether you&apos;re launching a brand, designing
               a product, or elevating your digital presence, we&apos;re here to shape
               your vision into something memorable.

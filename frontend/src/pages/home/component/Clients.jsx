@@ -24,14 +24,14 @@ const Clients = () => {
   }, [])
 
   return (
-    <section className="relative mx-auto mt-12 w-full max-w-[1240px] overflow-hidden rounded-[40px] border border-white/10 bg-[#0b0b0f] px-6 py-16 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_26px_60px_rgba(0,0,0,0.55)] sm:px-8 sm:py-20">
+    <section className="relative mx-auto mt-12 w-full max-w-[1240px] overflow-hidden rounded-[40px] border border-white/10 bg-[#0b0b0f] px-6 py-16 font-body shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_26px_60px_rgba(0,0,0,0.55)] sm:px-8 sm:py-20">
 
       <div className="relative z-10">
         <header className="mb-9 grid gap-5 md:grid-cols-[1fr_400px] md:items-end">
-          <h2 className="font-pixel text-4xl font-normal uppercase tracking-[0.25em] text-white sm:text-5xl">
+          <h2 className="font-heading text-4xl font-normal uppercase tracking-[0.25em] text-white sm:text-5xl">
             CLIENTS
           </h2>
-          <p className="max-w-[38ch] text-sm leading-relaxed text-slate-400 md:justify-self-end">
+          <p className="max-w-[38ch] font-body text-sm leading-relaxed text-slate-400 md:justify-self-end">
             Collaborations built around clarity, growth, and sharp positioning.
           </p>
         </header>

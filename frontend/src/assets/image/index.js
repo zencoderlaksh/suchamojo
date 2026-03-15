@@ -19,6 +19,7 @@ import l1 from "./l1.png";
 import pomergranate from "./pomergranate.jpeg";
 import time from "./time.jpg";
 import timeless from "./timeless.jpg";
+import aboutImg from "./suchamojo_logo.png"
 
 export {
   logo,
@@ -42,4 +43,5 @@ export {
   pomergranate,
   time,
   timeless,
+  aboutImg
 };
