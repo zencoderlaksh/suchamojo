@@ -5,9 +5,9 @@ import aboutImg from "../assets/image/suchamojo_logo.png";
 
 const NAV_LINKS = [
   { label: "Home", to: "/" },
-  { label: "Services", to: "/about" },
-  { label: "Industries", to: "/projects" },
-  { label: "About", to: "/journal" },
+  { label: "Services", to: "/services" },
+  { label: "Industries", to: "/industries" },
+  { label: "About", to: "/about" },
   { label: "Blog", to: "/blog" },
 ];
 
@@ -57,7 +57,7 @@ const Header = () => {
 
           {/* Contact button */}
           <Link
-            to="/contact"
+            to="/book-a-call"
             className="hidden shrink-0 rounded-2xl bg-white/80 px-6 py-3 font-body text-[9px] tracking-[0.15em] uppercase text-gray-900 shadow-sm backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:scale-105 hover:bg-white hover:shadow-md lg:block"
           >
             Book a Free Call
@@ -125,7 +125,7 @@ const Header = () => {
                 </Link>
               ))}
               <Link
-                to="/contact"
+                to="/book-a-call"
                 onClick={closeMenu}
                 className="rounded-2xl bg-white/80 px-6 py-2.5 font-body text-[9px] tracking-[0.15em] uppercase text-gray-900 shadow-sm transition duration-300 hover:scale-105"
               >
