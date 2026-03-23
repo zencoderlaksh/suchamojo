@@ -6,7 +6,7 @@ import Blog from '../pages/blog/Blog'
 import Contact from '../pages/contact/Contact'
 import Industries from '../pages/industries/Industries'
 import IndustryDetail from '../pages/industries/IndustryDetail'
-import BookCall from '../pages/bookCall/BookCall'
+import BookCallPriority from '../pages/bookCall/BookCallPriority'
 import Services from '../pages/services/Services'
 import ServiceDetail from '../pages/services/ServiceDetail'
 import Login from '../pages/login/Login'
@@ -25,7 +25,7 @@ const AppRoutes = () => {
           <Route path="industries/:slug" element={<IndustryDetail />} />
           <Route path="blog" element={<Blog />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="book-a-call" element={<BookCall />} />
+          <Route path="book-a-call" element={<BookCallPriority />} />
           <Route path="projects" element={<Navigate to="/industries" replace />} />
           <Route path="journal" element={<Navigate to="/about" replace />} />
           <Route path="work" element={<Navigate to="/services" replace />} />

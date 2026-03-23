@@ -11,9 +11,45 @@ const NAV_LINKS = [
   { label: "Blog", to: "/blog" },
 ];
 
-const Header = () => {
+const Header = ({ minimal = false }) => {
   const [open, setOpen] = useState(false);
   const closeMenu = () => setOpen(false);
+
+  if (minimal) {
+    return (
+      <motion.header
+        className="fixed left-0 right-0 top-0 z-50 px-4 pt-4 sm:px-6"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, ease: "easeOut" }}
+      >
+        <div className="mx-auto flex max-w-6xl items-center justify-between rounded-[1.75rem] border border-white/60 bg-white/70 px-4 py-3 shadow-[0_18px_60px_rgba(15,23,42,0.12)] backdrop-blur-xl sm:px-6">
+          <Link to="/" className="flex items-center gap-3 text-slate-900">
+            <img
+              src={aboutImg}
+              alt="Suchamojo"
+              className="h-11 w-11 rounded-xl object-cover"
+            />
+            <div>
+              <p className="font-body text-[0.65rem] uppercase tracking-[0.28em] text-slate-500">
+                Suchamojo
+              </p>
+              <p className="font-heading text-sm text-slate-900 sm:text-base">
+                Brand Clarity Call
+              </p>
+            </div>
+          </Link>
+
+          <Link
+            to="/contact"
+            className="rounded-full border border-slate-200 bg-white px-4 py-2 font-body text-[0.65rem] uppercase tracking-[0.22em] text-slate-700 transition duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:text-slate-950"
+          >
+            Contact Instead
+          </Link>
+        </div>
+      </motion.header>
+    );
+  }
 
   return (
     <>
