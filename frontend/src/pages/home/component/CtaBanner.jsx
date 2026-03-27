@@ -2,10 +2,15 @@ import React, { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { FaArrowRight } from 'react-icons/fa6'
 import { motion as Motion, useInView } from '../../../lib/motion'
+import { useAppStore } from '../../../store/useAppStore'
 
 const CtaBanner = () => {
   const sectionRef = useRef(null)
   const inView = useInView(sectionRef, { once: true, amount: 0.2 })
+  const trackEvent = useAppStore((state) => state.trackEvent)
+  const cta = useAppStore((state) => state.settings.cta)
+
+  if (!cta.enabled) return null
 
   return (
     <Motion.section
@@ -43,7 +48,7 @@ const CtaBanner = () => {
               transition={{ duration: 0.55, delay: 0.14, ease: 'easeOut' }}
               className="mt-5 max-w-[46ch] font-body text-sm leading-relaxed text-orange-50/85 sm:text-base"
             >
-              Start with a free 30-minute strategy call. No sales pitch. Just clarity.
+              {cta.body}
             </Motion.p>
           </div>
 
@@ -53,10 +58,13 @@ const CtaBanner = () => {
             transition={{ duration: 0.45, delay: 0.2, ease: 'easeOut' }}
           >
             <Link
-              to="/book-a-call"
+              to={cta.link || '/book-a-call'}
+              onClick={() =>
+                trackEvent('schedule_free_consultation_click', { source_page: 'homepage_cta_banner' })
+              }
               className="group inline-flex items-center gap-3 rounded-full bg-[#ff5c35] px-6 py-3 font-body text-[0.74rem] uppercase tracking-[0.2em] text-white shadow-[0_18px_34px_rgba(255,92,53,0.28)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#ff704f]"
             >
-              Book Your Free Call
+              {cta.label || 'Book Your Free Call'}
               <FaArrowRight className="transition duration-300 group-hover:translate-x-1" />
             </Link>
           </Motion.div>

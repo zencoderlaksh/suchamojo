@@ -12,6 +12,7 @@ import WhySuchaMojo from './component/WhySuchaMojo';
 import Testimonials from './component/Testimonials';
 import CtaBanner from './component/CtaBanner';
 import Blog from "./component/Blog";
+import GetInTouch from './component/GetInTouch';
 
 const Home = () => {
   return (
@@ -31,6 +32,7 @@ const Home = () => {
       <WhySuchaMojo />
       <Testimonials />
       <CtaBanner />
+      <GetInTouch />
       <AboutCorousel />
       <Blog />
 

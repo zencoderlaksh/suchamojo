@@ -1,32 +1,19 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { j1, j2, j3 } from "../../../assets/image";
-
-const blogPosts = [
-  {
-    id: "ai-design-2026",
-    title: "How AI Is Transforming Design in 2026",
-    category: "AI DESIGN",
-    readTime: "6 min read",
-    image: j1,
-  },
-  {
-    id: "brand-palette",
-    title: "How to Choose the Right Palette for Your Brand",
-    category: "VISUAL DESIGN",
-    readTime: "4 min read",
-    image: j2,
-  },
-  {
-    id: "web-trends",
-    title: "10 Web Design Trends That Will Dominate This Year",
-    category: "TRENDS",
-    readTime: "7 min read",
-    image: j3,
-  },
-];
+import { useAppStore } from "../../../store/useAppStore";
 
 const Blog = () => {
+  const blogPostsRaw = useAppStore((state) => state.blogs.list);
+  const error = useAppStore((state) => state.blogs.listError);
+  const loadBlogs = useAppStore((state) => state.loadBlogs);
+  const blogPosts = useMemo(() => blogPostsRaw.slice(0, 3), [blogPostsRaw]);
+
+  useEffect(() => {
+    if (!blogPostsRaw.length) {
+      loadBlogs();
+    }
+  }, [blogPostsRaw.length, loadBlogs]);
+
   return (
     <section className="relative px-4 py-16 font-body sm:px-6 lg:px-8">
       <style>
@@ -64,18 +51,22 @@ const Blog = () => {
           </p>
         </div>
 
+        {error ? <p className="mb-4 text-sm text-red-300">{error}</p> : null}
+
         <div className="grid gap-5 md:grid-cols-3">
           {blogPosts.map((post, index) => (
             <Link
-              key={post.id}
-              to="/journal"
+              key={post._id}
+              to={`/blog/${post.slug}`}
               className="blog-reveal group block overflow-hidden rounded-4xl border border-white/10 bg-[#191b20] transition duration-500 hover:-translate-y-2 hover:border-white/30 hover:shadow-[0_22px_50px_rgba(0,0,0,0.45)]"
               style={{ animationDelay: `${index * 0.14 + 0.12}s` }}
             >
               <div className="relative h-72 overflow-hidden sm:h-80">
                 <img
-                  src={post.image}
+                  src={post.heroImage || post.coverImage}
                   alt={post.title}
+                  loading="lazy"
+                  decoding="async"
                   className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
@@ -87,13 +78,15 @@ const Blog = () => {
 
               <div className="space-y-2.5 p-4 sm:p-5">
                 <p className="font-body text-[0.68rem] font-semibold tracking-[0.18em] text-gray-400">
-                  {post.category}
+                  {post.tags?.[0] || "INSIGHTS"}
                 </p>
                 <h3 className="font-heading text-lg font-semibold leading-tight text-white sm:text-[1.25rem]">
                   {post.title}
                 </h3>
                 <div className="flex items-center justify-between">
-                  <p className="font-body text-xs tracking-wide text-gray-400">{post.readTime}</p>
+                  <p className="font-body text-xs tracking-wide text-gray-400">
+                    {post.publishedAt ? new Date(post.publishedAt).toLocaleDateString() : "Draft"}
+                  </p>
                   <span className="font-body text-xs font-semibold tracking-[0.12em] text-cyan-300 transition group-hover:text-cyan-200">
                     READ NOW
                   </span>
@@ -102,6 +95,10 @@ const Blog = () => {
             </Link>
           ))}
         </div>
+
+        {!blogPosts.length && !error ? (
+          <p className="mt-5 text-sm text-gray-400">Published posts will appear here automatically.</p>
+        ) : null}
       </div>
     </section>
   );
