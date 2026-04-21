@@ -72,7 +72,7 @@ const Header = ({ minimal = false }) => {
           <Link to="/" onClick={closeMenu} className="shrink-0">
             <img
               src={aboutImg}
-              alt="About"
+              alt="SuchaMojo"
               className="h-14 w-14 rounded-xl object-cover transition duration-300 hover:scale-105"
             />
           </Link>

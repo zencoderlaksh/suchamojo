@@ -11,8 +11,8 @@ const Footer = () => {
             <p className="mb-6 font-body text-sm tracking-[0.18em] text-gray-400 sm:text-base">Suchamojo</p>
             <h2 className="mb-4 font-heading text-[1.4rem] leading-none text-white sm:text-[1.7rem]">Story-led Personal Branding</h2>
             <p className="font-body text-xs leading-relaxed text-gray-400 sm:text-sm">
-              I help founders, creators, and high-agency professionals<br/> build personal brands rooted
-              in identity,<br/> clarity, and long-term trust.
+              I help founders, creators, and high-agency professionals build personal brands rooted
+              in identity, clarity, and long-term trust.
             </p>
           </div>
 
@@ -54,8 +54,7 @@ const Footer = () => {
           <h1 className="font-heading text-5xl leading-none tracking-tight text-gray-300 sm:text-6xl md:text-7xl">
             Suchamojo
           </h1>
-          <p className="mt-4 font-body text-xs text-gray-500">Copyright Suchamojo. All rights reserved.</p>
-          <p className="mt-1 font-body text-xs text-gray-500">Built with intent.</p>
+          <p className="mt-4 font-body text-xs text-gray-500">© 2026 SuchaMojo. All rights reserved. Built with intent.</p>
         </div>
       </div>
     </footer>

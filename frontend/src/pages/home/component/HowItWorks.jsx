@@ -4,21 +4,21 @@ import { motion as Motion, useInView } from '../../../lib/motion'
 const steps = [
   {
     id: '01',
-    title: 'Discover',
+    title: 'We Find Your Angle',
     description:
-      'We unpack your story, expertise, values, and goals. Deep research into your industry and audience.',
+      'One clear story. One clear audience. One reason people should follow you and not the thousand others in your space.',
   },
   {
     id: '02',
-    title: 'Build',
+    title: 'We Build Your Content Engine',
     description:
-      'We craft your brand identity, messaging framework, content pillars, and platform strategy.',
+      'Your formats, your posting rhythm, your signature style. A system so simple you can run it in an hour a day.',
   },
   {
     id: '03',
-    title: 'Amplify',
+    title: 'We Help You Stay Consistent',
     description:
-      'We help you show up consistently, build authority, and grow an engaged audience that converts.',
+      'Accountability, feedback, and direction every week. So you never stare at a blank screen wondering what to post again.',
   },
 ]
 
@@ -28,6 +28,7 @@ const HowItWorks = () => {
 
   return (
     <Motion.section
+      id="how-it-works"
       ref={sectionRef}
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -56,6 +57,14 @@ const HowItWorks = () => {
             >
               3 Steps To A Brand That Works For You
             </Motion.h2>
+            <Motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.55, delay: 0.12, ease: 'easeOut' }}
+              className="mt-5 max-w-3xl font-body text-base leading-relaxed text-gray-300 sm:text-lg"
+            >
+              When content feels fun, you post more. When you post more, people notice. We start with the fun part.
+            </Motion.p>
           </div>
 
           <div className="relative mt-8 grid gap-4 lg:grid-cols-3">

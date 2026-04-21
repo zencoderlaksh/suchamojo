@@ -5,32 +5,52 @@ import { motion as Motion, useInView } from '../../../lib/motion'
 const industryCards = [
   {
     title: 'Founders & CEOs',
-    description: 'Narrative systems for builders shaping companies and public trust.',
+    description: "Your brand is your company's first impression. Build a founder identity that attracts talent, trust, and investment.",
     to: '/industries/founders',
   },
   {
-    title: 'Mutual Fund Distributors',
-    description: 'Credibility-led communication for long-term investor confidence.',
-    to: '/industries/mutual-fund-distributors',
-  },
-  {
-    title: 'Financial Advisors',
-    description: 'Authority-building content for trust-sensitive financial audiences.',
-    to: '/industries/financial-advisors',
-  },
-  {
     title: 'Doctors & Healthcare Professionals',
-    description: 'Professional visibility rooted in expertise, ethics, and clarity.',
+    description: 'Patients choose the doctor they trust. Build a digital presence that reflects your expertise and bedside manner.',
     to: '/industries/doctors',
   },
   {
-    title: 'Lawyers & Legal Professionals',
-    description: 'Sharper public positioning for legal experts and advisors.',
-    to: '/industries/lawyers',
+    title: 'Financial Advisors and Mutual Fund Distributors',
+    description: 'Trust is your product. A strong personal brand positions you as the advisor clients seek out, not the one they compare.',
+    to: '/industries/mutual-fund-distributors',
   },
   {
     title: 'Corporate Leaders & Executives',
-    description: 'Executive presence for leaders who need authority beyond the boardroom.',
+    description: 'Your personal brand opens boardroom doors. Build the kind of presence that gets you invited into rooms before you even ask.',
+    to: '/industries/corporate-leaders',
+  },
+  {
+    title: 'D2C Founders & Brand Builders',
+    description: 'Your product has a story. So do you. Build a founder brand that makes people buy into you before they even buy what you sell.',
+    to: '/industries/founders',
+  },
+  {
+    title: 'Freelancers & Independent Consultants',
+    description: 'You are the product. A strong personal brand means clients find you, trust you faster, and stop asking for discounts.',
+    to: '/about',
+  },
+  {
+    title: 'Coaches & Educators',
+    description: 'You teach people how to change. Your brand should show them you have done it yourself. Build a presence that converts belief into enrollment.',
+    to: '/about',
+  },
+  {
+    title: 'Real Estate Professionals',
+    description: 'In a market built on relationships, the agent people remember is the one they call. Build a brand that keeps you top of mind long after the first meeting.',
+    to: '/about',
+  },
+  {
+    title: 'Content Creators & Influencers',
+    description: 'Followers are not a brand. A brand is what people say about you when the algorithm stops pushing your content. Build something that lasts.',
+    to: '/blog',
+  },
+  {
+    title: 'Startup Teams & Early-Stage Companies',
+    description: "Your team is already telling your company's story online. The question is whether they are telling it well and together.",
     to: '/industries/corporate-leaders',
   },
 ]
@@ -78,9 +98,10 @@ const IndustriesServe = () => {
               transition={{ duration: 0.55, delay: 0.14, ease: 'easeOut' }}
               className="max-w-2xl font-body text-sm leading-relaxed text-gray-300 sm:text-base lg:justify-self-end"
             >
-              Whether you&apos;re managing portfolios or building companies, your personal brand is your
-              competitive edge. Explore the industries where strategic storytelling can create stronger trust,
-              visibility, and authority.
+              Your personal brand is not just a LinkedIn profile. It is a business asset. And the
+              way you build it depends entirely on your industry, your audience, and what you are
+              trying to achieve. We have built brand systems for people across very different fields
+              and we know the specific pressures, audiences, and opportunities each one carries.
             </Motion.p>
           </div>
 

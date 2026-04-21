@@ -4,29 +4,29 @@ import { motion as Motion, useInView } from '../../../lib/motion'
 
 const testimonials = [
   {
-    name: 'Aarav Mehta',
-    role: 'Founder & CEO',
-    industry: 'Venture-backed startup',
+    name: 'mostly.curious',
+    role: 'Client Testimonial',
+    industry: 'Personal Branding',
     quote:
-      'The brand became sharper, clearer, and far more aligned with the kind of company we were actually building.',
+      'I have known Shubham for 7 years. Apart from everything else he is good at, he is genuinely crazy when it comes to content and personal branding. I have never seen someone as sharp as him. He is my go-to whenever I am stuck. If you are reading this trust me, he will change your trajectory of growth.',
     rating: 5,
     tone: 'from-cyan-200/22 via-cyan-100/8 to-transparent',
   },
   {
-    name: 'Nisha Kapoor',
-    role: 'Financial Advisor',
-    industry: 'Wealth management',
+    name: 'bypayelsen',
+    role: 'Client Testimonial',
+    industry: 'Content Journey',
     quote:
-      'What changed most was trust. People started understanding my voice, my expertise, and why my approach was different.',
+      "If it wasn't for Suchamojo, I would still be struggling without direction in my content journey. To whoever is reading this trust him and let the Shubham magic happen to you.",
     rating: 5,
     tone: 'from-orange-200/22 via-orange-100/8 to-transparent',
   },
   {
-    name: 'Dr. Rohan Sethi',
-    role: 'Consultant Doctor',
-    industry: 'Healthcare',
+    name: 'akkaasd',
+    role: 'Client Testimonial',
+    industry: 'Instagram Growth',
     quote:
-      'The process helped me communicate with far more confidence online without losing the professionalism my field demands.',
+      'He knew nothing about F1, but he is the master of personal brand building basics. Thanks to those fundamentals, we scaled my dream of building an Instagram channel. In a single meeting, he can figure out exactly what your brand needs not a posting cheatsheet, not algo hacks. Just simple common sense that actually works.',
     rating: 5,
     tone: 'from-white/22 via-white/8 to-transparent',
   },
@@ -116,7 +116,7 @@ const Testimonials = () => {
                 transition={{ duration: 0.55, delay: 0.08, ease: 'easeOut' }}
                 className="mt-4 font-heading text-3xl uppercase tracking-[0.08em] text-white sm:text-4xl lg:text-[2.8rem]"
               >
-                Trusted By People Building Real Authority
+                We Would Say We Are Good. But They Said It First.
               </Motion.h2>
             </div>
 

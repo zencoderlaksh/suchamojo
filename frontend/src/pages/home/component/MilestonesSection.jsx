@@ -65,7 +65,7 @@ const CountUp = ({
   return <>{Math.round(value)}</>
 }
 
-const MilestoneItem = ({ value, label, delay = 0, inView }) => {
+const MilestoneItem = ({ value, suffix = '+', label, delay = 0, inView }) => {
   const [isCounting, setIsCounting] = useState(false)
   const [isComplete, setIsComplete] = useState(false)
 
@@ -75,23 +75,15 @@ const MilestoneItem = ({ value, label, delay = 0, inView }) => {
       animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
       transition={{ duration: 0.5, delay, ease: 'easeOut' }}
       whileHover={{ scale: 1.025, transition: { duration: 0.28 } }}
-      className="group relative w-full rounded-3xl border border-white/10 bg-white/[0.025] px-4 py-6 text-center backdrop-blur-sm transition-colors duration-300 hover:border-white/20 sm:px-6 sm:py-8"
+      className="group relative w-full rounded-3xl border border-white/10 bg-white/[0.025] px-4 py-6 text-center backdrop-blur-sm transition-colors duration-300 hover:border-white/20 sm:px-5 sm:py-8"
     >
-      {/* Hover glow */}
-      <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-cyan-400/0 via-cyan-200/[0.06] to-fuchsia-300/0 opacity-0 blur-xl transition-opacity duration-300 group-hover:opacity-100" />
-
-      {/* Number row */}
       <div className="relative mx-auto flex w-fit items-end justify-center leading-none">
         <Motion.div
           animate={{ opacity: inView ? 1 : 0.7, scale: isComplete ? [1, 1.05, 1] : 1 }}
           transition={{ duration: isComplete ? 0.4 : 0.3, ease: 'easeOut' }}
-          className="relative"
+          className="relative flex items-baseline"
         >
-          {/* Ambient glow behind number */}
-          <span className="pointer-events-none absolute -inset-4 -z-10 rounded-2xl bg-gradient-to-r from-cyan-200/25 via-white/35 to-fuchsia-200/25 blur-2xl" />
-
-          {/* Count-up */}
-          <span className="bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text font-heading font-normal tracking-tight text-transparent text-5xl sm:text-6xl lg:text-7xl">
+          <span className="bg-gradient-to-b from-white via-gray-200 to-gray-400 bg-clip-text font-heading font-normal tracking-tight text-transparent text-4xl sm:text-5xl lg:text-6xl">
             <CountUp
               start={0}
               end={inView ? value : 0}
@@ -104,22 +96,15 @@ const MilestoneItem = ({ value, label, delay = 0, inView }) => {
           </span>
 
           {/* Plus */}
-          <span className="ml-1 align-top font-heading font-normal text-white/50 text-3xl sm:text-4xl lg:text-5xl">
-            +
-          </span>
-
-          {/* Shimmer sweep */}
-          <Motion.span
-            initial={{ x: '-120%', opacity: 0 }}
-            animate={inView ? { x: '150%', opacity: [0, 0.45, 0] } : {}}
-            transition={{ duration: 1.0, delay: delay + 0.4, ease: 'easeInOut' }}
-            className="pointer-events-none absolute inset-y-0 left-0 w-14 -skew-x-[18deg] bg-gradient-to-r from-transparent via-white/50 to-transparent blur-[1px]"
-          />
+          {suffix ? (
+            <span className="ml-1 whitespace-nowrap font-heading font-normal text-white/50 text-xl sm:text-2xl lg:text-3xl">
+              {suffix}
+            </span>
+          ) : null}
         </Motion.div>
       </div>
 
-      {/* Label */}
-      <p className={`mt-3 font-body text-sm leading-relaxed transition-colors duration-300 sm:text-base ${isCounting ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300'
+      <p className={`mx-auto mt-3 max-w-[16ch] font-body text-sm leading-relaxed transition-colors duration-300 sm:text-[0.95rem] ${isCounting ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300'
         }`}>
         {label}
       </p>
@@ -137,6 +122,28 @@ const MilestonesSection = ({ split = false }) => {
     offset: ['start end', 'end start'],
   })
   const parallaxY = useTransform(scrollYProgress, [0, 1], [20, -20])
+  const milestones = [
+    {
+      value: 30000,
+      suffix: '+',
+      label: 'Creators trained across India',
+    },
+    {
+      value: 12,
+      suffix: '+ Years',
+      label: 'At the intersection of story and growth',
+    },
+    {
+      value: 8,
+      suffix: '+',
+      label: 'Industries served',
+    },
+    {
+      value: 100,
+      suffix: '+',
+      label: 'Brand strategy sessions led',
+    },
+  ]
 
   return (
     <Motion.section
@@ -187,8 +194,7 @@ const MilestonesSection = ({ split = false }) => {
               />
             ))}
 
-            <div className={`relative z-10 flex flex-col items-center ${split ? 'flex-1 justify-between gap-8' : 'gap-8 sm:gap-10'}`}>
-              {/* Heading */}
+            <div className={`relative z-10 flex flex-col items-center ${split ? 'flex-1 justify-center gap-8' : 'gap-8 sm:gap-10'}`}>
               <Motion.h2
                 initial={{ opacity: 0, y: 10 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -203,25 +209,17 @@ const MilestonesSection = ({ split = false }) => {
                 />
               </Motion.h2>
 
-              {/* Stats */}
-              <div className="flex w-full flex-col items-center gap-5 sm:gap-7">
-                <MilestoneItem value={7} label="Years of Extensive Industry Experience" inView={inView} />
-
-                {/* Divider */}
-                <Motion.div
-                  initial={{ width: '20%', opacity: 0 }}
-                  animate={inView ? { width: '55%', opacity: 1 } : {}}
-                  transition={{ duration: 0.5, delay: 0.12, ease: 'easeOut' }}
-                  className="relative h-px bg-gradient-to-r from-transparent via-white/35 to-transparent"
-                >
-                  <Motion.span
-                    animate={{ opacity: [0.3, 0.6, 0.3] }}
-                    transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-200/45 to-transparent blur-[1px]"
+              <div className="grid w-full gap-4 sm:gap-5 md:grid-cols-2 xl:grid-cols-4">
+                {milestones.map((milestone, index) => (
+                  <MilestoneItem
+                    key={`${milestone.value}-${milestone.label || index}`}
+                    value={milestone.value}
+                    suffix={milestone.suffix}
+                    label={milestone.label}
+                    delay={index * 0.1}
+                    inView={inView}
                   />
-                </Motion.div>
-
-                <MilestoneItem value={24} label="Projects Completed" delay={0.12} inView={inView} />
+                ))}
               </div>
             </div>
           </div>

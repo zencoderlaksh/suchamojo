@@ -25,10 +25,10 @@ const Blog = () => {
       <div className="rounded-[2.2rem] border border-white/10 bg-[#0b0b0f] p-6 sm:p-8">
         <p className="font-body text-[0.7rem] uppercase tracking-[0.2em] text-gray-400">Blog</p>
         <h1 className="mt-3 font-heading text-4xl uppercase tracking-[0.08em] sm:text-5xl">
-          Latest Insights
+          How to Build a Personal Brand in India
         </h1>
         <p className="mt-4 max-w-[56ch] font-body text-sm text-gray-300 sm:text-base">
-          Published articles are auto-listed from CMS and sorted by latest publish date.
+          Personal branding tips and content strategy for founders and professionals. Read our latest insights.
         </p>
 
         {tags.length ? (

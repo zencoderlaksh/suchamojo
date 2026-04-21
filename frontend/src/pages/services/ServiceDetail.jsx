@@ -41,7 +41,7 @@ const ServiceDetail = () => {
                 to="/book-a-call"
                 className="inline-flex items-center gap-2 rounded-full bg-[#203a32] px-6 py-3 font-body text-[0.7rem] uppercase tracking-[0.2em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#152923]"
               >
-                Book a Call
+                {detail.ctaButtonText || 'Book a Call'}
                 <FiArrowRight className="text-sm" />
               </Link>
               <Link
@@ -158,26 +158,46 @@ const ServiceDetail = () => {
             </div>
           </section>
 
-          <section>
-            <p className="font-body text-[0.72rem] uppercase tracking-[0.3em] text-[#b25a37]">Results / Social Proof</p>
-            <h2 className="mt-4 font-heading text-3xl text-slate-950 sm:text-4xl">What people say after the work gets clearer.</h2>
-            <div className="mt-8 grid gap-4 lg:grid-cols-2">
-              {detail.testimonials.map((item) => (
-                <article
-                  key={item.quote}
-                  className="rounded-[1.9rem] border border-white/60 bg-white/75 p-7 shadow-[0_16px_50px_rgba(15,23,42,0.06)]"
-                >
-                  <div className="flex items-center gap-2 text-[#b25a37]">
-                    <FiStar />
-                    <FiStar />
-                    <FiStar />
-                  </div>
-                  <p className="mt-5 font-heading text-2xl leading-tight text-slate-900">&ldquo;{item.quote}&rdquo;</p>
-                  <p className="mt-6 font-body text-sm uppercase tracking-[0.24em] text-slate-500">{item.author}</p>
-                </article>
-              ))}
-            </div>
-          </section>
+          {detail.testimonials && detail.testimonials.length > 0 && (
+            <section>
+              <p className="font-body text-[0.72rem] uppercase tracking-[0.3em] text-[#b25a37]">Results / Social Proof</p>
+              <h2 className="mt-4 font-heading text-3xl text-slate-950 sm:text-4xl">What people say after the work gets clearer.</h2>
+              <div className="mt-8 grid gap-4 lg:grid-cols-2">
+                {detail.testimonials.map((item) => (
+                  <article
+                    key={item.quote}
+                    className="rounded-[1.9rem] border border-white/60 bg-white/75 p-7 shadow-[0_16px_50px_rgba(15,23,42,0.06)]"
+                  >
+                    <div className="flex items-center gap-2 text-[#b25a37]">
+                      <FiStar />
+                      <FiStar />
+                      <FiStar />
+                    </div>
+                    <p className="mt-5 font-heading text-2xl leading-tight text-slate-900">&ldquo;{item.quote}&rdquo;</p>
+                    <p className="mt-6 font-body text-sm uppercase tracking-[0.24em] text-slate-500">{item.author}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {detail.outcome && detail.outcome.length > 0 && (
+            <section>
+              <p className="font-body text-[0.72rem] uppercase tracking-[0.3em] text-[#b25a37]">The Outcome</p>
+              <div className="mt-6 space-y-5 font-body text-base leading-8 text-slate-600">
+                {detail.outcome.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {detail.investment && (
+            <section className="rounded-[2rem] border border-[#eadfce] bg-[#fbf8f2] p-8">
+              <p className="font-body text-[0.72rem] uppercase tracking-[0.3em] text-[#b25a37]">Investment</p>
+              <h2 className="mt-4 font-heading text-2xl text-slate-900">{detail.investment}</h2>
+            </section>
+          )}
 
           <section className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
             <div>
@@ -230,7 +250,7 @@ const ServiceDetail = () => {
                 to="/book-a-call"
                 className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-body text-[0.7rem] uppercase tracking-[0.2em] text-slate-900 transition duration-300 hover:-translate-y-0.5"
               >
-                Book a Call
+                {detail.ctaButtonText || 'Book a Call'}
                 <FiArrowRight className="text-sm" />
               </Link>
               <Link

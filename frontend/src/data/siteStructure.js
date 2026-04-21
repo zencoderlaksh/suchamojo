@@ -67,37 +67,44 @@ export const industryLinks = [
 export const serviceDetails = {
   '1-1-consultation': {
     eyebrow: 'Services',
-    title: '1:1 Consultation',
-    valueProp: 'Private brand strategy for people who need clarity, momentum, and sharper public positioning fast.',
+    title: 'Personal Branding Consultant for Founders in India — 1:1 Consulting',
+    valueProp: 'This is the most focused way to work together.',
     intro:
-      'A focused advisory format for founders and professionals who need sharper positioning, cleaner messaging, and a more intentional brand presence.',
+      'Over 6 to 12 weeks, we build your personal brand from the ground up — your identity, your story, your content system, your positioning. Everything is designed around your goals, your industry, and the audience you are trying to reach.',
     points: [
-      'Clarify your positioning, story, and strategic voice.',
-      'Audit your current brand presence and communication gaps.',
-      'Build a practical next-step roadmap you can implement immediately.'
+      'Weekly 60–90 minute strategy calls.',
+      'Narrative design — the story arc you will be known for.',
+      'Monthly brand roadmap so you always know what you are building toward.'
     ],
-    fit: 'Best for individuals who want direct strategic thinking without committing to a larger engagement.',
+    fit: 'Best for founders, advisors, and executives building a stronger public presence.',
     description: [
-      'This format is designed for moments when your brand has outgrown guesswork. You may already be visible, experienced, or successful, but your message still feels scattered, generic, or harder to articulate than it should be.',
-      'In a 1:1 consultation, we work directly on the strategic layer underneath your brand presence. That can include positioning, narrative, audience clarity, content direction, and the specific communication choices that shape how people understand your value.',
-      'The goal is not more noise. It is sharper signal. You leave with decisions, language, and a clearer path forward so your next moves feel intentional rather than reactive.'
+      'Over 6 to 12 weeks, we build your personal brand from the ground up — your identity, your story, your content system, your positioning.',
+      'Everything is designed around your goals, your industry, and the audience you are trying to reach.'
     ],
     visual: {
-      label: 'Best used when',
-      title: 'You need strategic clarity before scaling content or visibility.',
-      points: ['Message feels vague', 'Audience is broad', 'Content lacks a strong point of view']
+      label: 'Engagement',
+      title: 'What a 1:1 engagement includes',
+      points: [
+        'Weekly 60–90 minute strategy calls',
+        'WhatsApp access for quick feedback',
+        'Monthly brand roadmap'
+      ]
     },
     deliverables: [
-      'Positioning and message audit',
-      'Narrative reframing around expertise and identity',
-      'Priority content and visibility themes',
-      'Clear next-step action plan'
+      'Weekly 60–90 minute strategy calls',
+      'A personal brand compass document that defines your identity, values, and audience',
+      'Narrative design — the story arc you will be known for',
+      'Signature content formats tailored to your platforms and goals',
+      'Content calendar and posting system you can actually sustain',
+      'LinkedIn, Instagram, or YouTube profile audit and rewrite',
+      'WhatsApp access for quick feedback, script reviews, and content checks',
+      'Monthly brand roadmap so you always know what you are building toward'
     ],
-    audience: ['Founders refining a personal brand', 'Independent experts building authority', 'Professionals entering a more visible season'],
+    audience: ['Founders', 'Advisors', 'Executives'],
     process: [
-      { title: 'Assess', body: 'We review your current positioning, digital presence, and communication gaps.' },
-      { title: 'Clarify', body: 'We define the strongest story, message angles, and strategic priorities for your brand.' },
-      { title: 'Activate', body: 'You leave with concrete recommendations you can apply immediately across content and conversations.' }
+      { title: 'Identity & Story', body: 'We define your identity, values, and audience.' },
+      { title: 'Content System', body: 'We build signature content formats and a posting system you can sustain.' },
+      { title: 'Roadmap & Audit', body: 'We audit your profiles and create a monthly brand roadmap.' }
     ],
     testimonials: [
       {
@@ -112,25 +119,27 @@ export const serviceDetails = {
     faqs: [
       {
         question: 'Who is this best for?',
-        answer: 'It is ideal for people who want strategic guidance without committing to a full-scale implementation engagement.'
+        answer: 'It is ideal for founders, advisors, and executives who want strategic guidance and 1:1 consulting.'
       },
       {
-        question: 'What happens after the session?',
-        answer: 'You receive direction you can execute yourself or use to decide whether a larger engagement makes sense.'
+        question: 'What happens during the engagement?',
+        answer: 'Over 6 to 12 weeks, we build your personal brand from the ground up.'
       },
       {
         question: 'Can this help if I already have content going out?',
         answer: 'Yes. It is often most useful when content exists but the message underneath it still feels unfocused.'
-      },
-      {
-        question: 'Is this only for founders?',
-        answer: 'No. It also works well for experts, consultants, advisors, and professionals building a stronger public voice.'
       }
-    ]
+    ],
+    outcome: [
+      'You show up consistently. You sound like yourself. The right people start paying attention.',
+      'Clients who complete this program come out with a functioning personal brand they understand deeply and can sustain on their own — and most of them keep working with us anyway because the momentum feels good.'
+    ],
+    investment: '6–12 week engagement. Starting from ₹2.5 lakh. Limited to 6 founders per quarter.',
+    ctaButtonText: 'Apply for 1:1 Consulting'
   },
   'team-training': {
     eyebrow: 'Services',
-    title: 'Team Training',
+    title: 'Personal Branding Workshop for Corporate India — Team Training',
     valueProp: 'Workshops and guided training that help teams communicate with more confidence, consistency, and authority.',
     intro:
       'Custom training for teams that want their leaders, spokespeople, or internal experts to communicate with more confidence and consistency.',
@@ -193,7 +202,7 @@ export const serviceDetails = {
   },
   cohorts: {
     eyebrow: 'Services',
-    title: 'Cohorts',
+    title: 'Personal Branding Cohort in India — Group Experience',
     valueProp: 'A guided group experience for professionals who want structure, accountability, and brand growth in shared momentum.',
     intro:
       'A guided group format designed to help high-agency professionals build visibility, confidence, and strategic content systems together.',
@@ -242,7 +251,7 @@ export const serviceDetails = {
       },
       {
         question: 'Will it still feel personalized?',
-        answer: 'Yes. The structure is group-based, but the work is still centered on each participant�s positioning and communication goals.'
+        answer: 'Yes. The structure is group-based, but the work is still centered on each participant’s positioning and communication goals.'
       },
       {
         question: 'Who benefits most from a cohort?',
@@ -256,20 +265,20 @@ export const serviceDetails = {
   },
   'creative-hiring': {
     eyebrow: 'Services',
-    title: 'Creative Hiring',
-    valueProp: 'Strategic support for hiring the right creative people before your content engine becomes expensive chaos.',
+    title: 'Hire Content Creator for Startup in India — Think, Not Just Execute.',
+    valueProp: 'The biggest mistake brands make when building a creative team is hiring for output instead of thinking.',
     intro:
-      'Support for choosing the right writers, designers, editors, and operators so your brand can scale with the right creative foundation.',
+      'We work with founders and brand leads to define the creative roles their brand actually needs, build briefs that attract strategic thinkers, and evaluate candidates through a brand-alignment lens, not just a portfolio review.',
     points: [
-      'Define the creative roles your brand actually needs.',
-      'Assess fit across strategic thinking, taste, and execution quality.',
-      'Build a lean creative setup that supports long-term consistency.'
+      'You end up with someone who can edit a reel but cannot tell you why it is not working.',
+      'Someone who posts daily but has no idea what the brand is actually trying to say.',
+      'We help you fix that before you make the hire.'
     ],
     fit: 'Best for founders and brands ready to move from solo execution to supported growth.',
     description: [
-      'Hiring creative support too early, too late, or in the wrong order creates friction that shows up everywhere. Creative Hiring helps you make better decisions about the people and capabilities your brand actually needs next.',
-      'This is not just about filling roles. It is about understanding the operating model behind your brand: what should stay founder-led, what should be delegated, and what kind of talent can preserve quality while increasing consistency.',
-      'The outcome is a leaner, smarter setup that reduces confusion, improves output, and helps your brand scale without losing coherence.'
+      'You end up with someone who can edit a reel but cannot tell you why it is not working. Someone who posts daily but has no idea what the brand is actually trying to say.',
+      'We help you fix that before you make the hire.',
+      'We work with founders and brand leads to define the creative roles their brand actually needs, build briefs that attract strategic thinkers, and evaluate candidates through a brand-alignment lens, not just a portfolio review.'
     ],
     visual: {
       label: 'Common problem',
@@ -322,7 +331,7 @@ export const serviceDetails = {
 export const industryDetails = {
   founders: {
     eyebrow: 'Industries',
-    title: 'Founders',
+    title: 'Personal Branding for Founders in India',
     intro:
       'Founders need a brand that creates trust before the pitch, builds authority before the room, and keeps the story aligned as the company grows.',
     points: [
@@ -333,7 +342,7 @@ export const industryDetails = {
   },
   'mutual-fund-distributors': {
     eyebrow: 'Industries',
-    title: 'Mutual Fund Distributors',
+    title: 'Personal Branding for MFDs in India',
     intro:
       'Distribution businesses grow on trust. The brand has to communicate clarity, reliability, and long-term stewardship at every touchpoint.',
     points: [

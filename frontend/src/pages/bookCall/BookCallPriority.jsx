@@ -1,28 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from '../../lib/motion'
-import { FiArrowRight, FiCheckCircle, FiClock, FiShield } from 'react-icons/fi'
+import { FiArrowRight } from 'react-icons/fi'
 
 const BOOKING_EMBED_URL =
   'https://calendly.com/your-handle/brand-call?hide_event_type_details=1&hide_gdpr_banner=1'
-
-const TRUST_SIGNALS = [
-  {
-    icon: FiClock,
-    title: 'Fast, focused conversation',
-    body: 'A short strategy call to understand your brand goals, current blockers, and what kind of support actually fits.',
-  },
-  {
-    icon: FiCheckCircle,
-    title: 'Clarity before commitment',
-    body: 'You will leave knowing whether this is the right next move, even if the answer is not an immediate engagement.',
-  },
-  {
-    icon: FiShield,
-    title: 'No hard-sell energy',
-    body: 'This page is intentionally simple so the conversation can stay centered on fit, trust, and useful next steps.',
-  },
-]
 
 const BookCallPriority = () => {
   return (
@@ -42,12 +24,18 @@ const BookCallPriority = () => {
             Priority Booking Page
           </p>
           <h1 className="mt-5 font-heading text-4xl leading-[0.95] tracking-[-0.04em] text-slate-950 sm:text-5xl lg:text-[4.8rem]">
-            Let&apos;s Talk About Your Brand
+            Let&apos;s Talk About Your Brand.
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl font-body text-sm leading-7 text-slate-600 sm:text-base">
-            If you are ready to sharpen your positioning, visibility, or personal brand story,
-            this is the direct path to a focused conversation about fit, priorities, and next
-            steps.
+          <p className="mx-auto mt-6 max-w-3xl font-body text-sm leading-7 text-slate-600 sm:text-base">
+            You have been thinking about this for a while. Maybe you know your story but you are
+            not sure how to tell it. Maybe you are showing up online but nothing is landing the way
+            you want. Maybe you are starting from scratch and you just need someone to help you see
+            the path.
+          </p>
+          <p className="mx-auto mt-4 max-w-3xl font-body text-sm leading-7 text-slate-600 sm:text-base">
+            This call is 30 minutes. No slide decks, no sales scripts. Just a honest conversation
+            about where you are, where you want to go, and whether SuchaMojo is the right partner
+            to get you there.
           </p>
         </motion.div>
 
@@ -87,23 +75,21 @@ const BookCallPriority = () => {
         </motion.div>
 
         <motion.div
-          className="mx-auto mt-10 grid w-full max-w-5xl gap-4 lg:grid-cols-3"
+          className="mx-auto mt-10 w-full max-w-5xl"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.14, ease: 'easeOut' }}
         >
-          {TRUST_SIGNALS.map(({ icon: Icon, title, body }) => (
-            <article
-              key={title}
-              className="rounded-[1.75rem] border border-white/70 bg-white/72 p-6 shadow-[0_16px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#203a32] text-white">
-                <Icon className="text-lg" />
-              </div>
-              <h2 className="mt-4 font-heading text-xl text-slate-900">{title}</h2>
-              <p className="mt-3 font-body text-sm leading-7 text-slate-600">{body}</p>
-            </article>
-          ))}
+          <article className="rounded-[1.75rem] border border-white/70 bg-white/72 p-6 shadow-[0_16px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl">
+            <p className="font-body text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#ff5a2c]">
+              Trust signals below the Calendly embed
+            </p>
+            <div className="mt-4 space-y-2 font-body text-sm leading-7 text-slate-600 sm:text-base">
+              <p>Every request is personally reviewed by Suchamojo</p>
+              <p>If we are not the right fit, I will tell you and point you in the right direction</p>
+              <p>30,000+ creators trained. 7+ years of brand-building experience.</p>
+            </div>
+          </article>
         </motion.div>
       </section>
     </div>

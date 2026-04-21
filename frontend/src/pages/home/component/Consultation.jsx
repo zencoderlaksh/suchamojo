@@ -3,32 +3,32 @@ import { c1, c2, c3, c4 } from "../../../assets/image/index";
 const consultationCards = [
   {
     id: 1,
-    eyebrow: "ART DIRECTION",
-    title: "BEYOND TIME",
+    eyebrow: "SERVICE 01",
+    title: "1:1 CONSULTATION",
     image: c1,
     tint: "from-[#3d0709]/78 via-[#9e2418]/38 to-[#120909]/20",
     panel: "bg-[#2b1411]/58 ring-1 ring-[#ea7d5f]/35",
   },
   {
     id: 2,
-    eyebrow: "BRAND IDENTITY",
-    title: "BRAND REDEFINE",
+    eyebrow: "SERVICE 02",
+    title: "TEAM TRAINING",
     image: c2,
     tint: "from-[#062f2c]/78 via-[#138b77]/34 to-[#091514]/20",
     panel: "bg-[#112928]/58 ring-1 ring-[#63d8c4]/35",
   },
   {
     id: 3,
-    eyebrow: "AD CAMPAIGN",
-    title: "EVERY SECOND",
+    eyebrow: "SERVICE 03",
+    title: "COHORTS",
     image: c3,
     tint: "from-[#311207]/80 via-[#a44b18]/34 to-[#140b07]/22",
     panel: "bg-[#2a180f]/60 ring-1 ring-[#df9c57]/35",
   },
   {
     id: 4,
-    eyebrow: "ART DIRECTION",
-    title: "TIMELESS MASTERY",
+    eyebrow: "SERVICE 04",
+    title: "CREATIVE HIRING",
     image: c4,
     tint: "from-[#080808]/82 via-[#1f1f1f]/40 to-[#070707]/28",
     panel: "bg-[#201a18]/58 ring-1 ring-[#b7a49a]/30",
@@ -40,8 +40,11 @@ const Consultation = () => {
     <section id="consultation" className="relative px-4 py-8 font-body sm:px-6 lg:px-8">
       <div className="pulse-soft pointer-events-none absolute right-8 top-8 h-44 w-44 rounded-full bg-orange-300/15 blur-3xl" />
       <div className="mx-auto w-full max-w-4xl rounded-md p-1.5 sm:p-2">
+        <p className="mb-3 text-center font-body text-[0.72rem] uppercase tracking-[0.24em] text-[#b25a37]">
+          Services
+        </p>
         <h2 className="reveal-up mb-8 text-center font-heading text-2xl font-extrabold tracking-wide text-slate-900 sm:mb-10 sm:text-3xl">
-          Schedule Free Consultation
+          Personal Branding Services India
         </h2>
         <div className="grid grid-cols-1 gap-1.5 sm:grid-cols-2">
           {consultationCards.map((card, index) => (
@@ -68,6 +71,16 @@ const Consultation = () => {
               </div>
             </article>
           ))}
+        </div>
+        <div className="mt-8 flex justify-center">
+          <a
+            href="https://topmate.io/shubham_gupta152"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center rounded-2xl bg-[#f97316] px-6 py-3 font-body text-[0.72rem] uppercase tracking-[0.18em] text-white transition duration-300 hover:-translate-y-0.5 hover:bg-[#ea580c]"
+          >
+            Book a Free Call
+          </a>
         </div>
       </div>
     </section>

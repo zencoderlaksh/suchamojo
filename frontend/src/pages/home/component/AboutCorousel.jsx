@@ -39,31 +39,48 @@ const AboutCorousel = () => {
               className="inline-flex w-full max-w-130 items-center justify-between rounded-4xl border border-white/40 bg-black/35 px-6 py-6 text-white backdrop-blur-md transition duration-300 hover:bg-black/50 sm:px-8 sm:py-7"
             >
               <span className="font-heading text-xs font-semibold tracking-[0.18em] text-white/80">
-                ABOUT US .25
+                ABOUT US
               </span>
               <span className="font-heading text-4xl font-black leading-none sm:text-6xl">ABOUT</span>
             </Link>
 
             <div className="max-w-xl rounded-2xl bg-black/35 p-5 text-white backdrop-blur-sm sm:p-6">
               <p className="font-body text-sm leading-relaxed sm:text-base">
-                I'm <strong>Suchamojo</strong> - a storyteller turned growth strategist.
+                <strong>Hi, I am Shubham Gupta — the founder and the face behind SuchaMojo.</strong>
               </p>
               <p className="mt-3 font-body text-sm leading-relaxed sm:text-base">
-                I started in journalism, documenting real people and real moments.
+                <strong>I&apos;m Shubham Gupta — a storyteller turned growth strategist, based in Jaipur.</strong>
               </p>
               <p className="mt-3 font-body text-sm leading-relaxed sm:text-base">
-                Over time, I moved into building creator communities and shaping how
-                people show up online.
+                I started on the ground. Mobile journalism. Real people, real communities, real
+                stories told on a phone before anyone called it content creation.
               </p>
               <p className="mt-3 font-body text-sm leading-relaxed sm:text-base">
-                Today, I work with founders, creators, and high-agency professionals
-                to build <strong>personal brands rooted in identity</strong>, not trends.
+                That grounding taught me one thing early: clarity builds trust. And trust is what
+                actually moves people.
               </p>
               <p className="mt-3 font-body text-sm leading-relaxed sm:text-base">
-                I don't help you post more.
+                Over the years I trained <strong>30,000+ creators across India</strong> helping them use simple
+                tools and honest narratives to show up with confidence and get noticed for the
+                right reasons.
               </p>
               <p className="mt-3 font-body text-sm leading-relaxed sm:text-base">
-                I help you <strong>say something worth remembering</strong>.
+                From there I led Creator Relations and Growth at PLUC, co-founded LetMeBreathe,
+                and spent years figuring out how purpose-driven stories scale in the digital age.
+              </p>
+              <p className="mt-3 font-body text-sm leading-relaxed sm:text-base">
+                Today through SuchaMojo, I work at the intersection of storytelling, personal
+                branding, and growth strategy with founders, professionals, NGOs, and platforms
+                who want to turn their expertise into visibility, trust, and real opportunity.
+              </p>
+              <p className="mt-3 font-body text-sm leading-relaxed sm:text-base">
+                No noise. No gimmicks. Just clarity.
+              </p>
+              <p className="mt-3 font-body text-sm leading-relaxed sm:text-base">
+                I do not help you post more.
+              </p>
+              <p className="mt-3 font-body text-sm leading-relaxed sm:text-base">
+                I help you <strong>say something worth remembering.</strong>
               </p>
             </div>
           </div>

@@ -32,7 +32,7 @@ const CtaBanner = () => {
               transition={{ duration: 0.45, ease: 'easeOut' }}
               className="font-body text-[0.72rem] uppercase tracking-[0.24em] text-orange-100/75"
             >
-              CTA Banner
+              Book Your Free Call
             </Motion.p>
             <Motion.h2
               initial={{ opacity: 0, y: 12 }}
@@ -40,7 +40,7 @@ const CtaBanner = () => {
               transition={{ duration: 0.55, delay: 0.08, ease: 'easeOut' }}
               className="mt-4 font-heading text-3xl uppercase tracking-[0.08em] text-white sm:text-4xl lg:text-[3rem]"
             >
-              Ready To Build A Brand That Opens Doors?
+              Your Brand Is Not Going To Build Itself. Unfortunately.
             </Motion.h2>
             <Motion.p
               initial={{ opacity: 0, y: 14 }}
@@ -48,7 +48,7 @@ const CtaBanner = () => {
               transition={{ duration: 0.55, delay: 0.14, ease: 'easeOut' }}
               className="mt-5 max-w-[46ch] font-body text-sm leading-relaxed text-orange-50/85 sm:text-base"
             >
-              {cta.body}
+              One free 30-minute call. We figure out exactly what you need. No pitch, no pressure, no awkward upsell. Just clarity.
             </Motion.p>
           </div>
 

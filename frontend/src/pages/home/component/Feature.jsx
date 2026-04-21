@@ -1,11 +1,11 @@
 const featureCards = [
   {
     id: "01",
-    tag: "1:1 CONSULTING",
+    tag: "1:1 Consultation",
     title: "Personal Brand & Content IP",
     highlight: "Build a content system that sounds like you.",
     description:
-      "We clarify your identity, shape your narrative, and design repeatable content formats you can sustain.",
+      "Deep-dive strategy sessions built around your goals, your industry, and your audience. We map your brand from story to strategy",
   },
   {
     id: "02",
@@ -13,7 +13,7 @@ const featureCards = [
     title: "Content Systems for Teams",
     highlight: "Turn teams into clear, confident storytellers.",
     description:
-      "We align founders, marketing, and operators on one narrative and one content direction.",
+      "Turn your whole team into brand ambassadors. Workshops that teach professionals how to show up authentically and consistently online.",
   },
   {
     id: "03",
@@ -21,15 +21,15 @@ const featureCards = [
     title: "Hire creators who think, not just execute.",
     highlight: "Build creative teams that move your brand forward.",
     description:
-      "I help you identify, evaluate, and structure creative roles that actually move your brand forward.",
+      "Need the right talent to execute your brand? We help you find and hire content creators, designers, videographers, and brand strategists.",
   },
   {
     id: "04",
-    tag: "COHORT-BASED PROGRAMS",
+    tag: "COHORTS",
     title: "Learn Together. Build in Public.",
     highlight: "For founders, freelancers, and high-agency professionals.",
     description:
-      "A guided environment to build identity, content systems, and long-term brand clarity.",
+      "Build your brand alongside a curated peer group. Structured programs that deliver personal branding mastery through community, accountability, and expert guidance.",
   },
 ];
 
@@ -38,8 +38,12 @@ const Feature = () => {
     <section className="relative overflow-hidden px-4 py-16 font-body sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-10 text-center">
-          <p className="text-sm font-semibold tracking-[0.22em] text-slate-600">FEATURE</p>
-          <h2 className="mt-3 font-heading text-4xl font-black text-slate-900 sm:text-5xl">How We Work With You</h2>
+          <p className="text-sm font-semibold tracking-[0.22em] text-slate-600">
+            FEATURE
+          </p>
+          <h2 className="mt-3 font-heading text-4xl font-black text-slate-900 sm:text-5xl">
+            How We Work With You
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -54,13 +58,23 @@ const Feature = () => {
 
               <div className="relative z-10">
                 <div className="mb-5 inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5">
-                  <span className="text-sm font-bold tracking-[0.15em] text-slate-900">{card.id}</span>
-                  <span className="ml-2 text-xs font-semibold tracking-widest text-slate-600">{card.tag}</span>
+                  <span className="text-sm font-bold tracking-[0.15em] text-slate-900">
+                    {card.id}
+                  </span>
+                  <span className="ml-2 text-xs font-semibold tracking-widest text-slate-600">
+                    {card.tag}
+                  </span>
                 </div>
 
-                <h3 className="font-heading text-[1.7rem] font-extrabold leading-tight text-slate-900">{card.title}</h3>
-                <p className="mt-4 text-lg font-semibold text-slate-800">{card.highlight}</p>
-                <p className="mt-3 text-base leading-relaxed text-slate-600">{card.description}</p>
+                <h3 className="font-heading text-[1.7rem] font-extrabold leading-tight text-slate-900">
+                  {card.title}
+                </h3>
+                <p className="mt-4 text-lg font-semibold text-slate-800">
+                  {card.highlight}
+                </p>
+                <p className="mt-3 text-base leading-relaxed text-slate-600">
+                  {card.description}
+                </p>
 
                 <div className="mt-6 h-0.5 w-16 bg-[#b8d71f] transition-all duration-300 group-hover:w-28" />
               </div>
