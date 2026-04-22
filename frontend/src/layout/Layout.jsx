@@ -14,7 +14,7 @@ const Layout = () => {
       <main className={isPriorityPage ? "grow" : "grow pb-28"}>
         <Outlet />
       </main>
-      {!isPriorityPage && (
+      {!isPriorityPage && !pathname.startsWith("/admin") && (
         <div className="bg-black">
           <GetInTouch />
           <Footer />

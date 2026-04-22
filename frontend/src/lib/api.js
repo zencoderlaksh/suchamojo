@@ -1,4 +1,5 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 const REQUEST_TIMEOUT_MS = 12000;
 
 const fetchWithTimeout = async (url, options = {}) => {
@@ -13,19 +14,24 @@ const fetchWithTimeout = async (url, options = {}) => {
 };
 
 export const postConsultationLead = async (payload) => {
-  const response = await fetchWithTimeout(`${API_BASE_URL}/api/leads/consultation`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+  const response = await fetchWithTimeout(
+    `${API_BASE_URL}/api/leads/consultation`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
     },
-    body: JSON.stringify(payload),
-  });
+  );
 
   const data = await response.json();
 
   if (!response.ok) {
     const message =
-      data?.errors?.join(', ') || data?.message || 'Failed to submit consultation request';
+      data?.errors?.join(", ") ||
+      data?.message ||
+      "Failed to submit consultation request";
     throw new Error(message);
   }
 
@@ -37,14 +43,14 @@ const fetchJson = async (url) => {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error(data?.message || 'Request failed');
+    throw new Error(data?.message || "Request failed");
   }
 
   return data;
 };
 
 export const fetchBlogs = async ({ tag } = {}) => {
-  const query = tag ? `?tag=${encodeURIComponent(tag)}` : '';
+  const query = tag ? `?tag=${encodeURIComponent(tag)}` : "";
   return fetchJson(`${API_BASE_URL}/api/blogs${query}`);
 };
 
@@ -61,38 +67,68 @@ export const fetchPublicSettings = async () => {
 };
 
 export const fetchAdminSettings = async (adminKey) => {
-  const response = await fetchWithTimeout(`${API_BASE_URL}/api/settings/admin`, {
-    headers: { 'x-admin-key': adminKey },
-  });
+  const response = await fetchWithTimeout(
+    `${API_BASE_URL}/api/settings/admin`,
+    {
+      headers: { "x-admin-key": adminKey },
+    },
+  );
   const data = await response.json();
-  if (!response.ok) throw new Error(data?.message || 'Failed to load admin settings');
+  if (!response.ok)
+    throw new Error(data?.message || "Failed to load admin settings");
   return data;
 };
 
 export const updateAdminSettings = async (adminKey, payload) => {
-  const response = await fetchWithTimeout(`${API_BASE_URL}/api/settings/admin`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-admin-key': adminKey,
+  const response = await fetchWithTimeout(
+    `${API_BASE_URL}/api/settings/admin`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        "x-admin-key": adminKey,
+      },
+      body: JSON.stringify(payload),
     },
-    body: JSON.stringify(payload),
-  });
+  );
   const data = await response.json();
-  if (!response.ok) throw new Error(data?.message || 'Failed to update settings');
+  if (!response.ok)
+    throw new Error(data?.message || "Failed to update settings");
   return data;
 };
 
 export const createBlogPost = async (adminKey, payload) => {
   const response = await fetchWithTimeout(`${API_BASE_URL}/api/blogs`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'x-admin-key': adminKey,
+      "Content-Type": "application/json",
+      "x-admin-key": adminKey,
     },
     body: JSON.stringify(payload),
   });
   const data = await response.json();
-  if (!response.ok) throw new Error(data?.message || 'Failed to create blog');
+  if (!response.ok) throw new Error(data?.message || "Failed to create blog");
+  return data;
+};
+
+export const fetchAdminLeads = async () => {
+  return fetchJson(`${API_BASE_URL}/api/leads/consultation`);
+};
+
+export const fetchAdminBlogs = async () => {
+  return fetchJson(`${API_BASE_URL}/api/blogs?includeDrafts=true`);
+};
+
+export const publishBlog = async (id, adminKey) => {
+  const response = await fetchWithTimeout(`${API_BASE_URL}/api/blogs/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "x-admin-key": adminKey,
+    },
+    body: JSON.stringify({ status: "published" }),
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data?.message || "Failed to publish blog");
   return data;
 };

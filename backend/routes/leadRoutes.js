@@ -1,15 +1,22 @@
-const express = require('express');
+const express = require("express");
 const {
   submitConsultationLead,
   listConsultationLeads,
-} = require('../controllers/leadController');
-const { requireAdminAccess } = require('../middlewares/adminMiddleware');
-const { leadRateLimit } = require('../middlewares/rateLimitMiddleware');
-const { spamProtection } = require('../middlewares/spamProtectionMiddleware');
+} = require("../controllers/leadController");
+
+const { protect } = require("../middlewares/authMiddleware");
+const { isAdmin } = require("../middlewares/adminMiddleware");
+const { leadRateLimit } = require("../middlewares/rateLimitMiddleware");
+const { spamProtection } = require("../middlewares/spamProtectionMiddleware");
 
 const router = express.Router();
 
-router.post('/consultation', leadRateLimit, spamProtection, submitConsultationLead);
-router.get('/consultation', requireAdminAccess, listConsultationLeads);
+router.post(
+  "/consultation",
+  leadRateLimit,
+  spamProtection,
+  submitConsultationLead,
+);
+router.get("/consultation", protect, isAdmin, listConsultationLeads);
 
 module.exports = router;

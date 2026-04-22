@@ -1,10 +1,9 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { motion } from '../../lib/motion'
-import { FiArrowRight } from 'react-icons/fi'
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "../../lib/motion";
+import { FiArrowRight } from "react-icons/fi";
 
-const BOOKING_EMBED_URL =
-  'https://calendly.com/your-handle/brand-call?hide_event_type_details=1&hide_gdpr_banner=1'
+const BOOKING_EMBED_URL = "https://topmate.io/shubham_gupta152";
 
 const BookCallPriority = () => {
   return (
@@ -18,7 +17,7 @@ const BookCallPriority = () => {
           className="mx-auto max-w-3xl text-center"
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, ease: 'easeOut' }}
+          transition={{ duration: 0.55, ease: "easeOut" }}
         >
           <p className="font-body text-[0.72rem] uppercase tracking-[0.34em] text-[#b45833]">
             Priority Booking Page
@@ -27,15 +26,16 @@ const BookCallPriority = () => {
             Let&apos;s Talk About Your Brand.
           </h1>
           <p className="mx-auto mt-6 max-w-3xl font-body text-sm leading-7 text-slate-600 sm:text-base">
-            You have been thinking about this for a while. Maybe you know your story but you are
-            not sure how to tell it. Maybe you are showing up online but nothing is landing the way
-            you want. Maybe you are starting from scratch and you just need someone to help you see
-            the path.
+            You have been thinking about this for a while. Maybe you know your
+            story but you are not sure how to tell it. Maybe you are showing up
+            online but nothing is landing the way you want. Maybe you are
+            starting from scratch and you just need someone to help you see the
+            path.
           </p>
           <p className="mx-auto mt-4 max-w-3xl font-body text-sm leading-7 text-slate-600 sm:text-base">
-            This call is 30 minutes. No slide decks, no sales scripts. Just a honest conversation
-            about where you are, where you want to go, and whether SuchaMojo is the right partner
-            to get you there.
+            This call is 30 minutes. No slide decks, no sales scripts. Just a
+            honest conversation about where you are, where you want to go, and
+            whether SuchaMojo is the right partner to get you there.
           </p>
         </motion.div>
 
@@ -43,15 +43,18 @@ const BookCallPriority = () => {
           className="mx-auto mt-12 w-full max-w-4xl"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.08, ease: 'easeOut' }}
+          transition={{ duration: 0.6, delay: 0.08, ease: "easeOut" }}
         >
           <div className="overflow-hidden rounded-[2rem] border border-white/70 bg-white/80 p-3 shadow-[0_30px_120px_rgba(15,23,42,0.14)] backdrop-blur-xl sm:p-4">
             <div className="rounded-[1.5rem] border border-[#eadfce] bg-[#fbf8f2] p-4 sm:p-6">
               <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-[1.25rem] border border-[#eadfce] bg-white/90 px-4 py-3">
                 <div>
-                  <p className="font-heading text-lg text-slate-900">Book your brand clarity call</p>
+                  <p className="font-heading text-lg text-slate-900">
+                    Book your brand clarity call
+                  </p>
                   <p className="font-body text-sm text-slate-500">
-                    Choose a time that works for you and we&apos;ll take it from there.
+                    Choose a time that works for you and we&apos;ll take it from
+                    there.
                   </p>
                 </div>
                 <Link
@@ -78,7 +81,7 @@ const BookCallPriority = () => {
           className="mx-auto mt-10 w-full max-w-5xl"
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, delay: 0.14, ease: 'easeOut' }}
+          transition={{ duration: 0.65, delay: 0.14, ease: "easeOut" }}
         >
           <article className="rounded-[1.75rem] border border-white/70 bg-white/72 p-6 shadow-[0_16px_60px_rgba(15,23,42,0.08)] backdrop-blur-xl">
             <p className="font-body text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-[#ff5a2c]">
@@ -86,14 +89,19 @@ const BookCallPriority = () => {
             </p>
             <div className="mt-4 space-y-2 font-body text-sm leading-7 text-slate-600 sm:text-base">
               <p>Every request is personally reviewed by Suchamojo</p>
-              <p>If we are not the right fit, I will tell you and point you in the right direction</p>
-              <p>30,000+ creators trained. 7+ years of brand-building experience.</p>
+              <p>
+                If we are not the right fit, I will tell you and point you in
+                the right direction
+              </p>
+              <p>
+                30,000+ creators trained. 7+ years of brand-building experience.
+              </p>
             </div>
           </article>
         </motion.div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default BookCallPriority
+export default BookCallPriority;

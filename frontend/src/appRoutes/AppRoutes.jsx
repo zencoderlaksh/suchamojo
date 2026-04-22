@@ -1,50 +1,74 @@
-import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
-import { lazy, Suspense, useEffect } from 'react'
-import Layout from '../layout/Layout'
-import { useAppStore } from '../store/useAppStore'
-import ConsentBanner from '../components/ConsentBanner'
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+} from "react-router-dom";
+import { lazy, Suspense, useEffect } from "react";
+import Layout from "../layout/Layout";
+import { useAppStore } from "../store/useAppStore";
+import ConsentBanner from "../components/ConsentBanner";
+import Leads from "../pages/admin/Leads";
+import Blogs from "../pages/admin/Blogs";
+import AdminLogin from "../pages/admin/AdminLogin";
 
-const Home = lazy(() => import('../pages/home/Home'))
-const About = lazy(() => import('../pages/about/About'))
-const Blog = lazy(() => import('../pages/blog/Blog'))
-const BlogDetail = lazy(() => import('../pages/blog/BlogDetail'))
-const Contact = lazy(() => import('../pages/contact/Contact'))
-const Industries = lazy(() => import('../pages/industries/Industries'))
-const IndustryDetail = lazy(() => import('../pages/industries/IndustryDetail'))
-const BookCallPriority = lazy(() => import('../pages/bookCall/BookCallPriority'))
-const Services = lazy(() => import('../pages/services/Services'))
-const ServiceDetail = lazy(() => import('../pages/services/ServiceDetail'))
-const Login = lazy(() => import('../pages/login/Login'))
-const Signup = lazy(() => import('../pages/signup/Signup'))
-const MfdPersonalBranding = lazy(() => import('../pages/mfd/MfdPersonalBranding'))
-const AdminPanel = lazy(() => import('../pages/admin/AdminPanel'))
+const Home = lazy(() => import("../pages/home/Home"));
+const About = lazy(() => import("../pages/about/About"));
+const Blog = lazy(() => import("../pages/blog/Blog"));
+const BlogDetail = lazy(() => import("../pages/blog/BlogDetail"));
+const Contact = lazy(() => import("../pages/contact/Contact"));
+const Industries = lazy(() => import("../pages/industries/Industries"));
+const IndustryDetail = lazy(() => import("../pages/industries/IndustryDetail"));
+const BookCallPriority = lazy(
+  () => import("../pages/bookCall/BookCallPriority"),
+);
+const Services = lazy(() => import("../pages/services/Services"));
+const ServiceDetail = lazy(() => import("../pages/services/ServiceDetail"));
+const Login = lazy(() => import("../pages/login/Login"));
+const Signup = lazy(() => import("../pages/signup/Signup"));
+const MfdPersonalBranding = lazy(
+  () => import("../pages/mfd/MfdPersonalBranding"),
+);
+const AdminPanel = lazy(() => import("../pages/admin/AdminPanel"));
+const AdminLayout = lazy(() => import("../layout/AdminLayout"));
 
 const RouteTracker = () => {
-  const location = useLocation()
-  const trackPageView = useAppStore((state) => state.trackPageView)
-  const initializeAnalytics = useAppStore((state) => state.initializeAnalytics)
-  const loadPublicSettings = useAppStore((state) => state.loadPublicSettings)
-  const consent = useAppStore((state) => state.analytics.consent)
+  const location = useLocation();
+  const trackPageView = useAppStore((state) => state.trackPageView);
+  const initializeAnalytics = useAppStore((state) => state.initializeAnalytics);
+  const loadPublicSettings = useAppStore((state) => state.loadPublicSettings);
+  const consent = useAppStore((state) => state.analytics.consent);
 
   useEffect(() => {
-    loadPublicSettings()
-  }, [loadPublicSettings])
+    loadPublicSettings();
+  }, [loadPublicSettings]);
 
   useEffect(() => {
-    if (consent === 'granted') {
-      initializeAnalytics()
-      trackPageView(location.pathname + location.search)
+    if (consent === "granted") {
+      initializeAnalytics();
+      trackPageView(location.pathname + location.search);
     }
-  }, [location.pathname, location.search, consent, initializeAnalytics, trackPageView])
+  }, [
+    location.pathname,
+    location.search,
+    consent,
+    initializeAnalytics,
+    trackPageView,
+  ]);
 
-  return null
-}
+  return null;
+};
 
 const AppRoutes = () => {
   return (
     <BrowserRouter>
       <RouteTracker />
-      <Suspense fallback={<div className="px-4 py-10 text-sm text-gray-300">Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="px-4 py-10 text-sm text-gray-300">Loading...</div>
+        }
+      >
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -58,8 +82,15 @@ const AppRoutes = () => {
             <Route path="contact" element={<Contact />} />
             <Route path="mfd-page" element={<MfdPersonalBranding />} />
             <Route path="book-a-call" element={<BookCallPriority />} />
-            <Route path="admin" element={<AdminPanel />} />
-            <Route path="projects" element={<Navigate to="/industries" replace />} />
+            <Route path="admin/*" element={<AdminLayout />}>
+              <Route index element={<AdminPanel />} />
+              <Route path="leads" element={<Leads />} />
+              <Route path="blogs" element={<Blogs />} />
+            </Route>
+            <Route
+              path="projects"
+              element={<Navigate to="/industries" replace />}
+            />
             <Route path="journal" element={<Navigate to="/blog" replace />} />
             <Route path="work" element={<Navigate to="/services" replace />} />
           </Route>
@@ -69,7 +100,7 @@ const AppRoutes = () => {
       </Suspense>
       <ConsentBanner />
     </BrowserRouter>
-  )
-}
+  );
+};
 
-export default AppRoutes
+export default AppRoutes;
