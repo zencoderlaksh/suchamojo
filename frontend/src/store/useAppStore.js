@@ -1,13 +1,20 @@
 import { create } from "zustand";
 import {
   createBlogPost,
+  createTestimonial,
+  deleteTestimonial,
+  fetchAdminBlogs,
+  fetchAdminLeads,
   fetchAdminSettings,
+  fetchAdminTestimonials,
   fetchBlogBySlug,
   fetchBlogs,
   fetchPageSeo,
   fetchPublicSettings,
+  fetchTestimonials,
   postConsultationLead,
   updateAdminSettings,
+  updateTestimonial,
 } from "../lib/api";
 
 const defaultFormState = {
@@ -273,6 +280,17 @@ export const useAppStore = create((set, get) => ({
     loading: false,
     error: "",
   },
+  testimonials: {
+    list: [],
+    loading: false,
+    error: "",
+  },
+  adminTestimonials: {
+    list: [],
+    loading: false,
+    error: "",
+  },
+
   fetchAdminLeads: async () => {
     set((state) => ({
       adminLeads: { ...state.adminLeads, loading: true, error: "" },
@@ -311,6 +329,71 @@ export const useAppStore = create((set, get) => ({
       }));
     }
   },
+  loadTestimonials: async () => {
+    set((state) => ({
+      testimonials: { ...state.testimonials, loading: true, error: "" },
+    }));
+    try {
+      const data = await fetchTestimonials();
+      set((state) => ({
+        testimonials: { ...state.testimonials, list: data, loading: false },
+      }));
+    } catch (error) {
+      set((state) => ({
+        testimonials: {
+          ...state.testimonials,
+          loading: false,
+          error: error.message,
+        },
+      }));
+    }
+  },
+
+  loadAdminTestimonials: async () => {
+    set((state) => ({
+      adminTestimonials: {
+        ...state.adminTestimonials,
+        loading: true,
+        error: "",
+      },
+    }));
+    try {
+      const data = await fetchAdminTestimonials();
+      set((state) => ({
+        adminTestimonials: {
+          ...state.adminTestimonials,
+          list: data,
+          loading: false,
+        },
+      }));
+    } catch (error) {
+      set((state) => ({
+        adminTestimonials: {
+          ...state.adminTestimonials,
+          loading: false,
+          error: error.message,
+        },
+      }));
+    }
+  },
+
+  createAdminTestimonial: async (payload) => {
+    const data = await createTestimonial(payload);
+    get().loadAdminTestimonials();
+    return data;
+  },
+
+  updateAdminTestimonial: async (id, payload) => {
+    const data = await updateTestimonial(id, payload);
+    get().loadAdminTestimonials();
+    return data;
+  },
+
+  deleteAdminTestimonial: async (id) => {
+    await deleteTestimonial(id);
+    get().loadAdminTestimonials();
+  },
+
   publishAdminBlog: async (id, adminKey) => {
     const data = await publishBlog(id, adminKey);
     // Refresh list

@@ -1,70 +1,80 @@
-import React, { useRef } from 'react'
-import { Link } from 'react-router-dom'
-import { motion as Motion, useInView } from '../../../lib/motion'
+import React, { useRef } from "react";
+import { Link } from "react-router-dom";
+import { motion as Motion, useInView } from "../../../lib/motion";
 
 const industryCards = [
   {
-    title: 'Founders & CEOs',
-    description: "Your brand is your company's first impression. Build a founder identity that attracts talent, trust, and investment.",
-    to: '/industries/founders',
+    title: "Founders & CEOs",
+    description:
+      "Your brand is your company's first impression. Build a founder identity that attracts talent, trust, and investment.",
+    to: "/industries/founders",
   },
   {
-    title: 'Doctors & Healthcare Professionals',
-    description: 'Patients choose the doctor they trust. Build a digital presence that reflects your expertise and bedside manner.',
-    to: '/industries/doctors',
+    title: "Doctors & Healthcare Professionals",
+    description:
+      "Patients choose the doctor they trust. Build a digital presence that reflects your expertise and bedside manner.",
+    to: "/industries/doctors",
   },
   {
-    title: 'Financial Advisors and Mutual Fund Distributors',
-    description: 'Trust is your product. A strong personal brand positions you as the advisor clients seek out, not the one they compare.',
-    to: '/industries/mutual-fund-distributors',
+    title: "Financial Advisors and Mutual Fund Distributors",
+    description:
+      "Trust is your product. A strong personal brand positions you as the advisor clients seek out, not the one they compare.",
+    to: "/industries/mutual-fund-distributors",
   },
   {
-    title: 'Corporate Leaders & Executives',
-    description: 'Your personal brand opens boardroom doors. Build the kind of presence that gets you invited into rooms before you even ask.',
-    to: '/industries/corporate-leaders',
+    title: "Corporate Leaders & Executives",
+    description:
+      "Your personal brand opens boardroom doors. Build the kind of presence that gets you invited into rooms before you even ask.",
+    to: "/industries/corporate-leaders",
   },
   {
-    title: 'D2C Founders & Brand Builders',
-    description: 'Your product has a story. So do you. Build a founder brand that makes people buy into you before they even buy what you sell.',
-    to: '/industries/founders',
+    title: "D2C Founders & Brand Builders",
+    description:
+      "Your product has a story. So do you. Build a founder brand that makes people buy into you before they even buy what you sell.",
+    to: "/industries/d2c-founders",
   },
   {
-    title: 'Freelancers & Independent Consultants',
-    description: 'You are the product. A strong personal brand means clients find you, trust you faster, and stop asking for discounts.',
-    to: '/about',
+    title: "Freelancers & Independent Consultants",
+    description:
+      "You are the product. A strong personal brand means clients find you, trust you faster, and stop asking for discounts.",
+    to: "/about",
   },
   {
-    title: 'Coaches & Educators',
-    description: 'You teach people how to change. Your brand should show them you have done it yourself. Build a presence that converts belief into enrollment.',
-    to: '/about',
+    title: "Coaches & Educators",
+    description:
+      "You teach people how to change. Your brand should show them you have done it yourself. Build a presence that converts belief into enrollment.",
+    to: "/about",
   },
   {
-    title: 'Real Estate Professionals',
-    description: 'In a market built on relationships, the agent people remember is the one they call. Build a brand that keeps you top of mind long after the first meeting.',
-    to: '/about',
+    title: "Real Estate Professionals",
+    description:
+      "In a market built on relationships, the agent people remember is the one they call. Build a brand that keeps you top of mind long after the first meeting.",
+    to: "/about",
   },
   {
-    title: 'Content Creators & Influencers',
-    description: 'Followers are not a brand. A brand is what people say about you when the algorithm stops pushing your content. Build something that lasts.',
-    to: '/blog',
+    title: "Content Creators & Influencers",
+    description:
+      "Followers are not a brand. A brand is what people say about you when the algorithm stops pushing your content. Build something that lasts.",
+    to: "/blog",
   },
   {
-    title: 'Startup Teams & Early-Stage Companies',
-    description: "Your team is already telling your company's story online. The question is whether they are telling it well and together.",
-    to: '/industries/corporate-leaders',
+    title: "Startup Teams & Early-Stage Companies",
+    description:
+      "Your team is already telling your company's story online. The question is whether they are telling it well and together.",
+    to: "/industries/startups",
   },
-]
+];
 
 const IndustriesServe = () => {
-  const sectionRef = useRef(null)
-  const inView = useInView(sectionRef, { once: true, amount: 0.15 })
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { once: true, amount: 0.15 });
 
   return (
     <Motion.section
       ref={sectionRef}
       initial={{ opacity: 0, y: 26 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className="mx-auto mt-12 w-full max-w-[1240px] px-4 font-body sm:px-6 lg:px-8"
     >
       <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0b0b0f] px-5 py-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_30px_70px_rgba(0,0,0,0.58)] sm:px-8 sm:py-12">
@@ -77,7 +87,7 @@ const IndustriesServe = () => {
               <Motion.p
                 initial={{ opacity: 0, y: 10 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.45, ease: 'easeOut' }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
                 className="font-body text-[0.72rem] uppercase tracking-[0.24em] text-gray-400"
               >
                 Industries We Serve
@@ -85,7 +95,7 @@ const IndustriesServe = () => {
               <Motion.h2
                 initial={{ opacity: 0, y: 14 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.55, delay: 0.08, ease: 'easeOut' }}
+                transition={{ duration: 0.55, delay: 0.08, ease: "easeOut" }}
                 className="mt-4 font-heading text-3xl uppercase tracking-[0.08em] text-white sm:text-4xl lg:text-[2.8rem]"
               >
                 Built For Every Ambitious Professional
@@ -95,13 +105,15 @@ const IndustriesServe = () => {
             <Motion.p
               initial={{ opacity: 0, y: 14 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: 0.14, ease: 'easeOut' }}
+              transition={{ duration: 0.55, delay: 0.14, ease: "easeOut" }}
               className="max-w-2xl font-body text-sm leading-relaxed text-gray-300 sm:text-base lg:justify-self-end"
             >
-              Your personal brand is not just a LinkedIn profile. It is a business asset. And the
-              way you build it depends entirely on your industry, your audience, and what you are
-              trying to achieve. We have built brand systems for people across very different fields
-              and we know the specific pressures, audiences, and opportunities each one carries.
+              Your personal brand is not just a LinkedIn profile. It is a
+              business asset. And the way you build it depends entirely on your
+              industry, your audience, and what you are trying to react to
+              achieve. We have built brand systems for people across very
+              different fields and we know the specific pressures, audiences,
+              and opportunities each one carries.
             </Motion.p>
           </div>
 
@@ -111,7 +123,11 @@ const IndustriesServe = () => {
                 key={industry.to}
                 initial={{ opacity: 0, y: 18 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.45, delay: 0.1 + index * 0.06, ease: 'easeOut' }}
+                transition={{
+                  duration: 0.45,
+                  delay: 0.1 + index * 0.06,
+                  ease: "easeOut",
+                }}
               >
                 <Link
                   to={industry.to}
@@ -141,7 +157,7 @@ const IndustriesServe = () => {
         </div>
       </div>
     </Motion.section>
-  )
-}
+  );
+};
 
-export default IndustriesServe
+export default IndustriesServe;

@@ -7,6 +7,8 @@ const userRoutes = require("./routes/userRoutes");
 const seoRoutes = require("./routes/seoRoutes");
 const configRoutes = require("./routes/configRoutes");
 const settingsRoutes = require("./routes/settingsRoutes");
+const testimonialRoutes = require("./routes/testimonialRoutes");
+
 const { protect } = require("./middlewares/authMiddleware");
 const { isAdmin } = require("./middlewares/adminMiddleware");
 
@@ -50,6 +52,8 @@ app.use("/api/leads", leadRoutes);
 app.use("/api/seo", seoRoutes);
 app.use("/api/config", configRoutes);
 app.use("/api/settings", settingsRoutes);
+app.use("/api/testimonials", testimonialRoutes);
+
 app.use("/api/admin/blogs", protect, isAdmin, blogRoutes);
 app.use("/api/admin/leads", protect, isAdmin, leadRoutes);
 

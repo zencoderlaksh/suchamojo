@@ -90,7 +90,8 @@ const Leads = () => {
                   <th className="pb-4 pr-4">Phone</th>
                   <th className="pb-4 pr-4 min-w-[120px]">Category</th>
                   <th className="pb-4 min-w-[140px]">Submitted</th>
-                  <th className="pb-4">Qualification</th>
+                  <th className="pb-4 pr-4">Qualification</th>
+                  <th className="pb-4">Email Sent</th>
                 </tr>
               </thead>
               <tbody>
@@ -108,7 +109,7 @@ const Leads = () => {
                     <td className="py-4 pr-4 text-xs text-gray-400">
                       {new Date(lead.submittedAt).toLocaleDateString()}
                     </td>
-                    <td className="py-4">
+                    <td className="py-4 pr-4">
                       <span
                         className={`px-3 py-1 rounded-full text-xs font-medium ${
                           lead.qualificationTier === "high" ?
@@ -119,6 +120,24 @@ const Leads = () => {
                         }`}
                       >
                         {lead.qualificationTier || "low"}
+                      </span>
+                    </td>
+                    <td className="py-4">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs font-medium ${
+                          lead.emailStatus?.user === "sent" ?
+                            "bg-green-500/20 text-green-400 border border-green-500/30"
+                          : lead.emailStatus?.user === "failed" ?
+                            "bg-red-500/20 text-red-400 border border-red-500/30"
+                          : "bg-gray-500/20 text-gray-400 border border-gray-500/30"
+                        }`}
+                        title={
+                          lead.emailStatus?.user === "failed" ?
+                            "Check backend logs for error"
+                          : ""
+                        }
+                      >
+                        {lead.emailStatus?.user || "disabled"}
                       </span>
                     </td>
                   </tr>

@@ -11,6 +11,7 @@ import { useAppStore } from "../store/useAppStore";
 import ConsentBanner from "../components/ConsentBanner";
 import Leads from "../pages/admin/Leads";
 import Blogs from "../pages/admin/Blogs";
+import Testimonials from "../pages/admin/Testimonials";
 import AdminLogin from "../pages/admin/AdminLogin";
 
 const Home = lazy(() => import("../pages/home/Home"));
@@ -86,6 +87,7 @@ const AppRoutes = () => {
               <Route index element={<AdminPanel />} />
               <Route path="leads" element={<Leads />} />
               <Route path="blogs" element={<Blogs />} />
+              <Route path="testimonials" element={<Testimonials />} />
             </Route>
             <Route
               path="projects"

@@ -30,6 +30,7 @@ const AdminLayout = () => {
             <Link to="/admin">Dashboard</Link>
             <Link to="/admin/leads">Leads</Link>
             <Link to="/admin/blogs">Blogs</Link>
+            <Link to="/admin/testimonials">Testimonials</Link>
             <Link to="/admin/seo">SEO</Link>
             <Link to="/admin/settings">Settings</Link>
             <button

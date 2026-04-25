@@ -66,6 +66,14 @@ export const fetchPublicSettings = async () => {
   return fetchJson(`${API_BASE_URL}/api/settings`);
 };
 
+export const fetchTestimonials = async () => {
+  return fetchJson(`${API_BASE_URL}/api/testimonials`);
+};
+
+export const fetchAdminTestimonials = async () => {
+  return fetchJson(`${API_BASE_URL}/api/testimonials?includeDrafts=true`);
+};
+
 export const fetchAdminSettings = async (adminKey) => {
   const response = await fetchWithTimeout(
     `${API_BASE_URL}/api/settings/admin`,
@@ -130,5 +138,57 @@ export const publishBlog = async (id, adminKey) => {
   });
   const data = await response.json();
   if (!response.ok) throw new Error(data?.message || "Failed to publish blog");
+  return data;
+};
+
+export const createTestimonial = async (payload) => {
+  const token = localStorage.getItem("adminToken");
+  const response = await fetchWithTimeout(`${API_BASE_URL}/api/testimonials`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(payload),
+  });
+  const data = await response.json();
+  if (!response.ok)
+    throw new Error(data?.message || "Failed to create testimonial");
+  return data;
+};
+
+export const updateTestimonial = async (id, payload) => {
+  const token = localStorage.getItem("adminToken");
+  const response = await fetchWithTimeout(
+    `${API_BASE_URL}/api/testimonials/${id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(payload),
+    },
+  );
+  const data = await response.json();
+  if (!response.ok)
+    throw new Error(data?.message || "Failed to update testimonial");
+  return data;
+};
+
+export const deleteTestimonial = async (id) => {
+  const token = localStorage.getItem("adminToken");
+  const response = await fetchWithTimeout(
+    `${API_BASE_URL}/api/testimonials/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    },
+  );
+  const data = await response.json();
+  if (!response.ok)
+    throw new Error(data?.message || "Failed to delete testimonial");
   return data;
 };

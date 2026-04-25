@@ -1,18 +1,45 @@
-# Admin Panel Dashboard UI - Progress Tracker
+# Implementation Plan
 
-## Pending Steps
+## Issue 1: Testimonials Upload from Admin Dashboard + Frontend Visibility
 
-- [x] Step 1: Update AppRoutes.jsx to nest /admin/\* under AdminLayout
-- [ ] Step 2: Add store actions - fetchAdminLeads, fetchAdminBlogs (include drafts)
-- [x] Step 3: Enhance AdminPanel.jsx - Dashboard with stats cards + 3 tables (Leads, Mock Users, Blogs)
-- [x] Step 4: Create pages/admin/Blogs.jsx - Blog management table (CRUD)
-- [x] Step 5: Update/create pages/admin/Users.jsx - Users table (mock data)
-- [ ] Step 6: Test in browser (`cd frontend && npm run dev`, visit /admin)
-- [ ] Step 7: Later - Backend users list endpoint, auth
+### Step 1: Fix Backend Testimonial Routes ✅
 
-## Completed Steps
+- `backend/routes/testimonialRoutes.js`: Added `protect` middleware before `isAdmin` on POST/PUT/DELETE so `req.user` is populated.
 
-- [x] Step 1: Update AppRoutes.jsx to nest /admin/\* under AdminLayout
-- [x] Step 3: Enhance AdminPanel.jsx - Dashboard with stats cards + 3 tables
+### Step 2: Create Admin Testimonials Page ✅
 
-Updated: 5/7 complete
+- `frontend/src/pages/admin/Testimonials.jsx`: Full CRUD admin page (list, create, edit, delete) styled like Blogs.jsx.
+
+### Step 3: Add Route ✅
+
+- `frontend/src/appRoutes/AppRoutes.jsx`: Imported Testimonials admin page and added route `/admin/testimonials`.
+
+### Step 4: Add Sidebar Link ✅
+
+- `frontend/src/layout/AdminLayout.jsx`: Added `<Link to="/admin/testimonials">Testimonials</Link>` in sidebar nav.
+
+### Step 5: Fix Frontend Visibility ✅
+
+- `frontend/src/pages/home/component/Testimonials.jsx`: Hide entire section when no testimonials exist.
+
+---
+
+## Issue 2: Auto-Reply Email to Leads via Nodemailer
+
+### Step 6: Install Nodemailer Dependency ✅
+
+- `backend/package.json`: Added `nodemailer` to dependencies.
+- Ran `cd backend && npm install`.
+
+### Step 7: Update Lead Emails Service ✅
+
+- `backend/services/leadEmails.js`: Added Nodemailer as primary transport with Resend fallback. Added professional placeholder template with clear comment for template swap.
+
+### Step 8: Update Lead Controller ✅
+
+- `backend/controllers/leadController.js`: Updated emailStatus init to detect both Nodemailer (`SMTP_HOST`) and Resend (`RESEND_API_KEY`) credentials.
+
+### Step 9: Add Test Email Endpoint ✅
+
+- `backend/routes/leadRoutes.js`: Added `POST /api/leads/test-email` (admin-only) for quick email configuration verification.
+- `backend/controllers/leadController.js`: Added `testEmailConfiguration` controller that sends a real test email without creating a lead.

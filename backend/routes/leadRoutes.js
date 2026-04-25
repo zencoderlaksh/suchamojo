@@ -2,6 +2,7 @@ const express = require("express");
 const {
   submitConsultationLead,
   listConsultationLeads,
+  testEmailConfiguration,
 } = require("../controllers/leadController");
 
 const { protect } = require("../middlewares/authMiddleware");
@@ -18,5 +19,6 @@ router.post(
   submitConsultationLead,
 );
 router.get("/consultation", protect, isAdmin, listConsultationLeads);
+router.post("/test-email", protect, isAdmin, testEmailConfiguration);
 
 module.exports = router;

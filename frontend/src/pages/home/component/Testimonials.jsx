@@ -1,59 +1,36 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { FaPlay, FaStar } from 'react-icons/fa6'
-import { motion as Motion, useInView } from '../../../lib/motion'
-
-const testimonials = [
-  {
-    name: 'mostly.curious',
-    role: 'Client Testimonial',
-    industry: 'Personal Branding',
-    quote:
-      'I have known Shubham for 7 years. Apart from everything else he is good at, he is genuinely crazy when it comes to content and personal branding. I have never seen someone as sharp as him. He is my go-to whenever I am stuck. If you are reading this trust me, he will change your trajectory of growth.',
-    rating: 5,
-    tone: 'from-cyan-200/22 via-cyan-100/8 to-transparent',
-  },
-  {
-    name: 'bypayelsen',
-    role: 'Client Testimonial',
-    industry: 'Content Journey',
-    quote:
-      "If it wasn't for Suchamojo, I would still be struggling without direction in my content journey. To whoever is reading this trust him and let the Shubham magic happen to you.",
-    rating: 5,
-    tone: 'from-orange-200/22 via-orange-100/8 to-transparent',
-  },
-  {
-    name: 'akkaasd',
-    role: 'Client Testimonial',
-    industry: 'Instagram Growth',
-    quote:
-      'He knew nothing about F1, but he is the master of personal brand building basics. Thanks to those fundamentals, we scaled my dream of building an Instagram channel. In a single meeting, he can figure out exactly what your brand needs not a posting cheatsheet, not algo hacks. Just simple common sense that actually works.',
-    rating: 5,
-    tone: 'from-white/22 via-white/8 to-transparent',
-  },
-]
+import React, { useEffect, useRef, useState } from "react";
+import { useAppStore } from "../../../store/useAppStore";
+import { FaPlay, FaStar } from "react-icons/fa6";
+import { motion as Motion, useInView } from "../../../lib/motion";
 
 const TestimonialCard = ({ item, featured = false }) => (
   <article
     className={`group relative shrink-0 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-5 transition duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.05] sm:p-6 ${
-      featured ? 'w-[320px] sm:w-[360px] lg:w-[400px]' : 'w-[290px] sm:w-[320px] lg:w-[360px]'
+      featured ?
+        "w-[320px] sm:w-[360px] lg:w-[400px]"
+      : "w-[290px] sm:w-[320px] lg:w-[360px]"
     }`}
   >
-    <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${item.tone} opacity-80`} />
+    c{" "}
+    <div
+      className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${item.tone} opacity-80`}
+    />
     <div className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-white/8 blur-3xl transition duration-500 group-hover:scale-110" />
-
     <div className="relative z-10 flex h-full flex-col">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="font-heading text-xl uppercase tracking-[0.06em] text-white">{item.name}</p>
+          <p className="font-heading text-xl uppercase tracking-[0.06em] text-white">
+            {item.name}
+          </p>
           <p className="mt-2 font-body text-[0.7rem] uppercase tracking-[0.18em] text-gray-400">
             {item.role} . {item.industry}
           </p>
         </div>
-        {featured ? (
+        {featured ?
           <span className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/12 bg-black/25 text-white backdrop-blur-md">
             <FaPlay className="ml-0.5 text-sm" />
           </span>
-        ) : null}
+        : null}
       </div>
 
       <div className="mt-5 flex gap-1.5 text-[0.82rem] text-[#ffcc68]">
@@ -62,37 +39,64 @@ const TestimonialCard = ({ item, featured = false }) => (
         ))}
       </div>
 
-      <p className="mt-5 font-body text-sm leading-relaxed text-gray-300 sm:text-[0.95rem]">&ldquo;{item.quote}&rdquo;</p>
+      <p className="mt-5 font-body text-sm leading-relaxed text-gray-300 sm:text-[0.95rem]">
+        &ldquo;{item.quote}&rdquo;
+      </p>
 
-      {featured ? (
+      {featured ?
         <div className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 font-body text-[0.66rem] uppercase tracking-[0.18em] text-gray-200">
           <FaPlay className="text-[0.6rem]" />
           Video testimonial
         </div>
-      ) : null}
+      : null}
     </div>
   </article>
-)
+);
 
 const Testimonials = () => {
-  const sectionRef = useRef(null)
-  const trackRef = useRef(null)
-  const [width, setWidth] = useState(0)
-  const inView = useInView(sectionRef, { once: true, amount: 0.15 })
-  const marqueeItems = [...testimonials, ...testimonials]
+  const sectionRef = useRef(null);
+  const trackRef = useRef(null);
+  const [width, setWidth] = useState(0);
+  const { testimonials, loadTestimonials } = useAppStore();
+  const { list: testimonialsList, loading } = testimonials;
+
+  useEffect(() => {
+    if (testimonialsList.length === 0) {
+      loadTestimonials();
+    }
+  }, []);
+
+  const marqueeItems = [...testimonialsList, ...testimonialsList];
 
   useEffect(() => {
     if (trackRef.current) {
-      setWidth(trackRef.current.scrollWidth / 2)
+      setWidth(trackRef.current.scrollWidth / 2);
     }
-  }, [])
+  }, [marqueeItems.length]);
+
+  const inView = useInView(sectionRef, { once: true, amount: 0.15 });
+
+  if (loading) {
+    return (
+      <div className="py-20 px-4 text-center">
+        <div className="inline-block h-12 w-12 animate-spin rounded-full border-[3px] border-current border-t-transparent text-white" />
+        <p className="mt-4 text-sm uppercase tracking-[0.2em] text-white/80">
+          Loading testimonials...
+        </p>
+      </div>
+    );
+  }
+
+  if (testimonialsList.length === 0) {
+    return null;
+  }
 
   return (
     <Motion.section
       ref={sectionRef}
       initial={{ opacity: 0, y: 26 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className="mx-auto mt-12 w-full max-w-[1240px] px-4 font-body sm:px-6 lg:px-8"
     >
       <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 bg-[#0b0b0f] px-5 py-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_30px_70px_rgba(0,0,0,0.58)] sm:px-8 sm:py-12">
@@ -105,7 +109,7 @@ const Testimonials = () => {
               <Motion.p
                 initial={{ opacity: 0, y: 8 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.45, ease: 'easeOut' }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
                 className="font-body text-[0.72rem] uppercase tracking-[0.24em] text-gray-400"
               >
                 Testimonials
@@ -113,7 +117,7 @@ const Testimonials = () => {
               <Motion.h2
                 initial={{ opacity: 0, y: 12 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.55, delay: 0.08, ease: 'easeOut' }}
+                transition={{ duration: 0.55, delay: 0.08, ease: "easeOut" }}
                 className="mt-4 font-heading text-3xl uppercase tracking-[0.08em] text-white sm:text-4xl lg:text-[2.8rem]"
               >
                 We Would Say We Are Good. But They Said It First.
@@ -123,11 +127,12 @@ const Testimonials = () => {
             <Motion.p
               initial={{ opacity: 0, y: 14 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: 0.14, ease: 'easeOut' }}
+              transition={{ duration: 0.55, delay: 0.14, ease: "easeOut" }}
               className="max-w-2xl font-body text-sm leading-relaxed text-gray-300 sm:text-base lg:justify-self-end"
             >
-              A moving wall of proof, built with the same infinite-scroll behavior already used above, plus a
-              featured video-style testimonial card to give the section more energy.
+              A moving wall of proof, built with the same infinite-scroll
+              behavior already used above, plus a featured video-style
+              testimonial card to give the section more energy.
             </Motion.p>
           </div>
 
@@ -137,8 +142,8 @@ const Testimonials = () => {
 
             <div className="md:hidden overflow-x-auto pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <div className="flex gap-4 snap-x snap-mandatory">
-                {testimonials.map((item, index) => (
-                  <div key={item.name} className="snap-start">
+                {testimonialsList.map((item, index) => (
+                  <div key={item._id || item.name} className="snap-start">
                     <TestimonialCard item={item} featured={index === 0} />
                   </div>
                 ))}
@@ -149,12 +154,19 @@ const Testimonials = () => {
               <div
                 className="flex gap-4"
                 style={{
-                  animation: width ? `testimonialScroll ${width / 38}s linear infinite` : 'none',
+                  animation:
+                    width ?
+                      `testimonialScroll ${width / 38}s linear infinite`
+                    : "none",
                 }}
               >
                 <div ref={trackRef} className="flex gap-4 pr-4">
                   {marqueeItems.map((item, index) => (
-                    <TestimonialCard key={`${item.name}-${index}`} item={item} featured={index % testimonials.length === 0} />
+                    <TestimonialCard
+                      key={`${item._id || item.name}-${index}`}
+                      item={item}
+                      featured={index % testimonialsList.length === 0}
+                    />
                   ))}
                 </div>
               </div>
@@ -170,7 +182,7 @@ const Testimonials = () => {
         }
       `}</style>
     </Motion.section>
-  )
-}
+  );
+};
 
-export default Testimonials
+export default Testimonials;
