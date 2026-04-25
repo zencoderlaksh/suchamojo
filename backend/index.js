@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const blogRoutes = require("./routes/blogRoutes");
@@ -23,20 +24,18 @@ app.set("etag", "strong");
 app.use(express.json({ limit: "200kb" }));
 app.use(express.urlencoded({ extended: true, limit: "200kb" }));
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", process.env.CORS_ORIGIN || "*");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Content-Type,Authorization,x-admin-key",
-  );
+const parseCorsOrigins = () => {
+  const env = process.env.CORS_ORIGINS;
+  if (env) return env.split(",").map((o) => o.trim());
+  return ["http://localhost:5173", "https://suchamojo.netlify.app"];
+};
 
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(204);
-  }
-
-  return next();
-});
+app.use(
+  cors({
+    origin: parseCorsOrigins(),
+    credentials: true,
+  }),
+);
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({

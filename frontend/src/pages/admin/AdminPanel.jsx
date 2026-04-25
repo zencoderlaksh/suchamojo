@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { API_BASE_URL } from "../../lib/api";
 
 const mockUsers = [
   {
@@ -74,12 +75,12 @@ const AdminPanel = () => {
       setLoading(true);
       const token = localStorage.getItem("adminToken");
       const [leadsRes, blogsRes] = await Promise.all([
-        fetch("http://localhost:5000/api/leads/consultation", {
+        fetch(`${API_BASE_URL}/api/leads/consultation`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         }),
-        fetch("http://localhost:5000/api/blogs?includeDrafts=true", {
+        fetch(`${API_BASE_URL}/api/blogs?includeDrafts=true`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

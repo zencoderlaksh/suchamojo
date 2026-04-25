@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../../lib/api";
 
 const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -17,14 +18,11 @@ const Blogs = () => {
   const fetchBlogs = async () => {
     try {
       const token = localStorage.getItem("adminToken");
-      const res = await fetch(
-        "http://localhost:5000/api/blogs?includeDrafts=true",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      const res = await fetch(`${API_BASE_URL}/api/blogs?includeDrafts=true`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
       if (!res.ok) throw new Error("Failed to fetch blogs");
       const data = await res.json();
       setBlogs(data);
@@ -43,7 +41,7 @@ const Blogs = () => {
     e.preventDefault();
     try {
       const token = localStorage.getItem("adminToken");
-      const res = await fetch("http://localhost:5000/api/blogs", {
+      const res = await fetch(`${API_BASE_URL}/api/blogs`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,11 +71,12 @@ const Blogs = () => {
 
   const handleUpdate = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
+      const token = localStorage.getItem("adminToken");
+      const res = await fetch(`${API_BASE_URL}/api/blogs/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          "x-admin-key": localStorage.getItem("adminKey") || "demo-key",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(editForm),
       });
@@ -92,10 +91,11 @@ const Blogs = () => {
   const handleDelete = async (id) => {
     if (!confirm("Delete this blog?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/blogs/${id}`, {
+      const token = localStorage.getItem("adminToken");
+      const res = await fetch(`${API_BASE_URL}/api/blogs/${id}`, {
         method: "DELETE",
         headers: {
-          "x-admin-key": localStorage.getItem("adminKey") || "demo-key",
+          Authorization: `Bearer ${token}`,
         },
       });
       if (!res.ok) throw new Error("Failed to delete blog");

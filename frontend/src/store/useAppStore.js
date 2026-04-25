@@ -13,6 +13,7 @@ import {
   fetchPublicSettings,
   fetchTestimonials,
   postConsultationLead,
+  publishBlog,
   updateAdminSettings,
   updateTestimonial,
 } from "../lib/api";
@@ -394,8 +395,8 @@ export const useAppStore = create((set, get) => ({
     get().loadAdminTestimonials();
   },
 
-  publishAdminBlog: async (id, adminKey) => {
-    const data = await publishBlog(id, adminKey);
+  publishAdminBlog: async (id) => {
+    const data = await publishBlog(id);
     // Refresh list
     get().fetchAdminBlogs();
     return data;

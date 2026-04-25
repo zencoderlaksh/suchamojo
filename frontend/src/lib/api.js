@@ -1,4 +1,4 @@
-const API_BASE_URL =
+export const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
 const REQUEST_TIMEOUT_MS = 12000;
 
@@ -105,13 +105,38 @@ export const updateAdminSettings = async (adminKey, payload) => {
   return data;
 };
 
-export const createBlogPost = async (adminKey, payload) => {
+const authHeaders = (contentType = false) => {
+  const token = localStorage.getItem("adminToken");
+  const headers = {};
+  if (token) headers.Authorization = `Bearer ${token}`;
+  if (contentType) headers["Content-Type"] = "application/json";
+  return headers;
+};
+
+export const fetchAdminLeads = async () => {
+  const response = await fetchWithTimeout(
+    `${API_BASE_URL}/api/leads/consultation`,
+    { headers: authHeaders() },
+  );
+  const data = await response.json();
+  if (!response.ok) throw new Error(data?.message || "Request failed");
+  return data;
+};
+
+export const fetchAdminBlogs = async () => {
+  const response = await fetchWithTimeout(
+    `${API_BASE_URL}/api/blogs?includeDrafts=true`,
+    { headers: authHeaders() },
+  );
+  const data = await response.json();
+  if (!response.ok) throw new Error(data?.message || "Request failed");
+  return data;
+};
+
+export const createBlogPost = async (payload) => {
   const response = await fetchWithTimeout(`${API_BASE_URL}/api/blogs`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-admin-key": adminKey,
-    },
+    headers: authHeaders(true),
     body: JSON.stringify(payload),
   });
   const data = await response.json();
@@ -119,21 +144,31 @@ export const createBlogPost = async (adminKey, payload) => {
   return data;
 };
 
-export const fetchAdminLeads = async () => {
-  return fetchJson(`${API_BASE_URL}/api/leads/consultation`);
-};
-
-export const fetchAdminBlogs = async () => {
-  return fetchJson(`${API_BASE_URL}/api/blogs?includeDrafts=true`);
-};
-
-export const publishBlog = async (id, adminKey) => {
+export const updateBlogPost = async (id, payload) => {
   const response = await fetchWithTimeout(`${API_BASE_URL}/api/blogs/${id}`, {
     method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      "x-admin-key": adminKey,
-    },
+    headers: authHeaders(true),
+    body: JSON.stringify(payload),
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data?.message || "Failed to update blog");
+  return data;
+};
+
+export const deleteBlogPost = async (id) => {
+  const response = await fetchWithTimeout(`${API_BASE_URL}/api/blogs/${id}`, {
+    method: "DELETE",
+    headers: authHeaders(),
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data?.message || "Failed to delete blog");
+  return data;
+};
+
+export const publishBlog = async (id) => {
+  const response = await fetchWithTimeout(`${API_BASE_URL}/api/blogs/${id}`, {
+    method: "PUT",
+    headers: authHeaders(true),
     body: JSON.stringify({ status: "published" }),
   });
   const data = await response.json();

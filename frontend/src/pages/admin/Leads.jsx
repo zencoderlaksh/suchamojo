@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_BASE_URL } from "../../lib/api";
 
 const Leads = () => {
   const [leads, setLeads] = useState([]);
@@ -8,7 +9,7 @@ const Leads = () => {
     try {
       setLoading(true);
       const token = localStorage.getItem("adminToken");
-      const res = await fetch("http://localhost:5000/api/leads/consultation", {
+      const res = await fetch(`${API_BASE_URL}/api/leads/consultation`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
