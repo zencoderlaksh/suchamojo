@@ -27,7 +27,12 @@ app.use(express.urlencoded({ extended: true, limit: "200kb" }));
 const parseCorsOrigins = () => {
   const env = process.env.CORS_ORIGIN || process.env.CORS_ORIGINS;
   if (env) return env.split(",").map((o) => o.trim());
-  return ["http://localhost:5173", "https://suchamojo.netlify.app"];
+  return [
+    "http://localhost:5173",
+    "https://suchamojo.netlify.app",
+    "https://suchamojo.com",
+    "https://www.suchamojo.com",
+  ];
 };
 
 const allowedOrigins = parseCorsOrigins();
@@ -47,9 +52,6 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization", "x-admin-key"],
   }),
 );
-
-// Explicitly handle OPTIONS for all routes
-app.options("*", cors());
 
 app.get("/api/health", (req, res) => {
   res.status(200).json({
