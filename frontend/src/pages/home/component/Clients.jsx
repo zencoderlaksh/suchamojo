@@ -1,31 +1,26 @@
-import React, { useEffect, useRef, useState } from "react"
-import ct1 from "../../../assets/image/ct-1.svg"
-import ct2 from "../../../assets/image/ct-2.svg"
-import ct3 from "../../../assets/image/ct-3.svg"
-import ct4 from "../../../assets/image/ct-4.svg"
-
+import React, { useEffect, useRef, useState } from "react";
+import client1 from "../../../assets/image/client1.jpeg";
+import client2 from "../../../assets/image/client2.jpeg";
+import client3 from "../../../assets/image/client3.png";
 
 const logos = [
-  { name: "Client 1", logo: ct1 },
-  { name: "Client 2", logo: ct2 },
-  { name: "Client 3", logo: ct3 },
-  { name: "Client 4", logo: ct4 },
-
-]
+  { name: "Client 1", logo: client1 },
+  { name: "Client 2", logo: client2 },
+  { name: "Client 3", logo: client3 },
+];
 
 const Clients = () => {
-  const trackRef = useRef(null)
-  const [width, setWidth] = useState(0)
+  const trackRef = useRef(null);
+  const [width, setWidth] = useState(0);
 
   useEffect(() => {
     if (trackRef.current) {
-      setWidth(trackRef.current.scrollWidth / 2)
+      setWidth(trackRef.current.scrollWidth / 2);
     }
-  }, [])
+  }, []);
 
   return (
     <section className="relative mx-auto mt-12 w-full max-w-[1240px] overflow-hidden rounded-[40px] border border-white/10 bg-[#0b0b0f] px-6 py-16 font-body shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_26px_60px_rgba(0,0,0,0.55)] sm:px-8 sm:py-20">
-
       <div className="relative z-10">
         <header className="mb-9 grid gap-5 md:grid-cols-[1fr_400px] md:items-end">
           <h2 className="font-heading text-4xl font-normal uppercase tracking-[0.25em] text-white sm:text-5xl">
@@ -44,9 +39,8 @@ const Clients = () => {
           <div
             className="flex"
             style={{
-              animation: width
-                ? `scroll ${width / 50}s linear infinite`
-                : "none",
+              animation:
+                width ? `scroll ${width / 50}s linear infinite` : "none",
             }}
           >
             <div ref={trackRef} className="flex gap-6 pr-6">
@@ -58,7 +52,7 @@ const Clients = () => {
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="h-10 w-[120px] object-contain brightness-[2] grayscale"
+                    className="h-full w-full object-contain mix-blend-multiply"
                     draggable={false}
                   />
                 </div>
@@ -75,7 +69,7 @@ const Clients = () => {
         }
       `}</style>
     </section>
-  )
-}
+  );
+};
 
-export default Clients
+export default Clients;

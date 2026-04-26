@@ -37,7 +37,10 @@ const consultationCards = [
 
 const Consultation = () => {
   return (
-    <section id="consultation" className="relative px-4 py-8 font-body sm:px-6 lg:px-8">
+    <section
+      id="consultation"
+      className="relative px-4 py-8 font-body sm:px-6 lg:px-8"
+    >
       <div className="pulse-soft pointer-events-none absolute right-8 top-8 h-44 w-44 rounded-full bg-orange-300/15 blur-3xl" />
       <div className="mx-auto w-full max-w-4xl rounded-md p-1.5 sm:p-2">
         <p className="mb-3 text-center font-body text-[0.72rem] uppercase tracking-[0.24em] text-[#b25a37]">
@@ -56,12 +59,14 @@ const Consultation = () => {
               <img
                 src={card.image}
                 alt={card.title}
-                className="h-full w-full object-cover saturate-110 contrast-110 transition duration-500 group-hover:scale-110"
+                className="h-full w-full object-cover blur-xl saturate-110 contrast-110 transition duration-500 group-hover:scale-110"
               />
               <div className={`absolute inset-0 bg-linear-to-t ${card.tint}`} />
               <div className="absolute inset-0 bg-linear-to-tr from-white/0 via-white/0 to-white/0 transition duration-500 group-hover:from-white/0 group-hover:to-white/15" />
 
-              <div className={`absolute left-1/2 top-1/2 flex aspect-square w-[64%] max-w-52 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-[1.4rem] px-4 py-4 text-center backdrop-blur-md ${card.panel}`}>
+              <div
+                className={`absolute left-1/2 top-1/2 flex aspect-square w-[64%] max-w-52 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-[1.4rem] px-4 py-4 text-center backdrop-blur-md ${card.panel}`}
+              >
                 <p className="mb-2 font-body text-[0.5rem] tracking-[0.16em] text-white/80 sm:text-[0.56rem]">
                   {card.eyebrow}
                 </p>

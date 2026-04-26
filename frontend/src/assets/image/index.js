@@ -9,6 +9,9 @@ import c1 from "./c1.png";
 import c2 from "./c2.png";
 import c3 from "./c3.png";
 import c4 from "./c4.png";
+import client1 from "./client1.jpeg";
+import client2 from "./client2.jpeg";
+import client3 from "./client3.png";
 import grapes from "./grapes.jpeg";
 import g1 from "./g1.png";
 import icedTea from "./iced-tea.jpeg";
@@ -19,7 +22,7 @@ import l1 from "./l1.png";
 import pomergranate from "./pomergranate.jpeg";
 import time from "./time.jpg";
 import timeless from "./timeless.jpg";
-import aboutImg from "./suchamojo_logo.png"
+import aboutImg from "./suchamojo_logo.png";
 
 export {
   logo,
@@ -33,6 +36,9 @@ export {
   c2,
   c3,
   c4,
+  client1,
+  client2,
+  client3,
   grapes,
   g1,
   icedTea,
@@ -43,5 +49,5 @@ export {
   pomergranate,
   time,
   timeless,
-  aboutImg
+  aboutImg,
 };
