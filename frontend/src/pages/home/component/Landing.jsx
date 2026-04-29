@@ -24,10 +24,9 @@ const Landing = () => {
 
             <div className="text-center lg:text-right lg:pt-20">
               <p className="font-body text-[clamp(0.85rem,2vw,1.2rem)] font-semibold">
-                Our personal branding services help founders, creators, and
-                ambitious professionals build a personal brand that earns trust,
-                opens the right doors, and grows their business without sounding
-                like everyone else.
+                We help founders, creators, and ambitious professionals build
+                personal brands that earn trust, open the right doors, and grow
+                their business without sounding like everyone else.
               </p>
 
               <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center lg:justify-end">
