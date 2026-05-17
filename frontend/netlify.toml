@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "https://suchamojo.netlify.app/*"
+  to = "https://suchamojo.com/:splat"
+  status = 301
+  force = true
