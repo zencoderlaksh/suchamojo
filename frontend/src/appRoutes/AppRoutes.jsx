@@ -32,6 +32,9 @@ const PersonalBranding = lazy(
 const ContentCreation = lazy(
   () => import("../pages/contentCreation/ContentCreation"),
 );
+const TeamTraining = lazy(
+  () => import("../pages/teamTraining/TeamTraining"),
+);
 const Login = lazy(() => import("../pages/login/Login"));
 const Signup = lazy(() => import("../pages/signup/Signup"));
 const MfdPersonalBranding = lazy(
@@ -83,9 +86,11 @@ const AppRoutes = () => {
             <Route path="services" element={<Services />} />
             <Route path="services/personal-branding" element={<PersonalBranding />} />
             <Route path="services/content-creation" element={<ContentCreation />} />
+            <Route path="services/team-training" element={<TeamTraining />} />
             <Route path="services/:slug" element={<ServiceDetail />} />
             <Route path="personal-branding" element={<PersonalBranding />} />
             <Route path="content-creation" element={<ContentCreation />} />
+            <Route path="team-training" element={<TeamTraining />} />
             <Route path="industries" element={<Industries />} />
             <Route path="industries/:slug" element={<IndustryDetail />} />
             <Route path="blog" element={<Blog />} />

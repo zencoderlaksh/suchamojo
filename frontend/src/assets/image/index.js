@@ -41,6 +41,12 @@ import engineSuitePhoto from "./engine-suite-photo.png";
 import contentHeroBts from "./content-hero-bts.png";
 import storyboardingGrid from "./storyboarding-grid.png";
 import productionEngineSuite from "./production-engine-suite.png";
+import trainingHeroCreating from "./training-hero-creating.png";
+import trainingNgoField from "./training-ngo-field.png";
+import trainingCorporateStudio from "./training-corporate-studio.png";
+import trainingHeroSpec from "./training-hero-spec.png";
+import trainingNgoSpec from "./training-ngo-spec.png";
+import trainingCorporateSpec from "./training-corporate-spec.png";
 
 export {
   logo,
@@ -86,6 +92,12 @@ export {
   contentHeroBts,
   storyboardingGrid,
   productionEngineSuite,
+  trainingHeroCreating,
+  trainingNgoField,
+  trainingCorporateStudio,
+  trainingHeroSpec,
+  trainingNgoSpec,
+  trainingCorporateSpec,
 };
 
 

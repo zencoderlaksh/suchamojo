@@ -25,13 +25,13 @@ const ways = [
   },
   {
     id: "03",
-    title: "TEAM TRAINING",
-    hook: "Don't just outsource content. Build the ability to create it.",
+    title: "TEAM TRAINING & CAPACITY BUILDING",
+    hook: "We've trained 30,000+ people in storytelling and content creation.",
     description:
-      "Hands-on workshops and capability-building programs for marketing teams, communication teams and creators. Learn storytelling, mobile video, scripting, content planning, production workflows, AI-assisted work and measurement through actual practice.",
-    bestFor: "Organisations that want a stronger in-house content team.",
-    cta: "TRAIN MY TEAM",
-    to: "/book-a-call?service=team-training",
+      "Now we help companies, NGOs and institutions develop their own storytellers, video creators and content teams through practical, hands-on workshops.",
+    bestFor: "Corporate teams, marketing departments, NGOs, field workers and institutions.",
+    cta: "TRAIN YOUR TEAM",
+    to: "/team-training",
   },
   {
     id: "04",
