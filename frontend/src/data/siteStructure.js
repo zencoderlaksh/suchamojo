@@ -1,5 +1,19 @@
 export const serviceLinks = [
   {
+    slug: "personal-branding",
+    title: "Personal Branding",
+    path: "/personal-branding",
+    summary:
+      "1:1 personal branding consulting to discover your stories, find your voice and make content creation fun.",
+  },
+  {
+    slug: "content-creation",
+    title: "Content Creation",
+    path: "/content-creation",
+    summary:
+      "From UGC and brand films to launch videos, AI content, YouTube and social media video creation.",
+  },
+  {
     slug: "1-1-consultation",
     title: "1:1 Consultation",
     path: "/services/1-1-consultation",

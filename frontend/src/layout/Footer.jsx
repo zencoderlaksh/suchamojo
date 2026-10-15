@@ -1,60 +1,144 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaInstagram, FaLinkedinIn, FaYoutube, FaXTwitter } from "react-icons/fa6";
+import { FaInstagram, FaLinkedinIn, FaYoutube, FaXTwitter, FaEnvelope, FaLocationDot } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="reveal-up mt-0 rounded-t-[2.5rem] bg-black px-5 pt-8 pb-2 font-body text-gray-300 sm:px-8 lg:px-10">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-9 md:grid-cols-[1.2fr_0.7fr_0.8fr]">
+    <footer className="reveal-up mt-12 rounded-t-[2.5rem] bg-black px-5 pt-12 pb-6 font-body text-gray-300 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-[1400px]">
+        <div className="grid gap-10 md:grid-cols-[1.3fr_1fr_1fr]">
+          {/* Brand Column */}
           <div className="max-w-md">
-            <p className="mb-6 font-body text-sm tracking-[0.18em] text-gray-400 sm:text-base">Suchamojo</p>
-            <h2 className="mb-4 font-heading text-[1.4rem] leading-none text-white sm:text-[1.7rem]">Story-led Personal Branding</h2>
-            <p className="font-body text-xs leading-relaxed text-gray-400 sm:text-sm">
-              I help founders, creators, and high-agency professionals build personal brands rooted
-              in identity, clarity, and long-term trust.
+            <p className="font-body text-xs font-bold uppercase tracking-[0.24em] text-orange-400">
+              Everything Content
             </p>
+            <h2 className="mt-3 font-heading text-2xl sm:text-3xl font-extrabold leading-tight text-white uppercase">
+              Everything you need to make content work.
+            </h2>
+            <p className="mt-4 font-body text-xs sm:text-sm leading-relaxed text-gray-400">
+              We help founders, professionals, and organisations build personal brands people trust, develop clear content strategies, train teams to execute, and source creative talent.
+            </p>
+
+            <div className="mt-6 flex items-center gap-2 text-xs text-gray-400">
+              <FaLocationDot className="text-orange-500 shrink-0" />
+              <span>Jaipur, India • Remote & On-Location Engagements</span>
+            </div>
           </div>
 
+          {/* Services & Quick Links */}
           <div>
-            <ul className="space-y-3 text-[1rem] leading-[1.2] text-white sm:space-y-3.5 sm:text-[1.15rem]">
-              <li><Link to="/" className="font-body font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Home</Link></li>
-              <li><Link to="/about" className="font-body font-normal transition duration-300 hover:pl-1 hover:text-gray-300">About</Link></li>
-              <li><Link to="/services" className="font-body font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Services</Link></li>
-              <li><Link to="/industries" className="font-body font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Industries</Link></li>
-              <li><Link to="/contact" className="font-body font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Contact</Link></li>
-              <li><Link to="/book-a-call" className="font-body font-normal transition duration-300 hover:pl-1 hover:text-gray-300">Book a Call</Link></li>
+            <h3 className="font-heading text-sm font-bold uppercase tracking-[0.18em] text-white">
+              Capabilities
+            </h3>
+            <ul className="mt-4 space-y-2.5 text-sm text-gray-300">
+              <li>
+                <Link to="/personal-branding" className="transition hover:text-orange-400 hover:pl-1">
+                  Personal Branding
+                </Link>
+              </li>
+              <li>
+                <Link to="/book-a-call?service=content-strategy" className="transition hover:text-orange-400 hover:pl-1">
+                  Content Strategy
+                </Link>
+              </li>
+              <li>
+                <Link to="/book-a-call?service=team-training" className="transition hover:text-orange-400 hover:pl-1">
+                  Team Training
+                </Link>
+              </li>
+              <li>
+                <Link to="/book-a-call?service=creative-talent" className="transition hover:text-orange-400 hover:pl-1">
+                  Creative Talent
+                </Link>
+              </li>
+              <li>
+                <a href="/#how-it-works" className="transition hover:text-orange-400 hover:pl-1">
+                  How It Works
+                </a>
+              </li>
+              <li>
+                <a href="/#our-work" className="transition hover:text-orange-400 hover:pl-1">
+                  Our Work
+                </a>
+              </li>
+              <li>
+                <Link to="/book-a-call" className="font-bold text-orange-400 transition hover:text-orange-300 hover:pl-1">
+                  Book a Free Discovery Call →
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* Contact & Social Links */}
           <div>
-            <h4 className="mb-4 font-heading text-[1.35rem] leading-none text-white sm:text-[1.6rem]">Social Media</h4>
-            <div className="flex gap-3 text-base text-gray-300">
-              <a href="https://x.com" target="_blank" rel="noreferrer" aria-label="X (Twitter)">
-                <FaXTwitter className="float-slow cursor-pointer rounded-full border border-gray-500 p-1.5 text-2xl transition duration-300 hover:scale-110 hover:border-gray-300 hover:text-white" />
+            <h3 className="font-heading text-sm font-bold uppercase tracking-[0.18em] text-white">
+              Connect With Us
+            </h3>
+            
+            <div className="mt-4 flex flex-col gap-3">
+              <a
+                href="mailto:hello@everythingcontent.in"
+                className="inline-flex items-center gap-2.5 text-sm text-gray-300 transition hover:text-white"
+              >
+                <FaEnvelope className="text-orange-500" />
+                <span>hello@everythingcontent.in</span>
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" aria-label="Instagram">
-                <FaInstagram className="float-slow cursor-pointer rounded-full border border-gray-500 p-1.5 text-2xl transition duration-300 hover:scale-110 hover:border-gray-300 hover:text-white" />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                <FaLinkedinIn className="float-slow cursor-pointer rounded-full border border-gray-500 p-1.5 text-2xl transition duration-300 hover:scale-110 hover:border-gray-300 hover:text-white" />
-              </a>
-              <a href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube">
-                <FaYoutube className="float-slow cursor-pointer rounded-full border border-gray-500 p-1.5 text-2xl transition duration-300 hover:scale-110 hover:border-gray-300 hover:text-white" />
-              </a>
+
+              <div className="mt-2 flex gap-3 text-base text-gray-300">
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                  className="rounded-full border border-gray-700 p-2 transition hover:border-orange-500 hover:bg-orange-500/10 hover:text-white"
+                >
+                  <FaLinkedinIn />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Instagram"
+                  className="rounded-full border border-gray-700 p-2 transition hover:border-orange-500 hover:bg-orange-500/10 hover:text-white"
+                >
+                  <FaInstagram />
+                </a>
+                <a
+                  href="https://x.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="X (Twitter)"
+                  className="rounded-full border border-gray-700 p-2 transition hover:border-orange-500 hover:bg-orange-500/10 hover:text-white"
+                >
+                  <FaXTwitter />
+                </a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="YouTube"
+                  className="rounded-full border border-gray-700 p-2 transition hover:border-orange-500 hover:bg-orange-500/10 hover:text-white"
+                >
+                  <FaYoutube />
+                </a>
+              </div>
             </div>
-            <div className="mt-6 space-y-1 font-body text-xs font-light text-gray-400 sm:text-sm">
-              <p>Presence over performance.</p>
-              <p>Identity over algorithms.</p>
+
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4 text-xs text-gray-400">
+              <p className="font-semibold text-gray-200">Journalism-Led Content Strategy</p>
+              <p className="mt-1">Presence over performance. Identity over algorithms.</p>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-4 text-center">
-          <h1 className="font-heading text-5xl leading-none tracking-tight text-gray-300 sm:text-6xl md:text-7xl">
-            Suchamojo
+        {/* Big Brand Title and Copyright */}
+        <div className="mt-12 border-t border-gray-800/80 pt-8 text-center">
+          <h1 className="font-heading text-4xl sm:text-6xl md:text-7xl font-black uppercase tracking-tight text-white/90">
+            Everything Content
           </h1>
-          <p className="mt-4 font-body text-xs text-gray-500">© 2026 SuchaMojo. All rights reserved. Built with intent.</p>
+          <p className="mt-4 font-body text-xs text-gray-500">
+            © 2026 Everything Content. All rights reserved. Built with intent. Jaipur, India.
+          </p>
         </div>
       </div>
     </footer>

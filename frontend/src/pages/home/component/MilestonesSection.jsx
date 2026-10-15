@@ -126,22 +126,22 @@ const MilestonesSection = ({ split = false }) => {
     {
       value: 30000,
       suffix: '+',
-      label: 'Creators trained across India',
+      label: 'Creators trained',
+    },
+    {
+      value: 16,
+      suffix: ' Cities',
+      label: 'Work across India',
+    },
+    {
+      value: 400,
+      suffix: 'M+ Views',
+      label: 'Campaign reach & strategy',
     },
     {
       value: 12,
       suffix: '+ Years',
       label: 'At the intersection of story and growth',
-    },
-    {
-      value: 8,
-      suffix: '+',
-      label: 'Industries served',
-    },
-    {
-      value: 100,
-      suffix: '+',
-      label: 'Brand strategy sessions led',
     },
   ]
 

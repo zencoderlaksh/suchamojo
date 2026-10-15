@@ -26,6 +26,12 @@ const BookCallPriority = lazy(
 );
 const Services = lazy(() => import("../pages/services/Services"));
 const ServiceDetail = lazy(() => import("../pages/services/ServiceDetail"));
+const PersonalBranding = lazy(
+  () => import("../pages/personalBranding/PersonalBranding"),
+);
+const ContentCreation = lazy(
+  () => import("../pages/contentCreation/ContentCreation"),
+);
 const Login = lazy(() => import("../pages/login/Login"));
 const Signup = lazy(() => import("../pages/signup/Signup"));
 const MfdPersonalBranding = lazy(
@@ -75,7 +81,11 @@ const AppRoutes = () => {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="services" element={<Services />} />
+            <Route path="services/personal-branding" element={<PersonalBranding />} />
+            <Route path="services/content-creation" element={<ContentCreation />} />
             <Route path="services/:slug" element={<ServiceDetail />} />
+            <Route path="personal-branding" element={<PersonalBranding />} />
+            <Route path="content-creation" element={<ContentCreation />} />
             <Route path="industries" element={<Industries />} />
             <Route path="industries/:slug" element={<IndustryDetail />} />
             <Route path="blog" element={<Blog />} />

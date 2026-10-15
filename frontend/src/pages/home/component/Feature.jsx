@@ -1,82 +1,126 @@
-const featureCards = [
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaArrowRight } from "react-icons/fa6";
+
+const ways = [
   {
     id: "01",
-    tag: "1:1 Consultation",
-    title: "Personal Brand & Content IP",
-    highlight: "Build a content system that sounds like you.",
+    title: "PERSONAL BRANDING",
+    hook: "Be known for what you actually know.",
     description:
-      "Deep-dive strategy sessions built around your goals, your industry, and your audience. We map your brand from story to strategy",
+      "We help founders, professionals and leaders uncover their point of view, sharpen positioning and turn experience into a meaningful content presence. From content pillars and storytelling formats to LinkedIn, Instagram and YouTube direction.",
+    bestFor: "Founders, CEOs, doctors, financial professionals and subject-matter experts.",
+    cta: "BUILD MY PERSONAL BRAND",
+    to: "/personal-branding",
   },
   {
     id: "02",
-    tag: "TEAM TRAINING",
-    title: "Content Systems for Teams",
-    highlight: "Turn teams into clear, confident storytellers.",
+    title: "CONTENT STRATEGY",
+    hook: "Less random content. More purpose behind every post.",
     description:
-      "Turn your whole team into brand ambassadors. Workshops that teach professionals how to show up authentically and consistently online.",
+      "We build content universes, channel priorities, repeatable formats, editorial calendars and distribution workflows so every asset has a clear job, from awareness and trust to enquiries and community.",
+    bestFor: "Businesses with ideas but no connected editorial system.",
+    cta: "PLAN MY CONTENT",
+    to: "/book-a-call?service=content-strategy",
   },
   {
     id: "03",
-    tag: "CREATIVE HIRING",
-    title: "Hire creators who think, not just execute.",
-    highlight: "Build creative teams that move your brand forward.",
+    title: "TEAM TRAINING",
+    hook: "Don't just outsource content. Build the ability to create it.",
     description:
-      "Need the right talent to execute your brand? We help you find and hire content creators, designers, videographers, and brand strategists.",
+      "Hands-on workshops and capability-building programs for marketing teams, communication teams and creators. Learn storytelling, mobile video, scripting, content planning, production workflows, AI-assisted work and measurement through actual practice.",
+    bestFor: "Organisations that want a stronger in-house content team.",
+    cta: "TRAIN MY TEAM",
+    to: "/book-a-call?service=team-training",
   },
   {
     id: "04",
-    tag: "COHORTS",
-    title: "Learn Together. Build in Public.",
-    highlight: "For founders, freelancers, and high-agency professionals.",
+    title: "CREATIVE TALENT",
+    hook: "The right people make the system work.",
     description:
-      "Build your brand alongside a curated peer group. Structured programs that deliver personal branding mastery through community, accountability, and expert guidance.",
+      "Need a content strategist, writer, video editor, social media manager or production partner? We help define the role, evaluate creative fit and connect you with suitable talent for your content goals.",
+    bestFor: "Growing teams that need specialist creative capacity.",
+    cta: "FIND CREATIVE TALENT",
+    to: "/book-a-call?service=creative-talent",
   },
 ];
 
 const Feature = () => {
   return (
-    <section className="relative overflow-hidden px-4 py-16 font-body sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-10 text-center">
-          <p className="text-sm font-semibold tracking-[0.22em] text-slate-600">
-            FEATURE
-          </p>
-          <h2 className="mt-3 font-heading text-4xl font-black text-slate-900 sm:text-5xl">
-            How We Work With You
+    <section id="four-ways" className="relative overflow-hidden px-4 py-16 font-body sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1400px]">
+        {/* Header */}
+        <div className="mb-12 text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 backdrop-blur-md">
+            <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
+            <p className="text-xs font-bold tracking-[0.24em] text-orange-700 uppercase">
+              FOUR WAYS WE HELP
+            </p>
+          </div>
+          <h2 className="mt-4 font-heading text-3xl font-black uppercase tracking-tight text-slate-950 sm:text-5xl">
+            Start where you are. Build what you need.
           </h2>
+          <p className="mt-3 text-sm sm:text-base text-slate-600 font-medium">
+            One partner with four connected capabilities to scale your personal brand, content machine, and creative team.
+          </p>
         </div>
 
+        {/* 4 Pillars Grid */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {featureCards.map((card, index) => (
+          {ways.map((item, index) => (
             <article
-              key={card.id}
-              className="group relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-[0_10px_28px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1.5 hover:border-[#b8d71f]/60 hover:shadow-[0_20px_40px_rgba(15,23,42,0.14)] sm:p-8"
+              key={item.id}
+              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-[0_10px_28px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1.5 hover:border-orange-300 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] sm:p-9"
               style={{ animationDelay: `${index * 120}ms` }}
             >
-              <div className="absolute inset-y-0 left-0 w-1 bg-[#b8d71f] opacity-70 transition duration-300 group-hover:opacity-100" />
-              <div className="pointer-events-none absolute -right-14 -top-14 h-32 w-32 rounded-full bg-[#b8d71f]/10 blur-3xl transition duration-500 group-hover:scale-110" />
+              <div className="absolute inset-y-0 left-0 w-1.5 bg-orange-500 opacity-60 transition duration-300 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute -right-14 -top-14 h-32 w-32 rounded-full bg-orange-100/50 blur-3xl transition duration-500 group-hover:scale-125" />
 
               <div className="relative z-10">
-                <div className="mb-5 inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5">
-                  <span className="text-sm font-bold tracking-[0.15em] text-slate-900">
-                    {card.id}
+                {/* Badge Number & Title */}
+                <div className="mb-4 inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5">
+                  <span className="text-xs font-black tracking-[0.15em] text-orange-600">
+                    {item.id}
                   </span>
-                  <span className="ml-2 text-xs font-semibold tracking-widest text-slate-600">
-                    {card.tag}
+                  <span className="mx-2 text-slate-300">•</span>
+                  <span className="text-xs font-bold tracking-widest text-slate-800 uppercase">
+                    {item.title}
                   </span>
                 </div>
 
-                <h3 className="font-heading text-[1.7rem] font-extrabold leading-tight text-slate-900">
-                  {card.title}
+                {/* Subtitle / Hook */}
+                <h3 className="font-heading text-xl sm:text-2xl font-black leading-snug text-slate-950">
+                  {item.hook}
                 </h3>
-                <p className="mt-4 text-lg font-semibold text-slate-800">
-                  {card.highlight}
-                </p>
-                <p className="mt-3 text-base leading-relaxed text-slate-600">
-                  {card.description}
+
+                {/* Full Description */}
+                <p className="mt-3 text-sm leading-relaxed text-slate-600 font-medium">
+                  {item.description}
                 </p>
 
-                <div className="mt-6 h-0.5 w-16 bg-[#b8d71f] transition-all duration-300 group-hover:w-28" />
+                {/* Best For Callout */}
+                <div className="mt-6 rounded-2xl border border-slate-200/90 bg-slate-50/90 p-4">
+                  <span className="block text-[0.68rem] font-bold uppercase tracking-[0.16em] text-orange-700">
+                    Best for:
+                  </span>
+                  <p className="mt-1 text-xs font-semibold text-slate-800 leading-relaxed">
+                    {item.bestFor}
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom CTA Button */}
+              <div className="relative z-10 mt-8 pt-5 border-t border-slate-100 flex items-center justify-between">
+                <Link
+                  to={item.to}
+                  className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-6 py-3 font-body text-[0.72rem] font-bold uppercase tracking-[0.16em] text-white transition duration-300 group-hover:bg-[#f97316] group-hover:shadow-lg group-hover:shadow-orange-500/25"
+                >
+                  {item.cta}
+                  <FaArrowRight className="text-xs transition-transform duration-300 group-hover:translate-x-1" />
+                </Link>
+                <span className="text-xs font-bold text-slate-300 group-hover:text-slate-400">
+                  0{index + 1}
+                </span>
               </div>
             </article>
           ))}

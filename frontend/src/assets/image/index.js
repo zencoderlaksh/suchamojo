@@ -23,6 +23,24 @@ import pomergranate from "./pomergranate.jpeg";
 import time from "./time.jpg";
 import timeless from "./timeless.jpg";
 import aboutImg from "./suchamojo_logo.png";
+import heroBannerUpdated from "./Hero Banner -Updated.png";
+import consultationDeckImg from "./1-Consultation Deck.png";
+import problemImg from "./Problem.png";
+import s1 from "./s-1.jpg";
+import s2 from "./s-2.jpg";
+import s3 from "./s-3.jpg";
+import s4 from "./s-4.jpg";
+import s5 from "./s-5.jpg";
+import s6 from "./s-6.jpg";
+import s7 from "./s-7.jpg";
+import s8 from "./s-8.jpg";
+import s9 from "./s-9.jpg";
+import heroShowreelPhoto from "./hero-showreel-photo.png";
+import storyboardDiagram from "./storyboard-diagram.png";
+import engineSuitePhoto from "./engine-suite-photo.png";
+import contentHeroBts from "./content-hero-bts.png";
+import storyboardingGrid from "./storyboarding-grid.png";
+import productionEngineSuite from "./production-engine-suite.png";
 
 export {
   logo,
@@ -50,4 +68,24 @@ export {
   time,
   timeless,
   aboutImg,
+  heroBannerUpdated,
+  consultationDeckImg,
+  problemImg,
+  s1,
+  s2,
+  s3,
+  s4,
+  s5,
+  s6,
+  s7,
+  s8,
+  s9,
+  heroShowreelPhoto,
+  storyboardDiagram,
+  engineSuitePhoto,
+  contentHeroBts,
+  storyboardingGrid,
+  productionEngineSuite,
 };
+
+
