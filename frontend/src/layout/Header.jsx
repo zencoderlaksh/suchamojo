@@ -5,7 +5,8 @@ import aboutImg from "../assets/image/suchamojo_logo.png";
 
 const NAV_LINKS = [
   { label: "Services", to: "/services" },
-  { label: "How It Works", to: "/#how-it-works" },
+  { label: "Content Creation", to: "/content-creation" },
+  { label: "Team Training", to: "/team-training" },
   { label: "Our Work", to: "/#our-work" },
   { label: "About", to: "/about" },
 ];

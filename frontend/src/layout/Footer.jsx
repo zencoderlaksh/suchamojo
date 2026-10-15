@@ -42,7 +42,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/book-a-call?service=team-training" className="transition hover:text-orange-400 hover:pl-1">
+                <Link to="/content-creation" className="transition hover:text-orange-400 hover:pl-1">
+                  Content Creation
+                </Link>
+              </li>
+              <li>
+                <Link to="/team-training" className="transition hover:text-orange-400 hover:pl-1">
                   Team Training
                 </Link>
               </li>
