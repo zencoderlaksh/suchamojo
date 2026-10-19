@@ -13,6 +13,7 @@ import Leads from "../pages/admin/Leads";
 import Blogs from "../pages/admin/Blogs";
 import Testimonials from "../pages/admin/Testimonials";
 import AdminLogin from "../pages/admin/AdminLogin";
+import SmoothScroll from "../components/SmoothScroll";
 
 const Home = lazy(() => import("../pages/home/Home"));
 const About = lazy(() => import("../pages/about/About"));
@@ -73,49 +74,51 @@ const RouteTracker = () => {
 const AppRoutes = () => {
   return (
     <BrowserRouter>
-      <RouteTracker />
-      <Suspense
-        fallback={
-          <div className="px-4 py-10 text-sm text-gray-300">Loading...</div>
-        }
-      >
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path="about" element={<About />} />
-            <Route path="services" element={<Services />} />
-            <Route path="services/personal-branding" element={<PersonalBranding />} />
-            <Route path="services/content-creation" element={<ContentCreation />} />
-            <Route path="services/team-training" element={<TeamTraining />} />
-            <Route path="services/:slug" element={<ServiceDetail />} />
-            <Route path="personal-branding" element={<PersonalBranding />} />
-            <Route path="content-creation" element={<ContentCreation />} />
-            <Route path="team-training" element={<TeamTraining />} />
-            <Route path="industries" element={<Industries />} />
-            <Route path="industries/:slug" element={<IndustryDetail />} />
-            <Route path="blog" element={<Blog />} />
-            <Route path="blog/:slug" element={<BlogDetail />} />
-            <Route path="contact" element={<Contact />} />
-            <Route path="mfd-page" element={<MfdPersonalBranding />} />
-            <Route path="book-a-call" element={<BookCallPriority />} />
-            <Route path="admin/*" element={<AdminLayout />}>
-              <Route index element={<AdminPanel />} />
-              <Route path="leads" element={<Leads />} />
-              <Route path="blogs" element={<Blogs />} />
-              <Route path="testimonials" element={<Testimonials />} />
+      <SmoothScroll>
+        <RouteTracker />
+        <Suspense
+          fallback={
+            <div className="px-4 py-10 text-sm text-gray-300">Loading...</div>
+          }
+        >
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Home />} />
+              <Route path="about" element={<About />} />
+              <Route path="services" element={<Services />} />
+              <Route path="services/personal-branding" element={<PersonalBranding />} />
+              <Route path="services/content-creation" element={<ContentCreation />} />
+              <Route path="services/team-training" element={<TeamTraining />} />
+              <Route path="services/:slug" element={<ServiceDetail />} />
+              <Route path="personal-branding" element={<PersonalBranding />} />
+              <Route path="content-creation" element={<ContentCreation />} />
+              <Route path="team-training" element={<TeamTraining />} />
+              <Route path="industries" element={<Industries />} />
+              <Route path="industries/:slug" element={<IndustryDetail />} />
+              <Route path="blog" element={<Blog />} />
+              <Route path="blog/:slug" element={<BlogDetail />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="mfd-page" element={<MfdPersonalBranding />} />
+              <Route path="book-a-call" element={<BookCallPriority />} />
+              <Route path="admin/*" element={<AdminLayout />}>
+                <Route index element={<AdminPanel />} />
+                <Route path="leads" element={<Leads />} />
+                <Route path="blogs" element={<Blogs />} />
+                <Route path="testimonials" element={<Testimonials />} />
+              </Route>
+              <Route
+                path="projects"
+                element={<Navigate to="/industries" replace />}
+              />
+              <Route path="journal" element={<Navigate to="/blog" replace />} />
+              <Route path="work" element={<Navigate to="/services" replace />} />
             </Route>
-            <Route
-              path="projects"
-              element={<Navigate to="/industries" replace />}
-            />
-            <Route path="journal" element={<Navigate to="/blog" replace />} />
-            <Route path="work" element={<Navigate to="/services" replace />} />
-          </Route>
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
-        </Routes>
-      </Suspense>
-      <ConsentBanner />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+          </Routes>
+        </Suspense>
+        <ConsentBanner />
+      </SmoothScroll>
     </BrowserRouter>
   );
 };
