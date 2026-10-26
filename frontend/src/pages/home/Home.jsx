@@ -1,21 +1,11 @@
 import React, { useEffect } from "react";
 import Landing from "./component/Landing";
-import TrustStrip from "./component/TrustStrip";
-import TheProblem from "./component/TheProblem";
-import Feature from "./component/Feature";
-import AboutSection from "./component/AboutSection";
 import Clients from "./component/Clients";
-import Consultation from "./component/Consultation";
-import MilestonesSection from "./component/MilestonesSection";
+import Feature from "./component/Feature";
 import IndustriesServe from "./component/IndustriesServe";
-import HowItWorks from "./component/HowItWorks";
-import WhySuchaMojo from "./component/WhySuchaMojo";
+import TrustStrip from "./component/TrustStrip";
 import Testimonials from "./component/Testimonials";
-import Faq from "./component/Faq";
 import CtaBanner from "./component/CtaBanner";
-import Blog from "./component/Blog";
-import GetInTouch from "./component/GetInTouch";
-import AboutCorousel from "./component/AboutCorousel";
 
 const Home = () => {
   useEffect(() => {
@@ -43,27 +33,28 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <div className="bg-[#fbfbfd] text-[#1b1b1f] min-h-screen pb-20 selection:bg-orange-500 selection:text-white">
+      {/* 1. Sphere Digital 3D Parallax Interactive Hero Banner */}
       <Landing />
-      <TrustStrip />
-      <TheProblem />
-      <Feature />
-      <AboutSection />
+
+      {/* 2. Trusted By Forward-Thinking Brands Marquee */}
       <Clients />
-      <Consultation />
-      <section className="mx-auto mt-8 w-full max-w-310 px-4 sm:mt-12 sm:px-6 lg:px-8">
-        <MilestonesSection split />
-      </section>
+
+      {/* 3. Capabilities / Core Solutions (Sphere Digital Pill Cards) */}
+      <Feature />
+
+      {/* 4. Industries We Work With (Sphere Digital Minimalist Artwork Shelf Cards) */}
       <IndustriesServe />
-      <HowItWorks />
-      <WhySuchaMojo />
+
+      {/* 5. Proven Impact & Execution Milestones (30k+ Creators, 400M+ Views) */}
+      <TrustStrip />
+
+      {/* 6. Authentic Client Words & Authority Testimonials */}
       <Testimonials />
-      <Faq />
+
+      {/* 7. Final Powerhouse Call to Action */}
       <CtaBanner />
-      <GetInTouch />
-      <AboutCorousel />
-      <Blog />
-    </>
+    </div>
   );
 };
 

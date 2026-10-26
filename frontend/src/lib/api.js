@@ -231,3 +231,37 @@ export const deleteTestimonial = async (id) => {
     throw new Error(data?.message || "Failed to delete testimonial");
   return data;
 };
+
+export const fetchMediaAssets = async ({ path = "/suchamojo", limit = 50 } = {}) => {
+  const query = `?path=${encodeURIComponent(path)}&limit=${limit}`;
+  return fetchJson(`${API_BASE_URL}/api/media/list${query}`);
+};
+
+export const uploadMediaAsset = async ({ file, fileName, folder = "/suchamojo/uploads", tags = [] }) => {
+  const response = await fetchWithTimeout(`${API_BASE_URL}/api/media/upload`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ file, fileName, folder, tags }),
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.message || "Failed to upload asset to ImageKit");
+  }
+  return data;
+};
+
+export const deleteMediaAsset = async (fileId) => {
+  const response = await fetchWithTimeout(`${API_BASE_URL}/api/media/${fileId}`, {
+    method: "DELETE",
+  });
+
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.message || "Failed to delete asset from ImageKit");
+  }
+  return data;
+};
+

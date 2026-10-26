@@ -31,8 +31,10 @@ const AdminLayout = () => {
             <Link to="/admin/leads">Leads</Link>
             <Link to="/admin/blogs">Blogs</Link>
             <Link to="/admin/testimonials">Testimonials</Link>
+            <Link to="/admin/media">Media Library</Link>
             <Link to="/admin/seo">SEO</Link>
             <Link to="/admin/settings">Settings</Link>
+
             <button
               onClick={() => {
                 localStorage.removeItem("adminToken");

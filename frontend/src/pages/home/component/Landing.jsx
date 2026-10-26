@@ -1,81 +1,68 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  heroBannerUpdated,
-  heroShowreelPhoto,
-  contentHeroBts,
-  productionEngineSuite,
-  storyboardingGrid,
-  trainingHeroCreating,
-  trainingCorporateStudio,
-  trainingNgoField,
-  trainingCorporateSpec,
-  trainingHeroSpec,
-  engineSuitePhoto,
-  client1,
-  client2,
-  client3,
-  s9,
-  s5,
-  abc1,
-  ab2,
-  ab3,
-  j1,
-  j2,
-  j3,
-} from "../../../assets/image/index";
+import { heroMedia } from "../../../lib/imagekit";
 
-// Optimized pool of crisp, authentic photography (200KB - 1.4MB)
-// Heavy uncompressed files (10MB-25MB) were removed to ensure silky-smooth 60-120fps scrolling
+// High-speed CDN delivered photography via ImageKit (WebP/AVIF auto-formatted & optimized)
 const PHOTO_POOL = [
-  heroBannerUpdated,
-  heroShowreelPhoto,
-  contentHeroBts,
-  trainingHeroCreating,
-  productionEngineSuite,
-  trainingCorporateStudio,
-  trainingNgoField,
-  trainingCorporateSpec,
-  trainingHeroSpec,
-  storyboardingGrid,
-  engineSuitePhoto,
-  client1,
-  client2,
-  client3,
-  s9,
-  s5,
-  abc1,
-  ab2,
-  ab3,
-  j1,
-  j2,
-  j3,
+  heroMedia.dsc00237,
+  heroMedia.dsc00242,
+  heroMedia.dsc00335,
+  heroMedia.dsc00441,
+  heroMedia.dsc00443,
+  heroMedia.heroBannerUpdated,
+  heroMedia.c2,
+  heroMedia.contentHeroBts,
+  heroMedia.storyboardingGrid,
+  heroMedia.heroShowreelPhoto,
+  heroMedia.c4,
+  heroMedia.trainingCorporateStudio,
+  heroMedia.productionEngineSuite,
+  heroMedia.trainingNgoField,
+  heroMedia.engineSuitePhoto,
+  heroMedia.trainingHeroCreating,
+  heroMedia.trainingCorporateSpec,
+  heroMedia.trainingHeroSpec,
+  heroMedia.client1,
+  heroMedia.client2,
+  heroMedia.client3,
+  heroMedia.s9,
+  heroMedia.s5,
+  heroMedia.abc1,
+  heroMedia.ab2,
+  heroMedia.ab3,
+  heroMedia.j1,
+  heroMedia.j2,
+  heroMedia.j3,
+  heroMedia.c1,
+  heroMedia.c3,
 ];
 
-// Initial layout for 15 grid tiles (5 columns x 3 rows)
+// Initial layout for 15 grid tiles (5 columns x 3 rows) matching signature hero backdrop
 // Center tile (index 7) permanently anchors the signature hero banner of the founder with microphones
+// Prominently showcasing authentic photoshoot images from assets/HomPage
 const INITIAL_TILES = [
-  // Column 1
-  heroShowreelPhoto,
-  trainingCorporateStudio,
-  j1,
-  // Column 2
-  contentHeroBts,
-  trainingHeroCreating,
-  client1,
-  // Column 3 (Center)
-  storyboardingGrid,
-  heroBannerUpdated, // Key centerpiece tile
-  productionEngineSuite,
-  // Column 4
-  trainingNgoField,
-  client2,
-  s9,
-  // Column 5
-  engineSuitePhoto,
-  j2,
-  trainingCorporateSpec,
+  // Row 1 (Index 0 to 4)
+  heroMedia.dsc00237,                // Col 1: Authentic photoshoot (assets/HomPage DSC00237)
+  heroMedia.contentHeroBts,          // Col 2: Behind-the-scenes camera shoot
+  heroMedia.dsc00441,                // Col 3: Authentic photoshoot (assets/HomPage DSC00441)
+  heroMedia.storyboardingGrid,       // Col 4: Post-production editing screen
+  heroMedia.dsc00242,                // Col 5: Authentic photoshoot (assets/HomPage DSC00242)
+  
+  // Row 2 (Index 5 to 9)
+  heroMedia.dsc00335,                // Col 1: Authentic photoshoot (assets/HomPage DSC00335)
+  heroMedia.trainingCorporateStudio, // Col 2: Studio workshop session
+  heroMedia.heroBannerUpdated,       // Col 3 (Index 7 Centerpiece): Signature founder anchor
+  heroMedia.dsc00443,                // Col 4: Authentic photoshoot (assets/HomPage DSC00443)
+  heroMedia.trainingNgoField,        // Col 5: Documentary field session
+
+  // Row 3 (Index 10 to 14)
+  heroMedia.j1,                      // Col 1: Editorial portrait 1
+  heroMedia.dsc00237,                // Col 2: Authentic photoshoot (assets/HomPage DSC00237)
+  heroMedia.client1,                 // Col 3: Brand client feature
+  heroMedia.dsc00441,                // Col 4: Authentic photoshoot (assets/HomPage DSC00441)
+  heroMedia.engineSuitePhoto,        // Col 5: Suite control deck
 ];
+
 
 const Landing = () => {
   const containerRef = useRef(null);

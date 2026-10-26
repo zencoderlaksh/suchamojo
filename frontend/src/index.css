@@ -54,6 +54,8 @@ html {
 
 body {
   font-family: var(--font-body);
+  background-color: #fbfbfd;
+  color: #1b1b1f;
 }
 
 h1,

@@ -20,44 +20,41 @@ const Clients = () => {
   }, []);
 
   return (
-    <section id="our-work" className="relative mx-auto mt-12 w-full max-w-[1240px] overflow-hidden rounded-[40px] border border-white/10 bg-[#0b0b0f] px-6 py-16 font-body shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_26px_60px_rgba(0,0,0,0.55)] sm:px-8 sm:py-20">
-      <div className="relative z-10">
-        <header className="mb-9 grid gap-5 md:grid-cols-[1fr_400px] md:items-end">
-          <div>
-            <p className="font-body text-[0.68rem] uppercase tracking-[0.22em] text-orange-400 font-semibold mb-2">
-              OUR WORK
-            </p>
-            <h2 className="font-heading text-4xl font-normal uppercase tracking-[0.25em] text-white sm:text-5xl">
-              CLIENTS
-            </h2>
-          </div>
-          <p className="max-w-[38ch] font-body text-sm leading-relaxed text-slate-400 md:justify-self-end">
-            Collaborations built around clarity, growth, and sharp positioning.
+    <section id="our-work" className="relative mx-auto mt-10 sm:mt-14 w-full max-w-[1440px] px-4 font-body sm:px-6 lg:px-8">
+      <div className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] border border-slate-200/80 bg-white px-6 py-10 sm:px-10 sm:py-12 shadow-[0_12px_40px_rgba(15,23,42,0.04)]">
+        
+        {/* Header */}
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-100 pb-6">
+          <p className="font-body text-xs sm:text-[0.78rem] font-bold uppercase tracking-[0.24em] text-slate-500">
+            TRUSTED BY FORWARD-THINKING BRANDS & FOUNDERS
           </p>
-        </header>
+          <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest hidden sm:inline-block">
+            Collaborations Built on Authority
+          </span>
+        </div>
 
-        <div className="relative overflow-hidden">
+        {/* Marquee Track */}
+        <div className="relative overflow-hidden py-2">
           {/* Edge fade */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#0b0b0f] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#0b0b0f] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent" />
 
           <div
             className="flex"
             style={{
-              animation:
-                width ? `scroll ${width / 50}s linear infinite` : "none",
+              animation: width ? `scroll ${Math.max(15, width / 45)}s linear infinite` : "none",
             }}
           >
             <div ref={trackRef} className="flex gap-6 pr-6">
-              {[...logos, ...logos].map((client, i) => (
+              {[...logos, ...logos, ...logos].map((client, i) => (
                 <div
                   key={i}
-                  className="flex h-[170px] w-[240px] shrink-0 items-center justify-center rounded-3xl border border-white/10 bg-gradient-to-b from-slate-800/35 to-slate-900/45 p-6 opacity-60 transition duration-300 hover:opacity-100"
+                  className="flex h-[110px] sm:h-[125px] w-[200px] sm:w-[230px] shrink-0 items-center justify-center rounded-2xl border border-slate-100 bg-[#f8fafc] p-5 opacity-80 transition duration-300 hover:opacity-100 hover:border-slate-300 hover:shadow-sm hover:scale-[1.02]"
                 >
                   <img
                     src={client.logo}
                     alt={client.name}
-                    className="h-full w-full object-contain mix-blend-multiply"
+                    className="h-full w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
                     draggable={false}
                   />
                 </div>

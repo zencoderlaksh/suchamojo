@@ -1,132 +1,183 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa6";
+import { motion as Motion, useInView } from "../../../lib/motion";
 
-const ways = [
+const capabilities = [
   {
     id: "01",
-    title: "PERSONAL BRANDING",
+    title: "Personal Branding",
     hook: "Be known for what you actually know.",
     description:
-      "We help founders, professionals and leaders uncover their point of view, sharpen positioning and turn experience into a meaningful content presence. From content pillars and storytelling formats to LinkedIn, Instagram and YouTube direction.",
-    bestFor: "Founders, CEOs, doctors, financial professionals and subject-matter experts.",
-    cta: "BUILD MY PERSONAL BRAND",
+      "Uncover your point of view, sharpen positioning, and turn real expertise into an authoritative presence on LinkedIn, Instagram, and YouTube.",
     to: "/personal-branding",
+    glowColor: "rgba(249, 115, 22, 0.45)",
+    borderHover: "group-hover:border-orange-500/50",
   },
   {
     id: "02",
-    title: "CONTENT STRATEGY",
-    hook: "Less random content. More purpose behind every post.",
+    title: "Content Strategy",
+    hook: "Less random content. More strategic purpose.",
     description:
-      "We build content universes, channel priorities, repeatable formats, editorial calendars and distribution workflows so every asset has a clear job, from awareness and trust to enquiries and community.",
-    bestFor: "Businesses with ideas but no connected editorial system.",
-    cta: "PLAN MY CONTENT",
+      "Build repeatable formats, editorial calendars, and distribution workflows so every post has a clear business job.",
     to: "/book-a-call?service=content-strategy",
+    glowColor: "rgba(56, 189, 248, 0.45)",
+    borderHover: "group-hover:border-sky-500/50",
   },
   {
     id: "03",
-    title: "TEAM TRAINING & CAPACITY BUILDING",
-    hook: "We've trained 30,000+ people in storytelling and content creation.",
+    title: "Team Training",
+    hook: "Turn your team into in-house storytellers.",
     description:
-      "Now we help companies, NGOs and institutions develop their own storytellers, video creators and content teams through practical, hands-on workshops.",
-    bestFor: "Corporate teams, marketing departments, NGOs, field workers and institutions.",
-    cta: "TRAIN YOUR TEAM",
+      "Practical, hands-on masterclasses and workshops for marketing teams, NGOs, and corporate leaders to create high-impact video.",
     to: "/team-training",
+    glowColor: "rgba(168, 85, 247, 0.45)",
+    borderHover: "group-hover:border-purple-500/50",
   },
   {
     id: "04",
-    title: "CREATIVE TALENT",
-    hook: "The right people make the system work.",
+    title: "Creative Talent",
+    hook: "The right minds to make the system work.",
     description:
-      "Need a content strategist, writer, video editor, social media manager or production partner? We help define the role, evaluate creative fit and connect you with suitable talent for your content goals.",
-    bestFor: "Growing teams that need specialist creative capacity.",
-    cta: "FIND CREATIVE TALENT",
+      "Find vetted strategists, writers, video editors, and production specialists aligned with your brand's growth goals.",
     to: "/book-a-call?service=creative-talent",
+    glowColor: "rgba(74, 222, 128, 0.45)",
+    borderHover: "group-hover:border-emerald-500/50",
   },
 ];
 
 const Feature = () => {
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { once: true, amount: 0.15 });
+
   return (
-    <section id="four-ways" className="relative overflow-hidden px-4 py-16 font-body sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-[1400px]">
-        {/* Header */}
-        <div className="mb-12 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 backdrop-blur-md">
-            <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
-            <p className="text-xs font-bold tracking-[0.24em] text-orange-700 uppercase">
-              FOUR WAYS WE HELP
-            </p>
-          </div>
-          <h2 className="mt-4 font-heading text-3xl font-black uppercase tracking-tight text-slate-950 sm:text-5xl">
-            Start where you are. Build what you need.
+    <Motion.section
+      ref={sectionRef}
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="mx-auto mt-14 sm:mt-20 w-full max-w-[1440px] px-4 font-body sm:px-6 lg:px-8"
+    >
+      {/* Sphere Digital Minimalist Header on Light Canvas */}
+      <div className="mb-10 sm:mb-12 text-left">
+        <p className="font-body text-xs sm:text-[0.8rem] font-bold uppercase tracking-[0.24em] text-slate-500">
+          WHAT WE DO
+        </p>
+
+        <div className="relative mt-2 inline-block">
+          {/* Ethereal Colorful Blur Aura */}
+          <div
+            className="pointer-events-none absolute -inset-6 sm:-inset-10 rounded-full opacity-60 blur-3xl mix-blend-multiply"
+            style={{
+              background:
+                "radial-gradient(circle at 60% 50%, rgba(249, 115, 22, 0.35) 0%, rgba(168, 85, 247, 0.3) 40%, rgba(56, 189, 248, 0.25) 75%, transparent 100%)",
+            }}
+          />
+          <h2 className="relative font-heading text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#1b1b1f] leading-none">
+            Capabilities
           </h2>
-          <p className="mt-3 text-sm sm:text-base text-slate-600 font-medium">
-            One partner with four connected capabilities to scale your personal brand, content machine, and creative team.
-          </p>
         </div>
 
-        {/* 4 Pillars Grid */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {ways.map((item, index) => (
-            <article
-              key={item.id}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-white p-7 shadow-[0_10px_28px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1.5 hover:border-orange-300 hover:shadow-[0_20px_40px_rgba(15,23,42,0.12)] sm:p-9"
-              style={{ animationDelay: `${index * 120}ms` }}
-            >
-              <div className="absolute inset-y-0 left-0 w-1.5 bg-orange-500 opacity-60 transition duration-300 group-hover:opacity-100" />
-              <div className="pointer-events-none absolute -right-14 -top-14 h-32 w-32 rounded-full bg-orange-100/50 blur-3xl transition duration-500 group-hover:scale-125" />
+        <p className="mt-3 font-body text-sm sm:text-base text-slate-600 font-medium max-w-xl">
+          Start where you are. Build what you need. One partner to scale your personal brand, content machine, and creative team.
+        </p>
+      </div>
 
-              <div className="relative z-10">
-                {/* Badge Number & Title */}
-                <div className="mb-4 inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-3.5 py-1.5">
-                  <span className="text-xs font-black tracking-[0.15em] text-orange-600">
+      {/* 4 Sleek High-Contrast Sphere Digital Pill Cards */}
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {capabilities.map((item, index) => (
+          <Motion.div
+            key={item.id}
+            initial={{ opacity: 0, y: 18 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{
+              duration: 0.45,
+              delay: 0.06 + index * 0.08,
+              ease: "easeOut",
+            }}
+            className="h-full"
+          >
+            <Link
+              to={item.to}
+              className={`group relative flex h-full flex-col justify-between overflow-hidden rounded-[2rem] bg-[#16161b] p-6 sm:p-7 shadow-[0_12px_32px_rgba(15,23,42,0.12)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_45px_rgba(15,23,42,0.24)] ${item.borderHover}`}
+            >
+              {/* Subtle top edge glow */}
+              <div
+                className="pointer-events-none absolute top-0 left-0 right-0 h-1 opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+                style={{ background: item.glowColor }}
+              />
+
+              <div>
+                {/* Top row: Number and Circle Arrow Badge */}
+                <div className="flex items-center justify-between">
+                  <span className="font-heading text-xs font-black tracking-[0.2em] text-slate-500 uppercase group-hover:text-white transition-colors duration-300">
                     {item.id}
                   </span>
-                  <span className="mx-2 text-slate-300">•</span>
-                  <span className="text-xs font-bold tracking-widest text-slate-800 uppercase">
-                    {item.title}
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#1b1b1f] shadow-md transition-all duration-300 ease-out group-hover:scale-110 group-hover:bg-orange-500 group-hover:text-white group-hover:shadow-[0_0_15px_rgba(249,115,22,0.6)]">
+                    <svg
+                      className="h-3.5 w-3.5 transition-transform duration-300 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3 1H11V9"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <line
+                        x1="11"
+                        y1="1"
+                        x2="1"
+                        y2="11"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </span>
                 </div>
 
-                {/* Subtitle / Hook */}
-                <h3 className="font-heading text-xl sm:text-2xl font-black leading-snug text-slate-950">
-                  {item.hook}
+                {/* Title */}
+                <h3 className="mt-5 font-heading text-xl sm:text-2xl font-bold uppercase tracking-tight text-white transition-colors duration-300 group-hover:text-orange-400">
+                  {item.title}
                 </h3>
 
-                {/* Full Description */}
-                <p className="mt-3 text-sm leading-relaxed text-slate-600 font-medium">
-                  {item.description}
+                {/* Punchy hook */}
+                <p className="mt-2 font-body text-xs sm:text-[0.82rem] font-semibold text-slate-200 leading-snug">
+                  {item.hook}
                 </p>
 
-                {/* Best For Callout */}
-                <div className="mt-6 rounded-2xl border border-slate-200/90 bg-slate-50/90 p-4">
-                  <span className="block text-[0.68rem] font-bold uppercase tracking-[0.16em] text-orange-700">
-                    Best for:
-                  </span>
-                  <p className="mt-1 text-xs font-semibold text-slate-800 leading-relaxed">
-                    {item.bestFor}
-                  </p>
-                </div>
+                {/* Concise description */}
+                <p className="mt-3 font-body text-xs leading-relaxed text-slate-400">
+                  {item.description}
+                </p>
               </div>
 
-              {/* Bottom CTA Button */}
-              <div className="relative z-10 mt-8 pt-5 border-t border-slate-100 flex items-center justify-between">
-                <Link
-                  to={item.to}
-                  className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-6 py-3 font-body text-[0.72rem] font-bold uppercase tracking-[0.16em] text-white transition duration-300 group-hover:bg-[#f97316] group-hover:shadow-lg group-hover:shadow-orange-500/25"
+              {/* Bottom Explore Cue */}
+              <div className="mt-6 pt-4 border-t border-white/10 flex items-center gap-1.5 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-slate-400 transition-colors duration-300 group-hover:text-orange-400">
+                <span>Explore</span>
+                <svg
+                  className="h-3 w-3 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  {item.cta}
-                  <FaArrowRight className="text-xs transition-transform duration-300 group-hover:translate-x-1" />
-                </Link>
-                <span className="text-xs font-bold text-slate-300 group-hover:text-slate-400">
-                  0{index + 1}
-                </span>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2.5}
+                    d="M17 8l4 4m0 0l-4 4m4-4H3"
+                  />
+                </svg>
               </div>
-            </article>
-          ))}
-        </div>
+            </Link>
+          </Motion.div>
+        ))}
       </div>
-    </section>
+    </Motion.section>
   );
 };
 

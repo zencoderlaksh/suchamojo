@@ -12,7 +12,9 @@ import ConsentBanner from "../components/ConsentBanner";
 import Leads from "../pages/admin/Leads";
 import Blogs from "../pages/admin/Blogs";
 import Testimonials from "../pages/admin/Testimonials";
+import MediaManager from "../pages/admin/MediaManager";
 import AdminLogin from "../pages/admin/AdminLogin";
+
 import SmoothScroll from "../components/SmoothScroll";
 
 const Home = lazy(() => import("../pages/home/Home"));
@@ -105,7 +107,9 @@ const AppRoutes = () => {
                 <Route path="leads" element={<Leads />} />
                 <Route path="blogs" element={<Blogs />} />
                 <Route path="testimonials" element={<Testimonials />} />
+                <Route path="media" element={<MediaManager />} />
               </Route>
+
               <Route
                 path="projects"
                 element={<Navigate to="/industries" replace />}

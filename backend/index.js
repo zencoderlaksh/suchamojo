@@ -9,6 +9,7 @@ const seoRoutes = require("./routes/seoRoutes");
 const configRoutes = require("./routes/configRoutes");
 const settingsRoutes = require("./routes/settingsRoutes");
 const testimonialRoutes = require("./routes/testimonialRoutes");
+const mediaRoutes = require("./routes/mediaRoutes");
 
 const { protect } = require("./middlewares/authMiddleware");
 const { isAdmin } = require("./middlewares/adminMiddleware");
@@ -21,8 +22,9 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 app.set("etag", "strong");
-app.use(express.json({ limit: "200kb" }));
-app.use(express.urlencoded({ extended: true, limit: "200kb" }));
+app.use(express.json({ limit: "25mb" }));
+app.use(express.urlencoded({ extended: true, limit: "25mb" }));
+
 
 const parseCorsOrigins = () => {
   const env = process.env.CORS_ORIGIN || process.env.CORS_ORIGINS;
@@ -79,8 +81,10 @@ app.use("/api/seo", requireDB, seoRoutes);
 app.use("/api/config", requireDB, configRoutes);
 app.use("/api/settings", requireDB, settingsRoutes);
 app.use("/api/testimonials", requireDB, testimonialRoutes);
+app.use("/api/media", mediaRoutes);
 
 app.use("/api/admin/blogs", protect, isAdmin, blogRoutes);
+
 app.use("/api/admin/leads", protect, isAdmin, leadRoutes);
 
 app.use((req, res) => {
