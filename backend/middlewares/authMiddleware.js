@@ -19,7 +19,7 @@ const protect = async (req, res, next) => {
       const user = await User.findById(decoded.id).select("-password");
 
       if (!user) {
-        return res.status(401).json({ message: "User not found" });
+        return res.status(401).json({ message: "User not found or session expired" });
       }
 
       req.user = user;
@@ -32,4 +32,26 @@ const protect = async (req, res, next) => {
   return res.status(401).json({ message: "Not authorized, no token" });
 };
 
-module.exports = { protect };
+const optionalAuth = async (req, res, next) => {
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith("Bearer")
+  ) {
+    try {
+      const token = req.headers.authorization.split(" ")[1];
+      const decoded = jwt.verify(
+        token,
+        process.env.JWT_SECRET || "fallback_secret",
+      );
+      const user = await User.findById(decoded.id).select("-password");
+      if (user) {
+        req.user = user;
+      }
+    } catch (error) {
+      // Continue without user
+    }
+  }
+  return next();
+};
+
+module.exports = { protect, optionalAuth };

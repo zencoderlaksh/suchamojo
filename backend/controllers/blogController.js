@@ -30,10 +30,18 @@ const createBlog = async (req, res, next) => {
     if (!title || !excerpt || !content) {
       return res
         .status(400)
-        .json({ message: "title, excerpt and content are required" });
+        .json({ message: "Title, excerpt and content are required" });
     }
 
-    const finalSlug = slugify(slug || title);
+    let finalSlug = slugify(slug || title);
+    if (!finalSlug) {
+      finalSlug = `post-${Date.now()}`;
+    }
+    const slugCollision = await BlogPost.findOne({ slug: finalSlug });
+    if (slugCollision) {
+      finalSlug = `${finalSlug}-${Date.now().toString().slice(-4)}`;
+    }
+
     const publishedAt =
       status === "published" ?
         publishDate ? new Date(publishDate)
@@ -73,10 +81,18 @@ const createBlog = async (req, res, next) => {
 const listBlogs = async (req, res, next) => {
   try {
     const includeDrafts = req.query.includeDrafts === "true";
-    if (includeDrafts && (!req.user || req.user.role !== "admin")) {
-      return res
-        .status(403)
-        .json({ message: "Admin access required for drafts" });
+    if (includeDrafts) {
+      const isAdminUser = req.user && req.user.role === "admin";
+      const hasAdminKey =
+        Boolean(req.headers["x-admin-key"]) &&
+        Boolean(process.env.ADMIN_KEY) &&
+        req.headers["x-admin-key"] === process.env.ADMIN_KEY;
+
+      if (!isAdminUser && !hasAdminKey) {
+        return res
+          .status(403)
+          .json({ message: "Admin access required to view drafts" });
+      }
     }
     const tag = req.query.tag ? String(req.query.tag).trim() : "";
     const limit = Math.min(Math.max(Number(req.query.limit || 50), 1), 100);
