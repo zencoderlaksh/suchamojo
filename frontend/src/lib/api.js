@@ -1,6 +1,17 @@
-export const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
-const REQUEST_TIMEOUT_MS = 12000;
+export const API_BASE_URL = (() => {
+  const envBase = import.meta.env.VITE_API_BASE_URL;
+  if (typeof window !== "undefined") {
+    const isLocalhost =
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1";
+    // In production, fallback to Render backend if env var is missing or points to localhost
+    if (!isLocalhost && (!envBase || envBase.includes("localhost"))) {
+      return "https://suchamojo.onrender.com";
+    }
+  }
+  return envBase || "https://suchamojo.onrender.com";
+})();
+const REQUEST_TIMEOUT_MS = 15000;
 
 const fetchWithTimeout = async (url, options = {}) => {
   const controller = new AbortController();
@@ -79,11 +90,11 @@ export const fetchAdminTestimonials = async () => {
 };
 
 export const fetchAdminSettings = async (adminKey) => {
+  const headers = authHeaders();
+  if (adminKey) headers["x-admin-key"] = adminKey;
   const response = await fetchWithTimeout(
     `${API_BASE_URL}/api/settings/admin`,
-    {
-      headers: { "x-admin-key": adminKey },
-    },
+    { headers },
   );
   const data = await response.json();
   if (!response.ok)
@@ -91,15 +102,17 @@ export const fetchAdminSettings = async (adminKey) => {
   return data;
 };
 
-export const updateAdminSettings = async (adminKey, payload) => {
+export const updateAdminSettings = async (adminKeyOrPayload, maybePayload) => {
+  const payload = maybePayload !== undefined ? maybePayload : adminKeyOrPayload;
+  const adminKey = maybePayload !== undefined ? adminKeyOrPayload : null;
+  const headers = authHeaders(true);
+  if (adminKey) headers["x-admin-key"] = adminKey;
+
   const response = await fetchWithTimeout(
     `${API_BASE_URL}/api/settings/admin`,
     {
       method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        "x-admin-key": adminKey,
-      },
+      headers,
       body: JSON.stringify(payload),
     },
   );
@@ -124,6 +137,56 @@ export const fetchAdminLeads = async () => {
   );
   const data = await response.json();
   if (!response.ok) throw new Error(data?.message || "Request failed");
+  return data;
+};
+
+export const deleteAdminLead = async (id) => {
+  const response = await fetchWithTimeout(
+    `${API_BASE_URL}/api/leads/consultation/${id}`,
+    {
+      method: "DELETE",
+      headers: authHeaders(),
+    },
+  );
+  const data = await response.json();
+  if (!response.ok) throw new Error(data?.message || "Failed to delete lead");
+  return data;
+};
+
+export const fetchAdminSeoPages = async () => {
+  const response = await fetchWithTimeout(
+    `${API_BASE_URL}/api/seo?includeDrafts=true`,
+    { headers: authHeaders() },
+  );
+  const data = await response.json();
+  if (!response.ok) throw new Error(data?.message || "Failed to fetch SEO pages");
+  return data;
+};
+
+export const upsertPageSeo = async (slug, payload) => {
+  const response = await fetchWithTimeout(
+    `${API_BASE_URL}/api/seo/${encodeURIComponent(slug)}`,
+    {
+      method: "PUT",
+      headers: authHeaders(true),
+      body: JSON.stringify(payload),
+    },
+  );
+  const data = await response.json();
+  if (!response.ok) throw new Error(data?.message || "Failed to save SEO");
+  return data;
+};
+
+export const deletePageSeo = async (slug) => {
+  const response = await fetchWithTimeout(
+    `${API_BASE_URL}/api/seo/${encodeURIComponent(slug)}`,
+    {
+      method: "DELETE",
+      headers: authHeaders(),
+    },
+  );
+  const data = await response.json();
+  if (!response.ok) throw new Error(data?.message || "Failed to delete SEO");
   return data;
 };
 
@@ -237,13 +300,29 @@ export const fetchMediaAssets = async ({ path = "/suchamojo", limit = 50 } = {})
   return fetchJson(`${API_BASE_URL}/api/media/list${query}`);
 };
 
-export const uploadMediaAsset = async ({ file, fileName, folder = "/suchamojo/uploads", tags = [] }) => {
+export const uploadMediaAsset = async ({
+  file,
+  fileName,
+  folder = "/suchamojo/uploads",
+  tags = [],
+  useUniqueFileName = false,
+  overwriteFile = true,
+  oldFileId,
+}) => {
   const response = await fetchWithTimeout(`${API_BASE_URL}/api/media/upload`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ file, fileName, folder, tags }),
+    body: JSON.stringify({
+      file,
+      fileName,
+      folder,
+      tags,
+      useUniqueFileName,
+      overwriteFile,
+      oldFileId,
+    }),
   });
 
   const data = await response.json();
@@ -256,11 +335,38 @@ export const uploadMediaAsset = async ({ file, fileName, folder = "/suchamojo/up
 export const deleteMediaAsset = async (fileId) => {
   const response = await fetchWithTimeout(`${API_BASE_URL}/api/media/${fileId}`, {
     method: "DELETE",
+    headers: authHeaders(),
   });
 
   const data = await response.json();
   if (!response.ok) {
     throw new Error(data?.message || "Failed to delete asset from ImageKit");
+  }
+  return data;
+};
+
+export const renameMediaAsset = async ({ filePath, newFileName }) => {
+  const response = await fetchWithTimeout(`${API_BASE_URL}/api/media/rename`, {
+    method: "POST",
+    headers: authHeaders(true),
+    body: JSON.stringify({ filePath, newFileName }),
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.message || "Failed to rename asset in ImageKit");
+  }
+  return data;
+};
+
+export const updateMediaAssetDetails = async (fileId, payload) => {
+  const response = await fetchWithTimeout(`${API_BASE_URL}/api/media/${fileId}`, {
+    method: "PATCH",
+    headers: authHeaders(true),
+    body: JSON.stringify(payload),
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    throw new Error(data?.message || "Failed to update asset details in ImageKit");
   }
   return data;
 };

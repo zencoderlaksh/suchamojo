@@ -7,7 +7,7 @@ const NAV_LINKS = [
   { label: "Services", to: "/services" },
   { label: "Content Creation", to: "/content-creation" },
   { label: "Team Training", to: "/team-training" },
-  { label: "Our Work", to: "/#our-work" },
+  { label: "Our Work", to: "/industries" },
   { label: "About", to: "/about" },
 ];
 

@@ -20,7 +20,7 @@ const Clients = () => {
   }, []);
 
   return (
-    <section id="our-work" className="relative mx-auto mt-10 sm:mt-14 w-full max-w-[1440px] px-4 font-body sm:px-6 lg:px-8">
+    <section id="clients" className="relative mx-auto mt-10 sm:mt-14 w-full max-w-[1440px] px-4 font-body sm:px-6 lg:px-8">
       <div className="relative overflow-hidden rounded-[2.5rem] sm:rounded-[3rem] border border-slate-200/80 bg-white px-6 py-10 sm:px-10 sm:py-12 shadow-[0_12px_40px_rgba(15,23,42,0.04)]">
         
         {/* Header */}
@@ -54,6 +54,8 @@ const Clients = () => {
                   <img
                     src={client.logo}
                     alt={client.name}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-contain grayscale hover:grayscale-0 transition-all duration-300"
                     draggable={false}
                   />

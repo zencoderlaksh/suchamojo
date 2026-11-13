@@ -57,8 +57,21 @@ const upsertSeoBySlug = async (req, res, next) => {
   }
 };
 
+const deleteSeoBySlug = async (req, res, next) => {
+  try {
+    const slug = String(req.params.slug || "").toLowerCase().trim();
+    if (!slug) return res.status(400).json({ message: "slug is required" });
+    const item = await PageSeo.findOneAndDelete({ slug });
+    if (!item) return res.status(404).json({ message: "SEO page not found" });
+    return res.status(200).json({ message: "SEO deleted successfully", slug });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   listSeoPages,
   getSeoBySlug,
   upsertSeoBySlug,
+  deleteSeoBySlug,
 };

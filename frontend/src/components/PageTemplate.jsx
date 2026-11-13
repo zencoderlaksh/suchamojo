@@ -50,7 +50,7 @@ const PageTemplate = ({
     <div className="bg-[#050505] text-white">
       <section className="mx-auto w-full max-w-[1400px] px-4 pt-8 sm:px-6 lg:px-8">
         <div className="relative overflow-hidden rounded-[2.5rem] border border-white/10 px-6 py-10 shadow-[0_30px_80px_rgba(0,0,0,0.45)] sm:px-10 sm:py-14 lg:px-14 lg:py-18">
-          <img src={backgroundAlt} alt="" className="absolute inset-0 h-full w-full object-cover grayscale" />
+          <img src={backgroundAlt} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover grayscale" />
           <div className="absolute inset-0 bg-black/75" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.18),transparent_30%),radial-gradient(circle_at_bottom_right,rgba(34,211,238,0.12),transparent_32%)]" />
 
@@ -94,7 +94,7 @@ const PageTemplate = ({
           </div>
 
           <div className="relative overflow-hidden rounded-[2rem] border border-white/10 p-6 sm:p-8">
-            <img src={timeless} alt="" className="absolute inset-0 h-full w-full object-cover grayscale" />
+            <img src={timeless} alt="" loading="lazy" decoding="async" className="absolute inset-0 h-full w-full object-cover grayscale" />
             <div className="absolute inset-0 bg-black/75" />
             <div className="relative z-10">
               <p className="font-body text-[0.72rem] uppercase tracking-[0.22em] text-gray-400">Best fit</p>

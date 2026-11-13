@@ -34,7 +34,12 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
+
+    const cleanEmail = email.trim().toLowerCase();
+    const user = await User.findOne({ email: { $regex: new RegExp(`^${cleanEmail}$`, "i") } });
     if (!user) {
       return res.status(401).json({ message: "Invalid credentials" });
     }

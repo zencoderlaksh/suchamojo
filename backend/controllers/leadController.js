@@ -10,12 +10,12 @@ const { evaluateCalendarDecision } = require("../services/calendarRouting");
 const { sendLeadEmails } = require("../services/leadEmails");
 
 const normalizeLeadPayload = (body, userAgent) => {
-  const name = normalizeWhitespace(body.name);
-  const email = normalizeWhitespace(body.email).toLowerCase();
+  const name = normalizeWhitespace(body.name || "");
+  const email = normalizeWhitespace(body.email || "").toLowerCase();
   const phone = normalizeWhitespace(body.phone || "");
-  const category = normalizeWhitespace(body.category);
-  const sourcePage = normalizeWhitespace(body.sourcePage || "unknown");
-  const serviceInterest = normalizeWhitespace(body.serviceInterest || category);
+  const category = normalizeWhitespace(body.category || body.serviceInterest || "General Inquiry");
+  const sourcePage = normalizeWhitespace(body.sourcePage || "homepage");
+  const serviceInterest = normalizeWhitespace(body.serviceInterest || category || "General Inquiry");
   const audience = normalizeWhitespace(body.audience || "");
   const offer = normalizeWhitespace(body.offer || "");
   const sebiRegistered =
@@ -53,8 +53,6 @@ const validateLeadPayload = (payload) => {
   if (!payload.name) errors.push("name is required");
   if (!payload.email) errors.push("email is required");
   if (!payload.category) errors.push("category is required");
-  if (!payload.sourcePage) errors.push("sourcePage is required");
-  if (!payload.serviceInterest) errors.push("serviceInterest is required");
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (payload.email && !emailRegex.test(payload.email)) {
@@ -212,8 +210,22 @@ const testEmailConfiguration = async (req, res, next) => {
   }
 };
 
+const deleteConsultationLead = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const lead = await ConsultationLead.findByIdAndDelete(id);
+    if (!lead) {
+      return res.status(404).json({ message: "Lead not found" });
+    }
+    return res.status(200).json({ message: "Lead deleted successfully", id });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   submitConsultationLead,
   listConsultationLeads,
   testEmailConfiguration,
+  deleteConsultationLead,
 };

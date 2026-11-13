@@ -9,14 +9,20 @@ import { lazy, Suspense, useEffect } from "react";
 import Layout from "../layout/Layout";
 import { useAppStore } from "../store/useAppStore";
 import ConsentBanner from "../components/ConsentBanner";
-import Leads from "../pages/admin/Leads";
-import Blogs from "../pages/admin/Blogs";
-import Testimonials from "../pages/admin/Testimonials";
-import MediaManager from "../pages/admin/MediaManager";
-import AdminLogin from "../pages/admin/AdminLogin";
-
 import SmoothScroll from "../components/SmoothScroll";
 
+// Admin components (lazy loaded to prevent bloating public bundle)
+const AdminLayout = lazy(() => import("../layout/AdminLayout"));
+const AdminLogin = lazy(() => import("../pages/admin/AdminLogin"));
+const AdminPanel = lazy(() => import("../pages/admin/AdminPanel"));
+const Leads = lazy(() => import("../pages/admin/Leads"));
+const Blogs = lazy(() => import("../pages/admin/Blogs"));
+const Testimonials = lazy(() => import("../pages/admin/Testimonials"));
+const MediaManager = lazy(() => import("../pages/admin/MediaManager"));
+const SeoManager = lazy(() => import("../pages/admin/SeoManager"));
+const Settings = lazy(() => import("../pages/admin/Settings"));
+
+// Public site pages
 const Home = lazy(() => import("../pages/home/Home"));
 const About = lazy(() => import("../pages/about/About"));
 const Blog = lazy(() => import("../pages/blog/Blog"));
@@ -43,8 +49,6 @@ const Signup = lazy(() => import("../pages/signup/Signup"));
 const MfdPersonalBranding = lazy(
   () => import("../pages/mfd/MfdPersonalBranding"),
 );
-const AdminPanel = lazy(() => import("../pages/admin/AdminPanel"));
-const AdminLayout = lazy(() => import("../layout/AdminLayout"));
 
 const RouteTracker = () => {
   const location = useLocation();
@@ -80,10 +84,25 @@ const AppRoutes = () => {
         <RouteTracker />
         <Suspense
           fallback={
-            <div className="px-4 py-10 text-sm text-gray-300">Loading...</div>
+            <div className="fixed top-0 left-0 right-0 z-[9999] h-1 bg-black/20">
+              <div className="h-full w-full bg-gradient-to-r from-orange-500 via-amber-400 to-orange-600 animate-pulse" />
+            </div>
           }
         >
           <Routes>
+            {/* Admin Management System (Isolated, no public floating footer/header) */}
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<AdminPanel />} />
+              <Route path="leads" element={<Leads />} />
+              <Route path="blogs" element={<Blogs />} />
+              <Route path="testimonials" element={<Testimonials />} />
+              <Route path="media" element={<MediaManager />} />
+              <Route path="seo" element={<SeoManager />} />
+              <Route path="settings" element={<Settings />} />
+            </Route>
+            <Route path="/admin/login" element={<AdminLogin />} />
+
+            {/* Public Website Routes */}
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />
               <Route path="about" element={<About />} />
@@ -102,13 +121,6 @@ const AppRoutes = () => {
               <Route path="contact" element={<Contact />} />
               <Route path="mfd-page" element={<MfdPersonalBranding />} />
               <Route path="book-a-call" element={<BookCallPriority />} />
-              <Route path="admin/*" element={<AdminLayout />}>
-                <Route index element={<AdminPanel />} />
-                <Route path="leads" element={<Leads />} />
-                <Route path="blogs" element={<Blogs />} />
-                <Route path="testimonials" element={<Testimonials />} />
-                <Route path="media" element={<MediaManager />} />
-              </Route>
 
               <Route
                 path="projects"
@@ -117,8 +129,12 @@ const AppRoutes = () => {
               <Route path="journal" element={<Navigate to="/blog" replace />} />
               <Route path="work" element={<Navigate to="/services" replace />} />
             </Route>
+
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<Signup />} />
+
+            {/* Catch-all redirect */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
         <ConsentBanner />

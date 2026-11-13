@@ -3,6 +3,7 @@ const {
   submitConsultationLead,
   listConsultationLeads,
   testEmailConfiguration,
+  deleteConsultationLead,
 } = require("../controllers/leadController");
 
 const { protect } = require("../middlewares/authMiddleware");
@@ -19,6 +20,7 @@ router.post(
   submitConsultationLead,
 );
 router.get("/consultation", protect, isAdmin, listConsultationLeads);
+router.delete("/consultation/:id", protect, isAdmin, deleteConsultationLead);
 router.post("/test-email", protect, isAdmin, testEmailConfiguration);
 
 module.exports = router;

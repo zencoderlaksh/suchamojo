@@ -104,6 +104,7 @@ const IndustriesServe = () => {
                   alt={industry.title}
                   className="h-full w-full object-cover select-none pointer-events-none transition-transform duration-500 ease-out group-hover:scale-[1.05]"
                   loading="lazy"
+                  decoding="async"
                 />
 
                 {/* Sphere Digital Top-Right White Arrow Badge */}

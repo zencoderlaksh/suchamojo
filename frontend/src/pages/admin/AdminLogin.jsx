@@ -68,11 +68,6 @@ const AdminLogin = () => {
         {error && (
           <p className="mt-4 text-sm text-red-400 text-center">{error}</p>
         )}
-        <p className="mt-6 text-xs text-gray-400 text-center">
-          admin1@suchamojo.com / pass123
-          <br />
-          admin2@suchamojo.com / pass456
-        </p>
       </div>
     </div>
   );

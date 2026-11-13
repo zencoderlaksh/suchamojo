@@ -251,7 +251,8 @@ const Landing = () => {
                         : "Everything Content documentary and workshop footage"
                     }
                     className="w-full h-full object-cover object-center pointer-events-none select-none filter-none"
-                    loading={isCenterpiece || index < 5 ? "eager" : "lazy"}
+                    loading={isCenterpiece ? "eager" : "lazy"}
+                    fetchPriority={isCenterpiece ? "high" : "low"}
                     decoding="async"
                   />
 

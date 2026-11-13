@@ -20,11 +20,19 @@ const getAuthParams = (req, res) => {
 
 /**
  * Server-side upload to ImageKit.
- * Accepts: file (base64 string or binary or URL), fileName, folder, tags
+ * Accepts: file (base64 string or binary or URL), fileName, folder, tags, oldFileId
  */
 const uploadMedia = async (req, res) => {
   try {
-    const { file, fileName, folder = "/suchamojo/uploads", tags = [] } = req.body;
+    const {
+      file,
+      fileName,
+      folder = "/suchamojo/uploads",
+      tags = [],
+      useUniqueFileName = false,
+      overwriteFile = true,
+      oldFileId,
+    } = req.body;
 
     if (!file || !fileName) {
       return res.status(400).json({
@@ -38,8 +46,27 @@ const uploadMedia = async (req, res) => {
       fileName,
       folder,
       tags: Array.isArray(tags) ? tags : [tags],
-      useUniqueFileName: false,
+      useUniqueFileName: Boolean(useUniqueFileName),
+      overwriteFile: Boolean(overwriteFile),
     });
+
+    // If replacing an old file and the new file has a different fileId, delete the old file
+    if (oldFileId && result.fileId && oldFileId !== result.fileId) {
+      try {
+        await ik.deleteFile(oldFileId);
+      } catch (delErr) {
+        console.warn("[IMAGEKIT CLEANUP WARN]:", delErr.message);
+      }
+    }
+
+    // Purge CDN cache so the new image is delivered immediately
+    if (result.url) {
+      try {
+        await ik.purgeCache(result.url);
+      } catch (purgeErr) {
+        console.warn("[IMAGEKIT PURGE WARN]:", purgeErr.message);
+      }
+    }
 
     return res.status(200).json({
       success: true,
@@ -59,14 +86,23 @@ const uploadMedia = async (req, res) => {
  */
 const listMedia = async (req, res) => {
   try {
-    const { path = "/suchamojo", limit = 50, skip = 0 } = req.query;
+    const { path = "all", limit = 100, skip = 0, search } = req.query;
     const ik = getImageKit();
 
-    const files = await ik.listFiles({
-      path,
+    const options = {
       limit: parseInt(limit, 10),
       skip: parseInt(skip, 10),
-    });
+    };
+
+    if (path && path !== "all" && path !== "/suchamojo/all") {
+      options.path = path;
+    }
+
+    if (search) {
+      options.searchQuery = `name : "${search}"`;
+    }
+
+    const files = await ik.listFiles(options);
 
     return res.status(200).json({
       success: true,
@@ -77,6 +113,65 @@ const listMedia = async (req, res) => {
     console.error("[IMAGEKIT LIST ERROR]:", error.message);
     return res.status(500).json({
       message: "Failed to list files from ImageKit",
+      error: error.message,
+    });
+  }
+};
+
+/**
+ * Rename a file in ImageKit
+ */
+const renameMedia = async (req, res) => {
+  try {
+    const { filePath, newFileName, purgeCache = true } = req.body;
+    if (!filePath || !newFileName) {
+      return res.status(400).json({ message: "filePath and newFileName are required" });
+    }
+
+    const ik = getImageKit();
+    const result = await ik.renameFile({ filePath, newFileName, purgeCache });
+
+    return res.status(200).json({
+      success: true,
+      message: "File renamed successfully",
+      data: result,
+    });
+  } catch (error) {
+    console.error("[IMAGEKIT RENAME ERROR]:", error.message);
+    return res.status(500).json({
+      message: "Failed to rename file in ImageKit",
+      error: error.message,
+    });
+  }
+};
+
+/**
+ * Update file details (tags, coordinates) in ImageKit
+ */
+const updateMediaDetails = async (req, res) => {
+  try {
+    const { fileId } = req.params;
+    const { tags, removeTags } = req.body;
+    if (!fileId) {
+      return res.status(400).json({ message: "File ID is required" });
+    }
+
+    const ik = getImageKit();
+    const updateData = {};
+    if (tags !== undefined) updateData.tags = Array.isArray(tags) ? tags : [tags];
+    if (removeTags !== undefined) updateData.removeTags = removeTags;
+
+    const result = await ik.updateFileDetails(fileId, updateData);
+
+    return res.status(200).json({
+      success: true,
+      message: "File details updated successfully",
+      data: result,
+    });
+  } catch (error) {
+    console.error("[IMAGEKIT UPDATE ERROR]:", error.message);
+    return res.status(500).json({
+      message: "Failed to update file details in ImageKit",
       error: error.message,
     });
   }
@@ -112,5 +207,7 @@ module.exports = {
   getAuthParams,
   uploadMedia,
   listMedia,
+  renameMedia,
+  updateMediaDetails,
   deleteMedia,
 };

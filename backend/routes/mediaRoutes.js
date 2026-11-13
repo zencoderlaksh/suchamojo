@@ -4,6 +4,8 @@ const {
   getAuthParams,
   uploadMedia,
   listMedia,
+  renameMedia,
+  updateMediaDetails,
   deleteMedia,
 } = require("../controllers/mediaController");
 
@@ -13,6 +15,8 @@ router.get("/auth", getAuthParams);
 // Endpoints for media management
 router.post("/upload", uploadMedia);
 router.get("/list", listMedia);
+router.post("/rename", renameMedia);
+router.patch("/:fileId", updateMediaDetails);
 router.delete("/:fileId", deleteMedia);
 
 module.exports = router;

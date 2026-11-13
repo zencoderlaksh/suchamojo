@@ -1,101 +1,50 @@
 import React, { useEffect, useState } from "react";
-import { API_BASE_URL } from "../../lib/api";
+import { Link } from "react-router-dom";
+import { fetchAdminLeads, fetchAdminBlogs, fetchAdminTestimonials, fetchMediaAssets } from "../../lib/api";
 
 const mockUsers = [
-  {
-    id: 1,
-    name: "John Doe",
-    email: "john@example.com",
-    registered: "2024-01-15",
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    email: "jane@example.com",
-    registered: "2024-01-14",
-  },
-  {
-    id: 3,
-    name: "Bob Johnson",
-    email: "bob@example.com",
-    registered: "2024-01-13",
-  },
-  {
-    id: 4,
-    name: "Alice Brown",
-    email: "alice@example.com",
-    registered: "2024-01-12",
-  },
-  {
-    id: 5,
-    name: "Charlie Wilson",
-    email: "charlie@example.com",
-    registered: "2024-01-11",
-  },
-  {
-    id: 6,
-    name: "Diana Davis",
-    email: "diana@example.com",
-    registered: "2024-01-10",
-  },
-  {
-    id: 7,
-    name: "Eve Miller",
-    email: "eve@example.com",
-    registered: "2024-01-09",
-  },
-  {
-    id: 8,
-    name: "Frank Garcia",
-    email: "frank@example.com",
-    registered: "2024-01-08",
-  },
-  {
-    id: 9,
-    name: "Grace Lee",
-    email: "grace@example.com",
-    registered: "2024-01-07",
-  },
-  {
-    id: 10,
-    name: "Henry Taylor",
-    email: "henry@example.com",
-    registered: "2024-01-06",
-  },
+  { id: 1, name: "Shubham Gupta", email: "websiteshubham8@gmail.com", role: "SuperAdmin" },
 ];
 
 const AdminPanel = () => {
   const [leads, setLeads] = useState([]);
   const [blogs, setBlogs] = useState([]);
+  const [testimonials, setTestimonials] = useState([]);
+  const [mediaCount, setMediaCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      const token = localStorage.getItem("adminToken");
-      const [leadsRes, blogsRes] = await Promise.all([
-        fetch(`${API_BASE_URL}/api/leads/consultation`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }),
-        fetch(`${API_BASE_URL}/api/blogs?includeDrafts=true`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }),
+      setError("");
+
+      const [leadsRes, blogsRes, testRes, mediaRes] = await Promise.allSettled([
+        fetchAdminLeads(),
+        fetchAdminBlogs(),
+        fetchAdminTestimonials(),
+        fetchMediaAssets({ path: "all", limit: 100 }),
       ]);
 
-      if (!leadsRes.ok || !blogsRes.ok) throw new Error("Failed to fetch data");
+      if (leadsRes.status === "fulfilled" && Array.isArray(leadsRes.value)) {
+        setLeads(leadsRes.value);
+      }
+      if (blogsRes.status === "fulfilled" && Array.isArray(blogsRes.value)) {
+        setBlogs(blogsRes.value);
+      }
+      if (testRes.status === "fulfilled" && Array.isArray(testRes.value)) {
+        setTestimonials(testRes.value);
+      }
+      if (mediaRes.status === "fulfilled" && mediaRes.value?.data) {
+        setMediaCount(mediaRes.value.count || mediaRes.value.data.length || 0);
+      }
 
-      const leadsData = await leadsRes.json();
-      const blogsData = await blogsRes.json();
-
-      setLeads(leadsData);
-      setBlogs(blogsData);
+      // If both primary resources failed, show error banner
+      if (leadsRes.status === "rejected" && blogsRes.status === "rejected") {
+        setError(leadsRes.reason?.message || blogsRes.reason?.message || "Failed to connect to backend");
+      }
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Failed to load dashboard data");
     } finally {
       setLoading(false);
     }
@@ -107,178 +56,249 @@ const AdminPanel = () => {
 
   const totalLeads = leads.length;
   const totalBlogs = blogs.length;
-  const totalUsers = mockUsers.length;
+  const totalTestimonials = testimonials.length;
 
-  if (loading) {
-    return (
-      <div className="p-8 flex items-center justify-center h-64">
-        <div className="text-white text-sm tracking-[0.2em] uppercase">
-          Loading dashboard...
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="p-8 flex items-center justify-center h-64">
-        <div className="text-red-400 text-sm">Error: {error}</div>
-      </div>
-    );
-  }
+  // Compute category distribution
+  const categoryCounts = leads.reduce((acc, lead) => {
+    const cat = lead.category || "General";
+    acc[cat] = (acc[cat] || 0) + 1;
+    return acc;
+  }, {});
 
   return (
-    <div className="p-8 max-w-7xl mx-auto space-y-8">
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="rounded-2xl border border-white/20 bg-white/10 p-8 text-center backdrop-blur-xl">
-          <h3 className="text-4xl font-bold text-white mb-2">{totalLeads}</h3>
-          <p className="text-gray-400 uppercase text-xs tracking-[0.2em]">
+    <div className="space-y-8 max-w-7xl">
+      {/* Header */}
+      <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 className="text-2xl font-black uppercase tracking-tight text-white">
+            Admin Dashboard
+          </h1>
+          <p className="text-xs text-slate-400 mt-1">
+            System overview, recent enquiries, content status, and media synchronization.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={fetchDashboardData}
+            disabled={loading}
+            className="rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 px-3.5 py-2 text-xs text-slate-300 transition"
+          >
+            ↻ Refresh Metrics
+          </button>
+        </div>
+      </div>
+
+      {error && (
+        <div className="rounded-xl border border-red-500/30 bg-red-500/10 p-4 text-xs text-red-400 flex items-center justify-between">
+          <span>Error loading live data: {error}</span>
+          <button
+            onClick={fetchDashboardData}
+            className="underline font-bold hover:text-white"
+          >
+            Retry
+          </button>
+        </div>
+      )}
+
+      {/* Stats Grid */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <Link
+          to="/admin/leads"
+          className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition hover:border-orange-500/50 hover:bg-white/10"
+        >
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-hover:text-orange-400">
             Total Enquiries
           </p>
-        </div>
-        <div className="rounded-2xl border border-white/20 bg-white/10 p-8 text-center backdrop-blur-xl">
-          <h3 className="text-4xl font-bold text-white mb-2">{totalBlogs}</h3>
-          <p className="text-gray-400 uppercase text-xs tracking-[0.2em]">
-            Total Blogs
+          <h3 className="text-3xl font-black text-white mt-2">
+            {loading ? "..." : totalLeads}
+          </h3>
+          <p className="text-[11px] text-slate-400 mt-1">Form submissions</p>
+        </Link>
+
+        <Link
+          to="/admin/blogs"
+          className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition hover:border-orange-500/50 hover:bg-white/10"
+        >
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-hover:text-orange-400">
+            Articles & Blogs
           </p>
-        </div>
-        <div className="rounded-2xl border border-white/20 bg-white/10 p-8 text-center backdrop-blur-xl">
-          <h3 className="text-4xl font-bold text-white mb-2">{totalUsers}</h3>
-          <p className="text-gray-400 uppercase text-xs tracking-[0.2em]">
-            Registered Users
+          <h3 className="text-3xl font-black text-white mt-2">
+            {loading ? "..." : totalBlogs}
+          </h3>
+          <p className="text-[11px] text-slate-400 mt-1">Published & drafts</p>
+        </Link>
+
+        <Link
+          to="/admin/testimonials"
+          className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition hover:border-orange-500/50 hover:bg-white/10"
+        >
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-hover:text-orange-400">
+            Testimonials
           </p>
+          <h3 className="text-3xl font-black text-white mt-2">
+            {loading ? "..." : totalTestimonials}
+          </h3>
+          <p className="text-[11px] text-slate-400 mt-1">Client reviews</p>
+        </Link>
+
+        <Link
+          to="/admin/media"
+          className="group rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl transition hover:border-orange-500/50 hover:bg-white/10"
+        >
+          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400 group-hover:text-orange-400">
+            Media CDN Assets
+          </p>
+          <h3 className="text-3xl font-black text-white mt-2">
+            {loading ? "..." : mediaCount}
+          </h3>
+          <p className="text-[11px] text-slate-400 mt-1">ImageKit CDN hosted</p>
+        </Link>
+      </div>
+
+      {/* Category Breakdown Strip */}
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
+            Enquiry Breakdown by Category
+          </span>
+          <Link to="/admin/leads" className="text-xs text-orange-400 hover:underline">
+            View All Leads →
+          </Link>
+        </div>
+
+        <div className="flex flex-wrap gap-2.5">
+          {Object.entries(categoryCounts).length === 0 ? (
+            <span className="text-xs text-slate-500">No leads captured yet.</span>
+          ) : (
+            Object.entries(categoryCounts).map(([cat, count]) => (
+              <div
+                key={cat}
+                className="flex items-center gap-2 rounded-xl border border-white/10 bg-black/40 px-3.5 py-1.5 text-xs"
+              >
+                <span className="text-slate-300 font-medium">{cat}:</span>
+                <span className="rounded-md bg-orange-500/20 px-2 py-0.5 text-[11px] font-bold text-orange-400">
+                  {count}
+                </span>
+              </div>
+            ))
+          )}
         </div>
       </div>
 
-      {/* Tables */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {/* Enquiries (Leads) */}
-        <div className="rounded-2xl border border-white/20 bg-white/10 p-8 backdrop-blur-xl">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-lg uppercase tracking-[0.1em] text-gray-300">
+      {/* Tables: Recent Enquiries & Recent Blogs */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Recent Enquiries */}
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl space-y-4">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white">
               Recent Enquiries
             </h2>
-            <a
-              href="/admin/leads"
-              className="text-xs uppercase tracking-[0.15em] bg-white/20 px-3 py-1 rounded-xl hover:bg-white/30"
+            <Link
+              to="/admin/leads"
+              className="text-[11px] uppercase tracking-wider text-orange-400 hover:underline"
             >
-              View All
-            </a>
+              View All ({totalLeads})
+            </Link>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs tracking-[0.12em]">
-              <thead className="text-gray-400">
-                <tr>
-                  <th className="pb-4 pr-4">Name</th>
-                  <th className="pb-4 pr-4">Email</th>
-                  <th className="pb-4">Category</th>
-                </tr>
-              </thead>
-              <tbody>
-                {leads.slice(0, 5).map((lead, idx) => (
-                  <tr
-                    key={idx}
-                    className="border-t border-white/10 hover:bg-white/5"
-                  >
-                    <td className="py-3 pr-4">{lead.name || "N/A"}</td>
-                    <td className="py-3 pr-4 max-w-xs truncate">
-                      {lead.email || "N/A"}
-                    </td>
-                    <td className="py-3">{lead.category || "N/A"}</td>
+
+          {leads.length === 0 ? (
+            <p className="py-8 text-center text-xs text-slate-500">
+              No consultation requests yet.
+            </p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead className="text-[10px] uppercase text-slate-400 border-b border-white/10">
+                  <tr>
+                    <th className="pb-2.5">Name</th>
+                    <th className="pb-2.5">Category</th>
+                    <th className="pb-2.5">Date</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {leads.slice(0, 5).map((lead, idx) => (
+                    <tr key={lead._id || idx} className="hover:bg-white/5">
+                      <td className="py-2.5 pr-2">
+                        <div className="font-medium text-white">{lead.name}</div>
+                        <div className="text-[10px] text-slate-400 truncate max-w-[140px]">
+                          {lead.email}
+                        </div>
+                      </td>
+                      <td className="py-2.5 pr-2">
+                        <span className="rounded-md bg-orange-500/10 px-2 py-0.5 text-[10px] font-medium text-orange-400">
+                          {lead.category || "General"}
+                        </span>
+                      </td>
+                      <td className="py-2.5 text-[10px] text-slate-400">
+                        {lead.submittedAt
+                          ? new Date(lead.submittedAt).toLocaleDateString()
+                          : "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
 
-        {/* Registered Users */}
-        <div className="rounded-2xl border border-white/20 bg-white/10 p-8 backdrop-blur-xl">
-          <div className="flex justify-between items-center mb-6">
-            <h2 className="text-lg uppercase tracking-[0.1em] text-gray-300">
-              Recent Users
+        {/* Recent Blogs */}
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl space-y-4">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-white">
+              Recent Blog Posts
             </h2>
-            <a
-              href="/admin/users"
-              className="text-xs uppercase tracking-[0.15em] bg-white/20 px-3 py-1 rounded-xl hover:bg-white/30"
+            <Link
+              to="/admin/blogs"
+              className="text-[11px] uppercase tracking-wider text-orange-400 hover:underline"
             >
-              View All
-            </a>
+              Manage ({totalBlogs})
+            </Link>
           </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs tracking-[0.12em]">
-              <thead className="text-gray-400">
-                <tr>
-                  <th className="pb-4 pr-4">Name</th>
-                  <th className="pb-4 pr-4">Email</th>
-                  <th className="pb-4">Registered</th>
-                </tr>
-              </thead>
-              <tbody>
-                {mockUsers.slice(0, 5).map((user) => (
-                  <tr
-                    key={user.id}
-                    className="border-t border-white/10 hover:bg-white/5"
-                  >
-                    <td className="py-3 pr-4">{user.name}</td>
-                    <td className="py-3 pr-4">{user.email}</td>
-                    <td className="py-3">{user.registered}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
 
-      {/* Blogs */}
-      <div className="rounded-2xl border border-white/20 bg-white/10 p-8 backdrop-blur-xl lg:col-span-full">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-lg uppercase tracking-[0.1em] text-gray-300">
-            Recent Blogs
-          </h2>
-          <a
-            href="/admin/blogs"
-            className="text-xs uppercase tracking-[0.15em] bg-white/20 px-4 py-2 rounded-xl hover:bg-white/30"
-          >
-            Manage All
-          </a>
-        </div>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs tracking-[0.12em]">
-            <thead className="text-gray-400">
-              <tr>
-                <th className="pb-4 pr-4">Title</th>
-                <th className="pb-4 pr-4">Status</th>
-                <th className="pb-4">Created</th>
-              </tr>
-            </thead>
-            <tbody>
-              {blogs.slice(0, 5).map((blog, idx) => (
-                <tr
-                  key={idx}
-                  className="border-t border-white/10 hover:bg-white/5"
-                >
-                  <td className="py-3 pr-4 max-w-md truncate">{blog.title}</td>
-                  <td className="py-3 pr-4">
-                    <span
-                      className={`px-2 py-1 rounded-full text-xs ${
-                        blog.status === "published" ?
-                          "bg-green-500/30 text-green-300 border border-green-500/50"
-                        : "bg-gray-500/30 text-gray-300 border border-gray-500/50"
-                      }`}
-                    >
-                      {blog.status}
-                    </span>
-                  </td>
-                  <td className="py-3">
-                    {new Date(blog.createdAt).toLocaleDateString()}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          {blogs.length === 0 ? (
+            <p className="py-8 text-center text-xs text-slate-500">
+              No blog posts published yet.
+            </p>
+          ) : (
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs">
+                <thead className="text-[10px] uppercase text-slate-400 border-b border-white/10">
+                  <tr>
+                    <th className="pb-2.5">Title</th>
+                    <th className="pb-2.5">Status</th>
+                    <th className="pb-2.5">Date</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-white/5">
+                  {blogs.slice(0, 5).map((blog, idx) => (
+                    <tr key={blog._id || idx} className="hover:bg-white/5">
+                      <td className="py-2.5 pr-2 font-medium text-white truncate max-w-[180px]">
+                        {blog.title}
+                      </td>
+                      <td className="py-2.5 pr-2">
+                        <span
+                          className={`rounded-full px-2 py-0.5 text-[9px] font-bold uppercase ${
+                            blog.status === "published"
+                              ? "bg-emerald-500/20 text-emerald-400"
+                              : "bg-slate-500/20 text-slate-400"
+                          }`}
+                        >
+                          {blog.status}
+                        </span>
+                      </td>
+                      <td className="py-2.5 text-[10px] text-slate-400">
+                        {blog.createdAt
+                          ? new Date(blog.createdAt).toLocaleDateString()
+                          : "—"}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
     </div>

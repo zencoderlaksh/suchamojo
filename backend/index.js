@@ -28,13 +28,20 @@ app.use(express.urlencoded({ extended: true, limit: "25mb" }));
 
 const parseCorsOrigins = () => {
   const env = process.env.CORS_ORIGIN || process.env.CORS_ORIGINS;
-  if (env) return env.split(",").map((o) => o.trim());
-  return [
+  const defaults = [
     "http://localhost:5173",
+    "http://localhost:3000",
     "https://suchamojo.netlify.app",
     "https://suchamojo.com",
     "https://www.suchamojo.com",
+    "https://everythingcontent.in",
+    "https://www.everythingcontent.in",
   ];
+  if (env) {
+    const list = env.split(",").map((o) => o.trim());
+    return [...new Set([...list, ...defaults])];
+  }
+  return defaults;
 };
 
 const allowedOrigins = parseCorsOrigins();
