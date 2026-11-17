@@ -1,8 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaInstagram, FaLinkedinIn, FaYoutube, FaXTwitter, FaEnvelope, FaLocationDot } from "react-icons/fa6";
+import { useAppStore } from "../store/useAppStore";
+
+const DEFAULT_SOCIAL = {
+  linkedin: "https://www.linkedin.com/in/suchamojo/",
+  instagram: "https://www.instagram.com/suchamojo/?hl=en",
+  youtube: "https://www.youtube.com/@suchamojo",
+  x: "https://x.com/suchamojo_",
+};
 
 const Footer = () => {
+  const storeSocial = useAppStore((state) => state.settings?.social);
+  const social = {
+    linkedin: storeSocial?.linkedin || DEFAULT_SOCIAL.linkedin,
+    instagram: storeSocial?.instagram || DEFAULT_SOCIAL.instagram,
+    youtube: storeSocial?.youtube || DEFAULT_SOCIAL.youtube,
+    x: storeSocial?.x || DEFAULT_SOCIAL.x,
+  };
   return (
     <footer className="reveal-up mt-12 rounded-t-[2.5rem] bg-black px-5 pt-12 pb-6 font-body text-gray-300 sm:px-8 lg:px-12">
       <div className="mx-auto max-w-[1400px]">
@@ -91,7 +106,7 @@ const Footer = () => {
 
               <div className="mt-2 flex gap-3 text-base text-gray-300">
                 <a
-                  href="https://linkedin.com"
+                  href={social.linkedin}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="LinkedIn"
@@ -100,7 +115,7 @@ const Footer = () => {
                   <FaLinkedinIn />
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href={social.instagram}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="Instagram"
@@ -109,7 +124,7 @@ const Footer = () => {
                   <FaInstagram />
                 </a>
                 <a
-                  href="https://x.com"
+                  href={social.x}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="X (Twitter)"
@@ -118,7 +133,7 @@ const Footer = () => {
                   <FaXTwitter />
                 </a>
                 <a
-                  href="https://youtube.com"
+                  href={social.youtube}
                   target="_blank"
                   rel="noreferrer"
                   aria-label="YouTube"

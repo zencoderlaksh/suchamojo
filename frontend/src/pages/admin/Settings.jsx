@@ -17,6 +17,12 @@ const Settings = () => {
     calendar: {
       defaultUrl: "https://topmate.io/shubham_gupta152",
     },
+    social: {
+      linkedin: "https://www.linkedin.com/in/suchamojo/",
+      instagram: "https://www.instagram.com/suchamojo/?hl=en",
+      youtube: "https://www.youtube.com/@suchamojo",
+      x: "https://x.com/suchamojo_",
+    },
   });
 
   const loadSettings = async () => {
@@ -34,6 +40,12 @@ const Settings = () => {
           },
           calendar: {
             defaultUrl: data.calendar?.defaultUrl || "https://topmate.io/shubham_gupta152",
+          },
+          social: {
+            linkedin: data.social?.linkedin || "https://www.linkedin.com/in/suchamojo/",
+            instagram: data.social?.instagram || "https://www.instagram.com/suchamojo/?hl=en",
+            youtube: data.social?.youtube || "https://www.youtube.com/@suchamojo",
+            x: data.social?.x || "https://x.com/suchamojo_",
           },
         });
       }
@@ -66,6 +78,17 @@ const Settings = () => {
       ...prev,
       calendar: {
         ...prev.calendar,
+        [name]: value,
+      },
+    }));
+  };
+
+  const handleSocialChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      social: {
+        ...prev.social,
         [name]: value,
       },
     }));
@@ -204,6 +227,76 @@ const Settings = () => {
             <p className="text-[11px] text-slate-500 mt-1">
               Visitors booking a call are automatically directed to this schedule link.
             </p>
+          </div>
+        </div>
+
+        {/* Social Media Links Section */}
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl space-y-4">
+          <div className="border-b border-white/10 pb-3">
+            <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-orange-400">
+              Social Media Links
+            </h2>
+            <p className="text-[11px] text-slate-500 mt-1">
+              Controls the official brand links rendered in the global website footer.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-slate-200 mb-1.5">
+                LinkedIn Profile URL
+              </label>
+              <input
+                type="url"
+                name="linkedin"
+                value={formData.social?.linkedin || ""}
+                onChange={handleSocialChange}
+                placeholder="https://www.linkedin.com/in/suchamojo/"
+                className="w-full rounded-xl border border-white/10 bg-black/60 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-orange-500 font-mono"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-200 mb-1.5">
+                Instagram Profile URL
+              </label>
+              <input
+                type="url"
+                name="instagram"
+                value={formData.social?.instagram || ""}
+                onChange={handleSocialChange}
+                placeholder="https://www.instagram.com/suchamojo/?hl=en"
+                className="w-full rounded-xl border border-white/10 bg-black/60 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-orange-500 font-mono"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-200 mb-1.5">
+                YouTube Channel URL
+              </label>
+              <input
+                type="url"
+                name="youtube"
+                value={formData.social?.youtube || ""}
+                onChange={handleSocialChange}
+                placeholder="https://www.youtube.com/@suchamojo"
+                className="w-full rounded-xl border border-white/10 bg-black/60 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-orange-500 font-mono"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-200 mb-1.5">
+                X (Twitter) Profile URL
+              </label>
+              <input
+                type="url"
+                name="x"
+                value={formData.social?.x || ""}
+                onChange={handleSocialChange}
+                placeholder="https://x.com/suchamojo_"
+                className="w-full rounded-xl border border-white/10 bg-black/60 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-orange-500 font-mono"
+              />
+            </div>
           </div>
         </div>
 

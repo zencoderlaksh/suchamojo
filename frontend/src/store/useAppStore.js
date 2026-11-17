@@ -107,6 +107,12 @@ export const useAppStore = create((set, get) => ({
     calendar: {
       defaultUrl: "",
     },
+    social: {
+      linkedin: "https://www.linkedin.com/in/suchamojo/",
+      instagram: "https://www.instagram.com/suchamojo/?hl=en",
+      youtube: "https://www.youtube.com/@suchamojo",
+      x: "https://x.com/suchamojo_",
+    },
     loading: false,
     error: "",
   },
@@ -259,6 +265,7 @@ export const useAppStore = create((set, get) => ({
         ...state.settings,
         cta: updated.cta,
         calendar: updated.calendar,
+        social: updated.social,
       },
     }));
     return updated;

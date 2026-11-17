@@ -36,6 +36,28 @@ const siteSettingsSchema = new mongoose.Schema(
         trim: true,
       },
     },
+    social: {
+      linkedin: {
+        type: String,
+        default: 'https://www.linkedin.com/in/suchamojo/',
+        trim: true,
+      },
+      instagram: {
+        type: String,
+        default: 'https://www.instagram.com/suchamojo/?hl=en',
+        trim: true,
+      },
+      youtube: {
+        type: String,
+        default: 'https://www.youtube.com/@suchamojo',
+        trim: true,
+      },
+      x: {
+        type: String,
+        default: 'https://x.com/suchamojo_',
+        trim: true,
+      },
+    },
   },
   {
     timestamps: true,
