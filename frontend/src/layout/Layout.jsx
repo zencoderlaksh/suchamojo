@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import GetInTouch from "../pages/home/component/GetInTouch";
+import FloatingWhatsApp from "../components/FloatingWhatsApp";
 
 const Layout = () => {
   const { pathname } = useLocation();
@@ -19,6 +20,7 @@ const Layout = () => {
       <main className={isPriorityPage ? "grow" : "grow pb-28"}>
         <Outlet />
       </main>
+      <FloatingWhatsApp />
       {!isPriorityPage && (
         <div className="bg-black">
           <GetInTouch />

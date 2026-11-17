@@ -113,6 +113,11 @@ export const useAppStore = create((set, get) => ({
       youtube: "https://www.youtube.com/@suchamojo",
       x: "https://x.com/suchamojo_",
     },
+    whatsapp: {
+      enabled: true,
+      phoneNumber: "8851258630",
+      defaultMessage: "Hi Shubham, I would like to enquire about your content & personal branding services.",
+    },
     loading: false,
     error: "",
   },
@@ -266,6 +271,7 @@ export const useAppStore = create((set, get) => ({
         cta: updated.cta,
         calendar: updated.calendar,
         social: updated.social,
+        whatsapp: updated.whatsapp,
       },
     }));
     return updated;

@@ -58,6 +58,22 @@ const siteSettingsSchema = new mongoose.Schema(
         trim: true,
       },
     },
+    whatsapp: {
+      enabled: {
+        type: Boolean,
+        default: true,
+      },
+      phoneNumber: {
+        type: String,
+        default: '8851258630',
+        trim: true,
+      },
+      defaultMessage: {
+        type: String,
+        default: 'Hi Shubham, I would like to enquire about your content & personal branding services.',
+        trim: true,
+      },
+    },
   },
   {
     timestamps: true,

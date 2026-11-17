@@ -17,20 +17,39 @@ const DEFAULT_SETTINGS = {
     youtube: 'https://www.youtube.com/@suchamojo',
     x: 'https://x.com/suchamojo_',
   },
+  whatsapp: {
+    enabled: true,
+    phoneNumber: '8851258630',
+    defaultMessage: 'Hi Shubham, I would like to enquire about your content & personal branding services.',
+  },
 };
 
 const getOrCreateSettings = async () => {
   let settings = await SiteSettings.findOne({ key: 'default' });
   if (!settings) {
     settings = await SiteSettings.create(DEFAULT_SETTINGS);
-  } else if (!settings.social || !settings.social.linkedin) {
-    settings.social = {
-      linkedin: settings.social?.linkedin || DEFAULT_SETTINGS.social.linkedin,
-      instagram: settings.social?.instagram || DEFAULT_SETTINGS.social.instagram,
-      youtube: settings.social?.youtube || DEFAULT_SETTINGS.social.youtube,
-      x: settings.social?.x || DEFAULT_SETTINGS.social.x,
-    };
-    await settings.save();
+  } else {
+    let modified = false;
+    if (!settings.social || !settings.social.linkedin) {
+      settings.social = {
+        linkedin: settings.social?.linkedin || DEFAULT_SETTINGS.social.linkedin,
+        instagram: settings.social?.instagram || DEFAULT_SETTINGS.social.instagram,
+        youtube: settings.social?.youtube || DEFAULT_SETTINGS.social.youtube,
+        x: settings.social?.x || DEFAULT_SETTINGS.social.x,
+      };
+      modified = true;
+    }
+    if (!settings.whatsapp || !settings.whatsapp.phoneNumber) {
+      settings.whatsapp = {
+        enabled: settings.whatsapp?.enabled ?? DEFAULT_SETTINGS.whatsapp.enabled,
+        phoneNumber: settings.whatsapp?.phoneNumber || DEFAULT_SETTINGS.whatsapp.phoneNumber,
+        defaultMessage: settings.whatsapp?.defaultMessage || DEFAULT_SETTINGS.whatsapp.defaultMessage,
+      };
+      modified = true;
+    }
+    if (modified) {
+      await settings.save();
+    }
   }
   return settings;
 };
@@ -43,6 +62,7 @@ const getPublicSettings = async (req, res, next) => {
       cta: settings.cta,
       calendar: settings.calendar,
       social: settings.social || DEFAULT_SETTINGS.social,
+      whatsapp: settings.whatsapp || DEFAULT_SETTINGS.whatsapp,
     });
   } catch (error) {
     return next(error);
@@ -61,7 +81,7 @@ const getAdminSettings = async (req, res, next) => {
 const updateAdminSettings = async (req, res, next) => {
   try {
     const settings = await getOrCreateSettings();
-    const { cta = {}, calendar = {}, social = {} } = req.body || {};
+    const { cta = {}, calendar = {}, social = {}, whatsapp = {} } = req.body || {};
 
     settings.cta = {
       ...settings.cta.toObject(),
@@ -74,6 +94,10 @@ const updateAdminSettings = async (req, res, next) => {
     settings.social = {
       ...(settings.social ? settings.social.toObject() : DEFAULT_SETTINGS.social),
       ...social,
+    };
+    settings.whatsapp = {
+      ...(settings.whatsapp ? settings.whatsapp.toObject() : DEFAULT_SETTINGS.whatsapp),
+      ...whatsapp,
     };
 
     await settings.save();

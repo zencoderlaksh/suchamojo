@@ -23,6 +23,11 @@ const Settings = () => {
       youtube: "https://www.youtube.com/@suchamojo",
       x: "https://x.com/suchamojo_",
     },
+    whatsapp: {
+      enabled: true,
+      phoneNumber: "8851258630",
+      defaultMessage: "Hi Shubham, I would like to enquire about your content & personal branding services.",
+    },
   });
 
   const loadSettings = async () => {
@@ -46,6 +51,11 @@ const Settings = () => {
             instagram: data.social?.instagram || "https://www.instagram.com/suchamojo/?hl=en",
             youtube: data.social?.youtube || "https://www.youtube.com/@suchamojo",
             x: data.social?.x || "https://x.com/suchamojo_",
+          },
+          whatsapp: {
+            enabled: data.whatsapp?.enabled ?? true,
+            phoneNumber: data.whatsapp?.phoneNumber || "8851258630",
+            defaultMessage: data.whatsapp?.defaultMessage || "Hi Shubham, I would like to enquire about your content & personal branding services.",
           },
         });
       }
@@ -90,6 +100,17 @@ const Settings = () => {
       social: {
         ...prev.social,
         [name]: value,
+      },
+    }));
+  };
+
+  const handleWhatsappChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      whatsapp: {
+        ...prev.whatsapp,
+        [name]: type === "checkbox" ? checked : value,
       },
     }));
   };
@@ -295,6 +316,64 @@ const Settings = () => {
                 onChange={handleSocialChange}
                 placeholder="https://x.com/suchamojo_"
                 className="w-full rounded-xl border border-white/10 bg-black/60 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-orange-500 font-mono"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* WhatsApp Direct Chat Section */}
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl space-y-4">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3">
+            <div>
+              <h2 className="text-xs font-bold uppercase tracking-[0.2em] text-orange-400">
+                Floating WhatsApp Direct Chat
+              </h2>
+              <p className="text-[11px] text-slate-500 mt-0.5">
+                Floating quick-chat button shown to visitors across all public pages.
+              </p>
+            </div>
+
+            <label className="flex items-center gap-2 cursor-pointer text-xs text-slate-300">
+              <input
+                type="checkbox"
+                name="enabled"
+                checked={formData.whatsapp?.enabled ?? true}
+                onChange={handleWhatsappChange}
+                className="rounded border-white/20 bg-black/60 text-emerald-500 focus:ring-0"
+              />
+              Widget Enabled
+            </label>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-slate-200 mb-1.5">
+                WhatsApp Phone Number
+              </label>
+              <input
+                type="text"
+                name="phoneNumber"
+                value={formData.whatsapp?.phoneNumber || ""}
+                onChange={handleWhatsappChange}
+                placeholder="8851258630"
+                className="w-full rounded-xl border border-white/10 bg-black/60 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-orange-500 font-mono"
+              />
+              <p className="text-[11px] text-slate-500 mt-1">
+                Enter your 10-digit number or with country code (e.g. 8851258630).
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-xs font-semibold text-slate-200 mb-1.5">
+                Default Pre-filled Message
+              </label>
+              <textarea
+                name="defaultMessage"
+                rows={2}
+                value={formData.whatsapp?.defaultMessage || ""}
+                onChange={handleWhatsappChange}
+                placeholder="Hi Shubham, I would like to enquire about your content & personal branding services."
+                className="w-full rounded-xl border border-white/10 bg-black/60 px-3.5 py-2 text-xs text-white placeholder-slate-500 outline-none focus:border-orange-500"
               />
             </div>
           </div>
